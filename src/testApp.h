@@ -3,6 +3,7 @@
 #include "ofMain.h"
 #include "ofxUI.h"
 #include "Interfaces.h"
+#include "RecordFlac.h"
 
 
 class testApp : public ofBaseApp{
@@ -25,10 +26,10 @@ class testApp : public ofBaseApp{
 		void gotMessage(ofMessage msg);
 		ofTrueTypeFont pixfont;
 		Interfaces mainWindow;
-		void setUILogin();
-		void setUIRegister();
+		RecordFlac rec;
 		ofxUICanvas *gui;
 		void guiEvent(ofxUIEventArgs &e);
+		void audioReceived 	(float * input, int bufferSize, int nChannels);
 		
 		
 		

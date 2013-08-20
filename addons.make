@@ -1,2 +1,3 @@
 ofxXmlSettings
+ofxLibsndfile
 ofxUI

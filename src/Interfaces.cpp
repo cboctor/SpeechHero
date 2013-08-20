@@ -10,7 +10,11 @@ void Interfaces::setup(){
 	setUILogin();
 	setUIRegister();
 	setUIMain();
+	setUIPractice();
 	uimain->setVisible(false);
+	uiregister->setVisible(false);
+	uipractice->setVisible(false);
+	
 }
 
 void Interfaces::setUILogin(){
@@ -66,7 +70,6 @@ void Interfaces::setUIRegister(){
 	uiregister->addSpacer(length-xInit, 30);
 	uiregister->addLabelButton("CREATE", false, length-xInit);
 	uiregister->addLabelButton("CANCEL", false, length-xInit);
-	uiregister->setVisible(false);
 	
 	ofAddListener(uiregister->newGUIEvent,this,&Interfaces::guiEvent);
 }
@@ -89,9 +92,30 @@ void Interfaces::setUIMain(){
 	uimain->addSpacer(0,15);
 	uimain->addLabelButton("Options", false, butSize);
 	uimain->addSpacer(0,15);
+	uimain->addLabelButton("Practice", false, butSize);
+	uimain->addSpacer(0,15);
 	uimain->addLabelButton("Quit", false, butSize);
 	
 	ofAddListener(uimain->newGUIEvent,this,&Interfaces::guiEvent);
+}
+
+void Interfaces::setUIPractice(){
+	float xInit = OFX_UI_GLOBAL_WIDGET_SPACING;
+	float length = 255-xInit;
+	float butSize = 0.59*ofGetWidth();
+	uipractice = new ofxUICanvas(0.2*ofGetWidth(),0, 0.6*ofGetWidth(), ofGetHeight());
+	uipractice->addWidgetDown(new ofxUILabel("Practice", OFX_UI_FONT_LARGE));
+	uipractice->addSpacer(butSize, 2);
+	
+	uipractice->addSpacer(butSize, 2);
+	uipractice->addSpacer(butSize, 30);
+	uipractice->addLabelButton("Record", false,butSize);
+	uipractice->addSpacer(0,15);
+	uipractice->addLabelButton("Stop", false, butSize);
+	uipractice->addSpacer(0,15);
+	uipractice->addLabelButton("Back", false, butSize);
+	uipractice->addSpacer(0,15);
+	ofAddListener(uipractice->newGUIEvent,this,&Interfaces::guiEvent);
 }
 
 
@@ -101,9 +125,39 @@ void Interfaces::guiEvent(ofxUIEventArgs &e)
 	string name = e.widget->getName();
 	if (name=="LOGIN")
 	{
+		uimain->setVisible(true);
 		uilogin->setVisible(false);
 		uiregister->setVisible(false);
-		uimain->setVisible(true);
+		
+	}
+
+
+	else if (name =="Practice")
+	{
+		uimain->setVisible(false);
+		uipractice->setVisible(true);
+	}
+
+	else if (name == "CANCEL")
+	{
+	 uiregister ->setVisible(false);
+	}
+
+	else if (name == "Play")
+	{
+
+	}
+	else if (name == "Highscores")
+	{
+
+	}
+	else if (name == "Sessions")
+	{
+
+	}
+	else if (name == "Options")
+	{
+
 	}
 	else if (name == "REGISTER")
 	{
@@ -114,28 +168,34 @@ void Interfaces::guiEvent(ofxUIEventArgs &e)
 	{
 	 ofExit();
 	}
-	else if (name == "CANCEL")
+	else if (name == "Quit")
 	{
-	 uiregister ->setVisible(false);
+		ofExit();
 	}
-	else if (name == "PLAY")
+	
+	
+	
+	else if (name == "Record")
 	{
-
+		
+		
 	}
-		else if (name == "HIGHSCORE")
+	else if (name == "Stop")
 	{
-
+		recordFlac.stop();
+		
 	}
-		else if (name == "SESSIONS")
+	else if (name == "Back")
 	{
-
+		//recordFlac.stop();
+		uipractice->setVisible(false);
+		uimain->setVisible(true);
 	}
-			else if (name == "OPTIONS")
-	{
-
-	}
-
 }
+	
+	
+	
+
 
 //--------------------------------------------------------------
 void Interfaces::update(){
@@ -200,4 +260,6 @@ void Interfaces::exit()
 {
 	delete uilogin;
 	delete uiregister;
+	delete uipractice;
+	delete uimain;
 }

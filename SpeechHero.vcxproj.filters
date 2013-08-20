@@ -7,6 +7,15 @@
     <ClCompile Include="src\main.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\Interfaces.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\testApp.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\addons\ofxXmlSettings\src\ofxXmlSettings.cpp">
       <Filter>addons\ofxXmlSettings\src</Filter>
     </ClCompile>
@@ -19,7 +28,7 @@
     <ClCompile Include="..\..\..\addons\ofxXmlSettings\libs\tinyxmlparser.cpp">
       <Filter>addons\ofxXmlSettings\libs</Filter>
     </ClCompile>
-    <ClCompile Include="src\Interfaces.cpp">
+    <ClCompile Include="src\RecordFlac.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
@@ -39,6 +48,15 @@
     <Filter Include="addons\ofxXmlSettings\libs">
       <UniqueIdentifier>{687714A8-1662-FA1C-261F-50F0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="addons\ofxLibsndfile">
+      <UniqueIdentifier>{BE698F77-824B-0B85-784F-1506}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxLibsndfile\libs">
+      <UniqueIdentifier>{A649DB51-41A1-7D24-9091-C9D8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxLibsndfile\libs\include">
+      <UniqueIdentifier>{155139D0-84CA-D5F2-FD1D-E5BA}</UniqueIdentifier>
+    </Filter>
     <Filter Include="addons\ofxUI">
       <UniqueIdentifier>{B492C5B0-FF91-9C5A-638A-3142}</UniqueIdentifier>
     </Filter>
@@ -50,11 +68,20 @@
     <ClInclude Include="src\testApp.h">
       <Filter>src</Filter>
     </ClInclude>
+    <ClInclude Include="src\Interfaces.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\testApp.h">
+      <Filter>src</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\..\addons\ofxXmlSettings\src\ofxXmlSettings.h">
       <Filter>addons\ofxXmlSettings\src</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\addons\ofxXmlSettings\libs\tinyxml.h">
       <Filter>addons\ofxXmlSettings\libs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxLibsndfile\libs\include\sndfile.h">
+      <Filter>addons\ofxLibsndfile\libs\include</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\addons\ofxUI\src\ofxUI.h">
       <Filter>addons\ofxUI\src</Filter>
@@ -197,7 +224,7 @@
     <ClInclude Include="..\..\..\addons\ofxUI\src\ofxUIWidgetWithLabel.h">
       <Filter>addons\ofxUI\src</Filter>
     </ClInclude>
-    <ClInclude Include="src\Interfaces.h">
+    <ClInclude Include="src\RecordFlac.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>

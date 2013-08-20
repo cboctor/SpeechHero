@@ -2,6 +2,7 @@
 
 #include "ofMain.h"
 #include "ofxUI.h"
+#include "RecordFlac.h"
 
 class Interfaces {
 	public:
@@ -25,9 +26,13 @@ class Interfaces {
 		void setUILogin();
 		void setUIRegister();
 		void setUIMain();
+		void setUIPractice();
 		ofxUICanvas *uilogin;
 		ofxUICanvas *uiregister;
 		ofxUICanvas *uimain;
+		ofxUICanvas *uipractice;
+		RecordFlac recordFlac;
+		ofxUIButton *startstop;
 		
 		void guiEvent(ofxUIEventArgs &e);
 };

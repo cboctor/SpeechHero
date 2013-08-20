@@ -29,6 +29,11 @@ void testApp::draw(){
 //--------------------------------------------------------------
 void testApp::keyPressed(int key){
 
+	if (key == 's')
+		rec.start();
+
+	if (key=='d')
+		rec.stop();
 }
 
 //--------------------------------------------------------------
@@ -70,6 +75,13 @@ void testApp::gotMessage(ofMessage msg){
 void testApp::dragEvent(ofDragInfo dragInfo){ 
 
 }
+
+void testApp::audioReceived 	(float * input, int bufferSize, int nChannels){
+	
+	rec.audioReceived(input,bufferSize,nChannels);
+}
+
+
 
 void testApp::exit()
 {
