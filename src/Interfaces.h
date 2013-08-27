@@ -31,8 +31,9 @@ class Interfaces {
 		ofxUICanvas *uiregister;
 		ofxUICanvas *uimain;
 		ofxUICanvas *uipractice;
-		RecordFlac recordFlac;
-		ofxUIButton *startstop;
+		void setRecordingState(string state);
+		string getRecordingState();
+		string recState;
 		
 		void guiEvent(ofxUIEventArgs &e);
 };

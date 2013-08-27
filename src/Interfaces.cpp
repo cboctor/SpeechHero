@@ -177,12 +177,12 @@ void Interfaces::guiEvent(ofxUIEventArgs &e)
 	
 	else if (name == "Record")
 	{
-		
+		recState="start";
 		
 	}
 	else if (name == "Stop")
 	{
-		recordFlac.stop();
+		recState="stop";
 		
 	}
 	else if (name == "Back")
@@ -193,7 +193,16 @@ void Interfaces::guiEvent(ofxUIEventArgs &e)
 	}
 }
 	
-	
+	void Interfaces::setRecordingState(string state)
+{
+	recState =state;
+}
+
+ string Interfaces::getRecordingState()
+{
+	return recState;	
+}
+
 	
 
 

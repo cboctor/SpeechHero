@@ -33,7 +33,9 @@ public:
 		float * right;
 		int 	bufferCounter;
 		int 	drawCounter;
-
+		string recState;
+		void setState(string state);
+		string getState();
 
         int      format;
         int      channels;

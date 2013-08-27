@@ -13,7 +13,15 @@ void RecordFlac::update(){
 
 }
 
+ string RecordFlac::getState()
+{
+	return recState;	
+}
 
+void RecordFlac::setState(string state)
+{
+	recState=state;
+}
 //--------------------------------------------------------------
 
 void RecordFlac::start(){
@@ -29,12 +37,13 @@ void RecordFlac::start(){
 
     sampleRate = 16000;
 	ofSoundStreamSetup(0,2, sampleRate, 256, 4);
+	
 
-    info.format=SF_FORMAT_WAV | SF_FORMAT_PCM_16;
+    info.format=SF_FORMAT_FLAC | SF_FORMAT_PCM_16;
     info.frames = sampleRate*60;
     info.samplerate = sampleRate;
     info.channels = 2;
-    outfile = sf_open ("data/mysounddata.wav", SFM_WRITE, &info) ;
+    outfile = sf_open ("data/audio.flac", SFM_WRITE, &info) ;
 
     if (!outfile)
         {
@@ -60,6 +69,7 @@ void RecordFlac::audioReceived 	(float * input, int bufferSize, int nChannels){
 //--------------------------------------------------------------
 void RecordFlac::stop(){
 	sf_close(outfile);
+	ofSoundStreamClose();
 }
 
 //--------------------------------------------------------------

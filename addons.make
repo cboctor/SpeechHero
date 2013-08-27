@@ -1,3 +1,5 @@
 ofxXmlSettings
+ofxcURL
+ofxJSON
 ofxLibsndfile
 ofxUI
