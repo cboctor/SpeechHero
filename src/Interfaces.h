@@ -33,7 +33,15 @@ class Interfaces {
 		ofxUICanvas *uipractice;
 		void setRecordingState(string state);
 		string getRecordingState();
+		string getView();
 		string recState;
+		void visible(ofxUICanvas *uiInt, bool intVisible);
+		void interfaceState(string intstate);
+		string view;
+		ofxUIButton *practice;
+		ofxUIButton *back;
 		
 		void guiEvent(ofxUIEventArgs &e);
+		void guiEventPractice(ofxUIEventArgs &e);
+		void guiEventMain(ofxUIEventArgs &e);
 };

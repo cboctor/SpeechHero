@@ -37,6 +37,7 @@ class testApp : public ofBaseApp{
 		string readBuffer;
 		ofxJSONElement result;
 		ofstream mfile;
+		int spacecount;
 		
 		
 		

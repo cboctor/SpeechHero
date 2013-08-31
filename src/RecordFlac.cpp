@@ -13,15 +13,7 @@ void RecordFlac::update(){
 
 }
 
- string RecordFlac::getState()
-{
-	return recState;	
-}
 
-void RecordFlac::setState(string state)
-{
-	recState=state;
-}
 //--------------------------------------------------------------
 
 void RecordFlac::start(){

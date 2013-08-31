@@ -93,7 +93,7 @@ void testApp::jSONSetup(){
 void testApp::setup(){
 	ofBackground(50,50,50);
 	pixfont.loadFont("pix.ttf", 32);
-	
+	spacecount=0;
 	mainWindow.setup();
 }
 
@@ -108,13 +108,17 @@ void testApp::draw(){
 
 	//jSONSetup();
 //pixfont.drawString(readBuffer, 100,100);
-
+	if (mainWindow.getState()=="practice")
+	{
 std::stringstream ss;
     
     ss << "confidence   = " << result["hypotheses"][0]["confidence"].asDouble() << endl;
     ss << "utterance = " << result["hypotheses"][0]["utterance"].asString() << endl;
+	
 
     ofDrawBitmapString(ss.str(), 200, 200);
+}
+	 
 	/*if (mainWindow.getRecordingState()=="start")
 	{
 		rec.start();
@@ -136,19 +140,37 @@ void testApp::keyPressed(int key){
 
 	if (key == 's')
 	{
-		readBuffer.clear();
-		mfile.clear();
-		rec.start();
+		
 
 	}
 	
 
 	if (key=='d')
 	{
-		rec.stop();
-		postFLAC();
-		jSONSetup();
+		
 	}
+
+	if (key ==32) //Spacebar pressed
+	{
+		if (mainWindow.getView()=="practice")
+		{
+			spacecount++;
+			if (!(spacecount%2==0))
+			{
+				readBuffer.clear();
+				mfile.clear();
+				rec.start();
+			}
+			else
+			{
+				rec.stop();
+				postFLAC();
+				jSONSetup();
+			}
+	}
+	}
+
+	cout<<key;
 }
 
 //--------------------------------------------------------------

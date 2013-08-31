@@ -6,15 +6,53 @@ void Interfaces::setup(){
 	cout<<"its working";
 	ofSetColor(255,255,255);
 	ofRect(100,100,1000,1000);
-	
+	setUIPractice();
 	setUILogin();
 	setUIRegister();
 	setUIMain();
-	setUIPractice();
-	uimain->setVisible(false);
-	uiregister->setVisible(false);
-	uipractice->setVisible(false);
+
+	view="login";
+	interfaceState(view);
 	
+}
+
+
+string Interfaces::getView()
+{
+	return view;
+	
+}
+
+void Interfaces::interfaceState(string view)
+{
+	if (view == "login")
+	{
+		uilogin->setVisible(true);
+		uimain->setVisible(false);
+		uipractice->setVisible(false);
+		uiregister->setVisible(false);
+	}
+	else if (view =="register")
+	{
+		uilogin->setVisible(true);
+		uimain->setVisible(false);
+		uipractice->setVisible(false);
+		uiregister->setVisible(true);
+	}
+	else if (view == "main")
+	{
+		uilogin->setVisible(false);
+		uimain->setVisible(true);
+		uipractice->setVisible(false);
+		uiregister->setVisible(false);
+	}
+	else if (view =="practice")
+	{
+		uilogin->setVisible(false);
+		uimain->setVisible(false);
+		uipractice->setVisible(true);
+		uiregister->setVisible(false);
+	}
 }
 
 void Interfaces::setUILogin(){
@@ -92,11 +130,11 @@ void Interfaces::setUIMain(){
 	uimain->addSpacer(0,15);
 	uimain->addLabelButton("Options", false, butSize);
 	uimain->addSpacer(0,15);
-	uimain->addLabelButton("Practice", false, butSize);
+	practice = uimain->addLabelButton("Practice", false, butSize);
 	uimain->addSpacer(0,15);
 	uimain->addLabelButton("Quit", false, butSize);
 	
-	ofAddListener(uimain->newGUIEvent,this,&Interfaces::guiEvent);
+	ofAddListener(uimain->newGUIEvent,this,&Interfaces::guiEventMain);
 }
 
 void Interfaces::setUIPractice(){
@@ -109,13 +147,51 @@ void Interfaces::setUIPractice(){
 	
 	uipractice->addSpacer(butSize, 2);
 	uipractice->addSpacer(butSize, 30);
-	uipractice->addLabelButton("Record", false,butSize);
+	uipractice->addWidgetDown(new ofxUILabel("Press Space to start Recording", OFX_UI_FONT_MEDIUM));
+	uipractice->addSpacer(butSize, 2);
+	uipractice->addSpacer(0,350);
+back=	uipractice->addLabelButton("Back", false, butSize);
 	uipractice->addSpacer(0,15);
-	uipractice->addLabelButton("Stop", false, butSize);
-	uipractice->addSpacer(0,15);
-	uipractice->addLabelButton("Back", false, butSize);
-	uipractice->addSpacer(0,15);
-	ofAddListener(uipractice->newGUIEvent,this,&Interfaces::guiEvent);
+	
+	ofAddListener(uipractice->newGUIEvent,this,&Interfaces::guiEventPractice);
+}
+
+void Interfaces::guiEventPractice(ofxUIEventArgs &e)
+{
+	string name = e.widget->getName();
+	
+	if (view =="practice"){
+	if (name =="Back" &&back->getValue()==1)
+		view = "main";
+	interfaceState(view);
+}
+
+
+}
+
+void Interfaces::guiEventMain(ofxUIEventArgs &e)
+{
+	string name = e.widget->getName();
+	if (view =="main")
+	{
+	if (name == "Play")
+	{}
+	else if (name == "Highscores")
+	{}
+	else if (name == "Sessions")
+	{}
+	else if (name == "Options")
+	{}
+	else if (name =="Practice" && practice->getValue() == 1)
+		{view = "practice";
+	uipractice->disable();}
+	else if (name == "Quit")
+		ofExit();
+	
+	interfaceState(view);
+	}
+
+
 }
 
 
@@ -124,73 +200,14 @@ void Interfaces::guiEvent(ofxUIEventArgs &e)
 {
 	string name = e.widget->getName();
 	if (name=="LOGIN")
-	{
-		uimain->setVisible(true);
-		uilogin->setVisible(false);
-		uiregister->setVisible(false);
-		
-	}
-
-
-	else if (name =="Practice")
-	{
-		uimain->setVisible(false);
-		uipractice->setVisible(true);
-	}
-
+		view = "main";
 	else if (name == "CANCEL")
-	{
-	 uiregister ->setVisible(false);
-	}
-
-	else if (name == "Play")
-	{
-
-	}
-	else if (name == "Highscores")
-	{
-
-	}
-	else if (name == "Sessions")
-	{
-
-	}
-	else if (name == "Options")
-	{
-
-	}
+		view = "login";
 	else if (name == "REGISTER")
-	{
-		uiregister->setVisible(true);
-
-	}
+		view="register";
 	else if (name == "QUIT")
-	{
-	 ofExit();
-	}
-	else if (name == "Quit")
-	{
-		ofExit();
-	}
-	
-	
-	
-	else if (name == "Record")
-	{
-		recState="start";
-		
-	}
-	else if (name == "Stop")
-	{
-		recState="stop";
-		
-	}
-	else if (name == "Back")
-	{
-		//recordFlac.stop();
-		uipractice->setVisible(false);
-		uimain->setVisible(true);
-	}
+		 ofExit();
+	interfaceState(view);
 }
 	
 	void Interfaces::setRecordingState(string state)
