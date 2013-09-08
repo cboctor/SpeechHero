@@ -108,7 +108,7 @@ void testApp::draw(){
 
 	//jSONSetup();
 //pixfont.drawString(readBuffer, 100,100);
-	if (mainWindow.getState()=="practice")
+	if (mainWindow.getView()=="practice")
 	{
 std::stringstream ss;
     

@@ -40,6 +40,16 @@ class Interfaces {
 		string view;
 		ofxUIButton *practice;
 		ofxUIButton *back;
+		ofxUITextInput *txtusername;
+		ofxUITextInput *txtpassword;
+		ofxUITextInput *txtparentusername;
+		ofxUITextInput *txtparentpassword;
+		ofxUITextInput *txtchildusername;
+		ofxUITextInput *txtchildpassword;
+		ofxUITextInput *txtchildfirstname;
+		ofxUITextInput *txtchildlastname;
+		ofxUITextInput *txtparentfirstname;
+		ofxUITextInput *txtparentlastname;
 		
 		void guiEvent(ofxUIEventArgs &e);
 		void guiEventPractice(ofxUIEventArgs &e);

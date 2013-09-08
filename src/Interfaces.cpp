@@ -62,14 +62,16 @@ void Interfaces::setUILogin(){
 	uilogin = new ofxUICanvas(0,0, length+xInit, ofGetHeight());
 	uilogin->addWidgetDown(new ofxUILabel("SPEECH HERO", OFX_UI_FONT_LARGE));
 	uilogin->addWidgetDown(new ofxUILabel("Username:", OFX_UI_FONT_MEDIUM));
-	uilogin->addTextInput("TEXT INPUT", "InputText", length-xInit);
+	txtusername= uilogin->addTextInput("Username", "Enter Username", length-xInit);
 	uilogin->addWidgetDown(new ofxUILabel("Password:", OFX_UI_FONT_MEDIUM));
-	uilogin->addTextInput("TEXT INPUT", "InputText", length-xInit)->setAutoClear(false);
+	txtpassword = uilogin->addTextInput("Password", "Enter Password", length-xInit);
+	txtpassword->setAutoClear(false);
 	uilogin->addSpacer(length-xInit, 2);
 	uilogin->addSpacer(length-xInit, 30);
 	uilogin->addLabelButton("LOGIN", false, length-xInit);
 	uilogin->addLabelButton("REGISTER", false, length-xInit);
     uilogin->addLabelButton("QUIT", false, length-xInit);
+	
 	
 	ofAddListener(uilogin->newGUIEvent,this,&Interfaces::guiEvent);
 }
@@ -81,29 +83,31 @@ void Interfaces::setUIRegister(){
 	uiregister->addWidgetDown(new ofxUILabel("REGISTER", OFX_UI_FONT_LARGE));
 	uiregister->addWidgetDown(new ofxUILabel("Parent:", OFX_UI_FONT_MEDIUM));
 	uiregister->addWidgetDown(new ofxUILabel("Username:", OFX_UI_FONT_MEDIUM));
-	uiregister->addTextInput("TEXT INPUT", "InputText", length-xInit);
+	txtparentusername = uiregister->addTextInput("Parent Username", "Enter Parent Username", length-xInit);
 	uiregister->addWidgetDown(new ofxUILabel("Password:", OFX_UI_FONT_MEDIUM));
-	uiregister->addTextInput("TEXT INPUT", "InputText", length-xInit)->setAutoClear(false);
+	txtparentpassword = uiregister->addTextInput("TEXT INPUT", "InputText", length-xInit);
+	txtparentpassword->setAutoClear(false);
 	uiregister->addWidgetDown(new ofxUILabel("Confirm Password:", OFX_UI_FONT_MEDIUM));
 	uiregister->addTextInput("TEXT INPUT", "InputText", length-xInit)->setAutoClear(false);
 	uiregister->addSpacer(length-xInit, 2);
 	uiregister->addWidgetDown(new ofxUILabel("Name:", OFX_UI_FONT_MEDIUM));
-	uiregister->addTextInput("TEXT INPUT", "InputText", length-xInit);
+	txtparentfirstname = uiregister->addTextInput("TEXT INPUT", "InputText", length-xInit);
 	uiregister->addWidgetDown(new ofxUILabel("Family Name:", OFX_UI_FONT_MEDIUM));
-	uiregister->addTextInput("TEXT INPUT", "InputText", length-xInit);
+	txtparentlastname = uiregister->addTextInput("TEXT INPUT", "InputText", length-xInit);
 	uiregister->addSpacer(length-xInit, 2);
 	uiregister->addWidgetDown(new ofxUILabel("Child:", OFX_UI_FONT_MEDIUM));
 	uiregister->addWidgetDown(new ofxUILabel("Username:", OFX_UI_FONT_MEDIUM));
-	uiregister->addTextInput("TEXT INPUT", "InputText", length-xInit);
+	txtchildusername = uiregister->addTextInput("TEXT INPUT", "InputText", length-xInit);
 	uiregister->addWidgetDown(new ofxUILabel("Password:", OFX_UI_FONT_MEDIUM));
-	uiregister->addTextInput("TEXT INPUT", "InputText", length-xInit)->setAutoClear(false);
+	txtchildpassword =uiregister->addTextInput("TEXT INPUT", "InputText", length-xInit);
+	txtchildpassword->setAutoClear(false);
 	uiregister->addWidgetDown(new ofxUILabel("Confirm Password:", OFX_UI_FONT_MEDIUM));
 	uiregister->addTextInput("TEXT INPUT", "InputText", length-xInit)->setAutoClear(false);
 	uiregister->addSpacer(length-xInit, 2);
 	uiregister->addWidgetDown(new ofxUILabel("Name:", OFX_UI_FONT_MEDIUM));
-	uiregister->addTextInput("TEXT INPUT", "InputText", length-xInit);
+	txtchildfirstname = uiregister->addTextInput("TEXT INPUT", "InputText", length-xInit);
 	uiregister->addWidgetDown(new ofxUILabel("Family Name:", OFX_UI_FONT_MEDIUM));
-	uiregister->addTextInput("TEXT INPUT", "InputText", length-xInit);
+	txtchildlastname=uiregister->addTextInput("TEXT INPUT", "InputText", length-xInit);
 	uiregister->addSpacer(length-xInit, 2);
 	uiregister->addSpacer(length-xInit, 30);
 	uiregister->addLabelButton("CREATE", false, length-xInit);
