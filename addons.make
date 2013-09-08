@@ -2,4 +2,5 @@ ofxXmlSettings
 ofxcURL
 ofxJSON
 ofxLibsndfile
+ofxMySQLConn
 ofxUI

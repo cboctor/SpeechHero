@@ -6,6 +6,8 @@
 #include "RecordFlac.h"
 #include <curl/curl.h>
 #include "ofxJSONElement.h"
+#include "MySQLConn.h"
+
 
 
 class testApp : public ofBaseApp{
@@ -38,6 +40,8 @@ class testApp : public ofBaseApp{
 		ofxJSONElement result;
 		ofstream mfile;
 		int spacecount;
+		MySQLConn mysql;
+		
 		
 		
 		

@@ -43,6 +43,7 @@
     <TargetName>$(ProjectName)_debug</TargetName>
     <LinkIncremental>true</LinkIncremental>
     <GenerateManifest>true</GenerateManifest>
+    <IncludePath>C:\Program Files %28x86%29\MySQL\MySQL Connector C++ 1.1.3\include;C:\lib;C:\lib\boost_1_54_0;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>bin\</OutDir>
@@ -58,14 +59,14 @@
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);src;..\..\..\addons\ofxXmlSettings\libs;..\..\..\addons\ofxXmlSettings\src;..\..\..\addons\ofxcURL\libs;..\..\..\addons\ofxcURL\src;..\..\..\addons\ofxcURL\libs\include;..\..\..\addons\ofxcURL\libs\include\curl;..\..\..\addons\ofxcURL\libs\lib;..\..\..\addons\ofxJSON\libs;..\..\..\addons\ofxJSON\src;..\..\..\addons\ofxJSON\libs\jsoncpp;..\..\..\addons\ofxJSON\libs\jsoncpp\include;..\..\..\addons\ofxJSON\libs\jsoncpp\include\json;..\..\..\addons\ofxJSON\libs\jsoncpp\src;..\..\..\addons\ofxLibsndfile\libs;..\..\..\addons\ofxLibsndfile\src;..\..\..\addons\ofxLibsndfile\libs\include;..\..\..\addons\ofxLibsndfile\libs\lib;..\..\..\addons\ofxUI\libs;..\..\..\addons\ofxUI\src</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);src;..\..\..\addons\ofxXmlSettings\libs;..\..\..\addons\ofxXmlSettings\src;..\..\..\addons\ofxcURL\libs;..\..\..\addons\ofxcURL\src;..\..\..\addons\ofxcURL\libs\include;..\..\..\addons\ofxcURL\libs\include\curl;..\..\..\addons\ofxcURL\libs\lib;..\..\..\addons\ofxJSON\libs;..\..\..\addons\ofxJSON\src;..\..\..\addons\ofxJSON\libs\jsoncpp;..\..\..\addons\ofxJSON\libs\jsoncpp\include;..\..\..\addons\ofxJSON\libs\jsoncpp\include\json;..\..\..\addons\ofxJSON\libs\jsoncpp\src;..\..\..\addons\ofxLibsndfile\libs;..\..\..\addons\ofxLibsndfile\src;..\..\..\addons\ofxLibsndfile\libs\include;..\..\..\addons\ofxLibsndfile\libs\lib;..\..\..\addons\ofxMySQLConn\libs;..\..\..\addons\ofxMySQLConn\src;..\..\..\addons\ofxMySQLConn\libs\include;..\..\..\addons\ofxMySQLConn\libs\include\cppconn;..\..\..\addons\ofxMySQLConn\libs\lib;..\..\..\addons\ofxMySQLConn\libs\lib\opt;..\..\..\addons\ofxUI\libs;..\..\..\addons\ofxUI\src</AdditionalIncludeDirectories>
       <CompileAs>CompileAsCpp</CompileAs>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
-      <AdditionalDependencies>C:\lib\libcurl.lib;C:\lib\libsndfile-1.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>C:/lib/libcurl.lib;C:/lib/libsndfile-1.lib;C:\Program Files (x86)\MySQL\MySQL Connector C++ 1.1.3\lib\opt\mysqlcppconn.lib;C:\Program Files (x86)\MySQL\MySQL Connector C++ 1.1.3\lib\opt\mysqlcppconn-static.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
@@ -75,7 +76,7 @@
       <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);src;..\..\..\addons\ofxXmlSettings\libs;..\..\..\addons\ofxXmlSettings\src;..\..\..\addons\ofxcURL\libs;..\..\..\addons\ofxcURL\src;..\..\..\addons\ofxcURL\libs\include;..\..\..\addons\ofxcURL\libs\include\curl;..\..\..\addons\ofxcURL\libs\lib;..\..\..\addons\ofxJSON\libs;..\..\..\addons\ofxJSON\src;..\..\..\addons\ofxJSON\libs\jsoncpp;..\..\..\addons\ofxJSON\libs\jsoncpp\include;..\..\..\addons\ofxJSON\libs\jsoncpp\include\json;..\..\..\addons\ofxJSON\libs\jsoncpp\src;..\..\..\addons\ofxLibsndfile\libs;..\..\..\addons\ofxLibsndfile\src;..\..\..\addons\ofxLibsndfile\libs\include;..\..\..\addons\ofxLibsndfile\libs\lib;..\..\..\addons\ofxUI\libs;..\..\..\addons\ofxUI\src</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);src;..\..\..\addons\ofxXmlSettings\libs;..\..\..\addons\ofxXmlSettings\src;..\..\..\addons\ofxcURL\libs;..\..\..\addons\ofxcURL\src;..\..\..\addons\ofxcURL\libs\include;..\..\..\addons\ofxcURL\libs\include\curl;..\..\..\addons\ofxcURL\libs\lib;..\..\..\addons\ofxJSON\libs;..\..\..\addons\ofxJSON\src;..\..\..\addons\ofxJSON\libs\jsoncpp;..\..\..\addons\ofxJSON\libs\jsoncpp\include;..\..\..\addons\ofxJSON\libs\jsoncpp\include\json;..\..\..\addons\ofxJSON\libs\jsoncpp\src;..\..\..\addons\ofxLibsndfile\libs;..\..\..\addons\ofxLibsndfile\src;..\..\..\addons\ofxLibsndfile\libs\include;..\..\..\addons\ofxLibsndfile\libs\lib;..\..\..\addons\ofxMySQLConn\libs;..\..\..\addons\ofxMySQLConn\src;..\..\..\addons\ofxMySQLConn\libs\include;..\..\..\addons\ofxMySQLConn\libs\include\cppconn;..\..\..\addons\ofxMySQLConn\libs\lib;..\..\..\addons\ofxMySQLConn\libs\lib\opt;..\..\..\addons\ofxUI\libs;..\..\..\addons\ofxUI\src</AdditionalIncludeDirectories>
       <CompileAs>CompileAsCpp</CompileAs>
     </ClCompile>
     <Link>
@@ -91,6 +92,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\MySQLConn.cpp" />
     <ClCompile Include="src\testApp.cpp" />
     <ClCompile Include="src\Interfaces.cpp" />
     <ClCompile Include="src\RecordFlac.cpp" />
@@ -104,6 +106,7 @@
     <ClCompile Include="..\..\..\addons\ofxJSON\libs\jsoncpp\src\json_writer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\MySQLConn.h" />
     <ClInclude Include="src\testApp.h" />
     <ClInclude Include="src\Interfaces.h" />
     <ClInclude Include="src\RecordFlac.h" />
@@ -130,6 +133,23 @@
     <ClInclude Include="..\..\..\addons\ofxJSON\libs\jsoncpp\src\json_batchallocator.h" />
     <ClInclude Include="..\..\..\addons\ofxJSON\libs\jsoncpp\src\json_tool.h" />
     <ClInclude Include="..\..\..\addons\ofxLibsndfile\libs\include\sndfile.h" />
+    <ClInclude Include="..\..\..\addons\ofxMySQLConn\libs\include\cppconn\build_config.h" />
+    <ClInclude Include="..\..\..\addons\ofxMySQLConn\libs\include\cppconn\config.h" />
+    <ClInclude Include="..\..\..\addons\ofxMySQLConn\libs\include\cppconn\connection.h" />
+    <ClInclude Include="..\..\..\addons\ofxMySQLConn\libs\include\cppconn\datatype.h" />
+    <ClInclude Include="..\..\..\addons\ofxMySQLConn\libs\include\cppconn\driver.h" />
+    <ClInclude Include="..\..\..\addons\ofxMySQLConn\libs\include\cppconn\exception.h" />
+    <ClInclude Include="..\..\..\addons\ofxMySQLConn\libs\include\cppconn\metadata.h" />
+    <ClInclude Include="..\..\..\addons\ofxMySQLConn\libs\include\cppconn\parameter_metadata.h" />
+    <ClInclude Include="..\..\..\addons\ofxMySQLConn\libs\include\cppconn\prepared_statement.h" />
+    <ClInclude Include="..\..\..\addons\ofxMySQLConn\libs\include\cppconn\resultset.h" />
+    <ClInclude Include="..\..\..\addons\ofxMySQLConn\libs\include\cppconn\resultset_metadata.h" />
+    <ClInclude Include="..\..\..\addons\ofxMySQLConn\libs\include\cppconn\sqlstring.h" />
+    <ClInclude Include="..\..\..\addons\ofxMySQLConn\libs\include\cppconn\statement.h" />
+    <ClInclude Include="..\..\..\addons\ofxMySQLConn\libs\include\cppconn\warning.h" />
+    <ClInclude Include="..\..\..\addons\ofxMySQLConn\libs\include\mysql_connection.h" />
+    <ClInclude Include="..\..\..\addons\ofxMySQLConn\libs\include\mysql_driver.h" />
+    <ClInclude Include="..\..\..\addons\ofxMySQLConn\libs\include\mysql_error.h" />
     <ClInclude Include="..\..\..\addons\ofxUI\src\ofxUI.h" />
     <ClInclude Include="..\..\..\addons\ofxUI\src\ofxUI2DGraph.h" />
     <ClInclude Include="..\..\..\addons\ofxUI\src\ofxUI2DPad.h" />
