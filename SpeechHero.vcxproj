@@ -43,7 +43,7 @@
     <TargetName>$(ProjectName)_debug</TargetName>
     <LinkIncremental>true</LinkIncremental>
     <GenerateManifest>true</GenerateManifest>
-    <IncludePath>C:\Program Files %28x86%29\MySQL\MySQL Connector C++ 1.1.3\include;C:\lib;C:\lib\boost_1_54_0;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Program Files %28x86%29\MySQL\MySQL Connector C++ 1.1.3\include;C:\lib;C:\lib\boost_1_54_0;C:\Users\Christopher\Documents\GitHub\of_v0.8.0_vs_release\addons\ofxMessageBox;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>bin\</OutDir>
@@ -59,7 +59,7 @@
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);src;..\..\..\addons\ofxXmlSettings\libs;..\..\..\addons\ofxXmlSettings\src;..\..\..\addons\ofxcURL\libs;..\..\..\addons\ofxcURL\src;..\..\..\addons\ofxcURL\libs\include;..\..\..\addons\ofxcURL\libs\include\curl;..\..\..\addons\ofxcURL\libs\lib;..\..\..\addons\ofxJSON\libs;..\..\..\addons\ofxJSON\src;..\..\..\addons\ofxJSON\libs\jsoncpp;..\..\..\addons\ofxJSON\libs\jsoncpp\include;..\..\..\addons\ofxJSON\libs\jsoncpp\include\json;..\..\..\addons\ofxJSON\libs\jsoncpp\src;..\..\..\addons\ofxLibsndfile\libs;..\..\..\addons\ofxLibsndfile\src;..\..\..\addons\ofxLibsndfile\libs\include;..\..\..\addons\ofxLibsndfile\libs\lib;..\..\..\addons\ofxMySQLConn\libs;..\..\..\addons\ofxMySQLConn\src;..\..\..\addons\ofxMySQLConn\libs\include;..\..\..\addons\ofxMySQLConn\libs\include\cppconn;..\..\..\addons\ofxMySQLConn\libs\lib;..\..\..\addons\ofxMySQLConn\libs\lib\opt;..\..\..\addons\ofxUI\libs;..\..\..\addons\ofxUI\src</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);src;..\..\..\addons\ofxXmlSettings\libs;..\..\..\addons\ofxXmlSettings\src;..\..\..\addons\ofxcURL\libs;..\..\..\addons\ofxcURL\src;..\..\..\addons\ofxcURL\libs\include;..\..\..\addons\ofxcURL\libs\include\curl;..\..\..\addons\ofxcURL\libs\lib;..\..\..\addons\ofxJSON\libs;..\..\..\addons\ofxJSON\src;..\..\..\addons\ofxJSON\libs\jsoncpp;..\..\..\addons\ofxJSON\libs\jsoncpp\include;..\..\..\addons\ofxJSON\libs\jsoncpp\include\json;..\..\..\addons\ofxJSON\libs\jsoncpp\src;..\..\..\addons\ofxLibsndfile\libs;..\..\..\addons\ofxLibsndfile\src;..\..\..\addons\ofxLibsndfile\libs\include;..\..\..\addons\ofxLibsndfile\libs\lib;..\..\..\addons\ofxMySQLConn\libs;..\..\..\addons\ofxMySQLConn\src;..\..\..\addons\ofxMySQLConn\libs\include;..\..\..\addons\ofxMySQLConn\libs\include\cppconn;..\..\..\addons\ofxMySQLConn\libs\lib;..\..\..\addons\ofxMySQLConn\libs\lib\opt;..\..\..\addons\ofxUI\libs;..\..\..\addons\ofxUI\src;..\..\..\addons\ofxMessageBox\src\</AdditionalIncludeDirectories>
       <CompileAs>CompileAsCpp</CompileAs>
     </ClCompile>
     <Link>
@@ -91,6 +91,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\addons\ofxMessageBox\src\EaseRectBox.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxMessageBox\src\ofxMessageBox.cpp">
+      <DeploymentContent>false</DeploymentContent>
+    </ClCompile>
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\MySQLConn.cpp" />
     <ClCompile Include="src\testApp.cpp" />
@@ -106,6 +110,8 @@
     <ClCompile Include="..\..\..\addons\ofxJSON\libs\jsoncpp\src\json_writer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\addons\ofxMessageBox\src\EaseRectBox.h" />
+    <ClInclude Include="..\..\..\addons\ofxMessageBox\src\ofxMessageBox.h" />
     <ClInclude Include="src\MySQLConn.h" />
     <ClInclude Include="src\testApp.h" />
     <ClInclude Include="src\Interfaces.h" />

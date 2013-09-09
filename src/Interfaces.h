@@ -3,6 +3,8 @@
 #include "ofMain.h"
 #include "ofxUI.h"
 #include "RecordFlac.h"
+#include "MySQLConn.h"
+#include "ofxMessageBox.h"
 
 class Interfaces {
 	public:
@@ -10,6 +12,7 @@ class Interfaces {
 		void update();
 		void draw();
 		void exit();
+		bool authenticateUser();
 		
 		
 
@@ -40,6 +43,7 @@ class Interfaces {
 		string view;
 		ofxUIButton *practice;
 		ofxUIButton *back;
+		ofxUIButton *createButton;
 		ofxUITextInput *txtusername;
 		ofxUITextInput *txtpassword;
 		ofxUITextInput *txtparentusername;
@@ -50,8 +54,15 @@ class Interfaces {
 		ofxUITextInput *txtchildlastname;
 		ofxUITextInput *txtparentfirstname;
 		ofxUITextInput *txtparentlastname;
+		MySQLConn mysql;
+		//ofTrueTypeFont pfont;
+		EaseRectBox rr;
+		ofxMessageBox msgBox;
+		
 		
 		void guiEvent(ofxUIEventArgs &e);
 		void guiEventPractice(ofxUIEventArgs &e);
 		void guiEventMain(ofxUIEventArgs &e);
+		void createUser();
+		
 };

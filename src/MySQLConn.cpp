@@ -6,8 +6,55 @@
 
 
 void MySQLConn::setup(){
+	connectDb();
+	createUserTable();
 	
 
+}
+
+void MySQLConn::createUserTable()
+{
+	string queryString = "CREATE TABLE IF NOT EXISTS user (";
+	queryString +="user_ID INT AUTO_INCREMENT NOT NULL," ;
+	queryString +="username varchar(200) NOT NULL,";
+	queryString +="password varchar(200) NOT NULL,";
+	queryString += "firstname TEXT,";
+	queryString += "lastname TEXT,";
+	queryString += "type varchar(10),";
+	queryString +="boundeduser varchar(200) NOT NULL,";
+	queryString += "PRIMARY KEY (user_ID)) ";
+	query(queryString);
+
+}
+
+bool MySQLConn::authenticateUser(string user, string pass)
+{
+	string dbuser;
+	string dbpass;
+	string queryString = "SELECT username, password FROM user";
+	queryString += " WHERE username = '" +user+ "'";
+	cout<<queryString;
+	query(queryString);
+	
+//	{
+
+	//while (res->next())
+	//{
+	if (res->next())
+	{
+	cout<<res->getString("username")<<endl;
+	dbuser = res->getString("username");
+	dbpass = res->getString("password");
+	
+	cout<<res->getString("password");
+	}
+	if (dbuser ==user && dbpass== pass)
+		return true;
+	else
+		return false;
+	//}
+
+//	}
 }
 
 void MySQLConn::exceptionMsg(sql::SQLException &e)
@@ -28,7 +75,7 @@ void MySQLConn::connectDb()
 	 con = driver->connect("tcp://sql2.freesqldatabase.com:3306", "sql217337", "hQ6%cW5*");
 	 /* Connect to the MySQL test database */
 	con->setSchema("sql217337");
-
+	
 	}
 	catch (sql::SQLException &e) {
 	exceptionMsg(e);
@@ -40,12 +87,35 @@ void MySQLConn::query(string queryString)
 	try
 	{
 		  stmt = con->createStatement();
-		  stmt->executeQuery(queryString);
+		  res = stmt->executeQuery(queryString);
+		  delete stmt;
 
 	}	
 	catch (sql::SQLException &e) {
 		exceptionMsg(e);
 	}
+}
+
+void MySQLConn::execute(string queryString)
+{
+	try
+	{
+		  //stmt = con->createStatement();
+		  stmt->execute(queryString);
+		  delete stmt;
+
+	}	
+	catch (sql::SQLException &e) {
+		exceptionMsg(e);
+	}
+}
+
+void MySQLConn::createUser(string username, string password, string firstname, string lastname, string type, string boundeduser)
+{
+	string queryString = "INSERT INTO user (username, password, firstname, lastname, type, boundeduser)";
+	queryString += " VALUES ('"+username+"','"+password+"','"+firstname+"','"+lastname+"','"+type+"','"+boundeduser+"');";
+	query(queryString);
+	//execute(queryString);
 }
 
 

@@ -95,7 +95,7 @@ void testApp::setup(){
 	pixfont.loadFont("pix.ttf", 32);
 	spacecount=0;
 	mainWindow.setup();
-	mysql.connectDb();
+	
 }
 
 

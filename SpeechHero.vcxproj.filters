@@ -46,6 +46,12 @@
     <ClCompile Include="src\MySQLConn.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxMessageBox\src\EaseRectBox.cpp">
+      <Filter>addons\ofxMessageBox\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxMessageBox\src\ofxMessageBox.cpp">
+      <Filter>addons\ofxMessageBox\src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -122,6 +128,12 @@
     </Filter>
     <Filter Include="addons\ofxUI\src">
       <UniqueIdentifier>{A00C2D23-6C11-BC86-3993-2CF0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxMessageBox">
+      <UniqueIdentifier>{2e152120-8c18-45cf-9141-54652bfdc335}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxMessageBox\src">
+      <UniqueIdentifier>{29848a2a-1a8a-42f6-8b21-51130068a900}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -400,6 +412,12 @@
     </ClInclude>
     <ClInclude Include="src\MySQLConn.h">
       <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxMessageBox\src\EaseRectBox.h">
+      <Filter>addons\ofxMessageBox\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxMessageBox\src\ofxMessageBox.h">
+      <Filter>addons\ofxMessageBox\src</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

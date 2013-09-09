@@ -6,6 +6,7 @@
 #include <cppconn/exception.h>
 #include <cppconn/resultset.h>
 #include <cppconn/statement.h>
+#include <cppconn/prepared_statement.h>
 
 
 
@@ -18,6 +19,9 @@ public:
 		void exit();
 		void start();
 		void stop();
+		void createUser(string username, string password, string firstname, string lastname, string type, string boundeduser);
+		void createUserTable();
+		bool authenticateUser(string user, string password);
 		
 		
 
@@ -34,9 +38,13 @@ public:
 		sql::Connection *con;
 		sql::Statement *stmt;
 		sql::ResultSet *res;
+		sql::PreparedStatement *pstmt;
+
+		
 		void exceptionMsg(sql::SQLException &e);
 		void connectDb();
 		void query(string queryString);
+		void execute(string queryString);
 
 	
 

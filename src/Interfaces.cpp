@@ -2,15 +2,21 @@
 
 //--------------------------------------------------------------
 void Interfaces::setup(){
-	draw();
-	cout<<"its working";
-	ofSetColor(255,255,255);
-	ofRect(100,100,1000,1000);
+	
+	
+	
+	//pfont->loadFont("password.ttf", OFX_UI_FONT_MEDIUM);
+	//pfont->loadFont("password.ttf", );
+	//txtparentpassword->setFont(pfont);
 	setUIPractice();
 	setUILogin();
 	setUIRegister();
 	setUIMain();
-
+	mysql.setup();
+	
+	msgBox.addNewMessage("Incorrect Login", "Please enter correct login", OFX_MESSAGEBOX_OK);
+	//msgBox.
+	
 	view="login";
 	interfaceState(view);
 	
@@ -83,34 +89,36 @@ void Interfaces::setUIRegister(){
 	uiregister->addWidgetDown(new ofxUILabel("REGISTER", OFX_UI_FONT_LARGE));
 	uiregister->addWidgetDown(new ofxUILabel("Parent:", OFX_UI_FONT_MEDIUM));
 	uiregister->addWidgetDown(new ofxUILabel("Username:", OFX_UI_FONT_MEDIUM));
-	txtparentusername = uiregister->addTextInput("Parent Username", "Enter Parent Username", length-xInit);
+	
+	txtparentusername = uiregister->addTextInput("Parent Username", "", length-xInit);
 	uiregister->addWidgetDown(new ofxUILabel("Password:", OFX_UI_FONT_MEDIUM));
-	txtparentpassword = uiregister->addTextInput("TEXT INPUT", "InputText", length-xInit);
+	txtparentpassword = uiregister->addTextInput("TEXT INPUT", "", length-xInit);
 	txtparentpassword->setAutoClear(false);
+	//txtparentpassword->setFont(pfont);
 	uiregister->addWidgetDown(new ofxUILabel("Confirm Password:", OFX_UI_FONT_MEDIUM));
-	uiregister->addTextInput("TEXT INPUT", "InputText", length-xInit)->setAutoClear(false);
+	uiregister->addTextInput("TEXT INPUT", "", length-xInit)->setAutoClear(false);
 	uiregister->addSpacer(length-xInit, 2);
 	uiregister->addWidgetDown(new ofxUILabel("Name:", OFX_UI_FONT_MEDIUM));
-	txtparentfirstname = uiregister->addTextInput("TEXT INPUT", "InputText", length-xInit);
+	txtparentfirstname = uiregister->addTextInput("TEXT INPUT", "", length-xInit);
 	uiregister->addWidgetDown(new ofxUILabel("Family Name:", OFX_UI_FONT_MEDIUM));
-	txtparentlastname = uiregister->addTextInput("TEXT INPUT", "InputText", length-xInit);
+	txtparentlastname = uiregister->addTextInput("TEXT INPUT", "", length-xInit);
 	uiregister->addSpacer(length-xInit, 2);
 	uiregister->addWidgetDown(new ofxUILabel("Child:", OFX_UI_FONT_MEDIUM));
 	uiregister->addWidgetDown(new ofxUILabel("Username:", OFX_UI_FONT_MEDIUM));
-	txtchildusername = uiregister->addTextInput("TEXT INPUT", "InputText", length-xInit);
+	txtchildusername = uiregister->addTextInput("TEXT INPUT", "", length-xInit);
 	uiregister->addWidgetDown(new ofxUILabel("Password:", OFX_UI_FONT_MEDIUM));
-	txtchildpassword =uiregister->addTextInput("TEXT INPUT", "InputText", length-xInit);
+	txtchildpassword =uiregister->addTextInput("TEXT INPUT", "", length-xInit);
 	txtchildpassword->setAutoClear(false);
 	uiregister->addWidgetDown(new ofxUILabel("Confirm Password:", OFX_UI_FONT_MEDIUM));
-	uiregister->addTextInput("TEXT INPUT", "InputText", length-xInit)->setAutoClear(false);
+	uiregister->addTextInput("TEXT INPUT", "", length-xInit)->setAutoClear(false);
 	uiregister->addSpacer(length-xInit, 2);
 	uiregister->addWidgetDown(new ofxUILabel("Name:", OFX_UI_FONT_MEDIUM));
-	txtchildfirstname = uiregister->addTextInput("TEXT INPUT", "InputText", length-xInit);
+	txtchildfirstname = uiregister->addTextInput("TEXT INPUT", "", length-xInit);
 	uiregister->addWidgetDown(new ofxUILabel("Family Name:", OFX_UI_FONT_MEDIUM));
-	txtchildlastname=uiregister->addTextInput("TEXT INPUT", "InputText", length-xInit);
+	txtchildlastname=uiregister->addTextInput("TEXT INPUT", "", length-xInit);
 	uiregister->addSpacer(length-xInit, 2);
 	uiregister->addSpacer(length-xInit, 30);
-	uiregister->addLabelButton("CREATE", false, length-xInit);
+	createButton = uiregister->addLabelButton("CREATE", false, length-xInit);
 	uiregister->addLabelButton("CANCEL", false, length-xInit);
 	
 	ofAddListener(uiregister->newGUIEvent,this,&Interfaces::guiEvent);
@@ -204,14 +212,46 @@ void Interfaces::guiEvent(ofxUIEventArgs &e)
 {
 	string name = e.widget->getName();
 	if (name=="LOGIN")
+	{
+		//authenticateUser();
+		if (authenticateUser())
 		view = "main";
+		else
+			msgBox.viewMessage(0);
+	}
 	else if (name == "CANCEL")
 		view = "login";
 	else if (name == "REGISTER")
 		view="register";
 	else if (name == "QUIT")
 		 ofExit();
+	else if (name == "CREATE" & createButton->getValue()==1)
+		createUser();
 	interfaceState(view);
+}
+
+void Interfaces::createUser()
+{
+	string parentUser = txtparentusername->getTextString();
+	string parentPass = txtparentpassword ->getTextString();
+	string parentfirstname = txtparentfirstname ->getTextString();
+	string parentlastname = txtparentlastname ->getTextString();
+	string childUser = txtchildusername ->getTextString();
+	string childpass = txtchildpassword ->getTextString();
+	string childfirstname = txtchildfirstname->getTextString();
+	string childlastname = txtchildlastname->getTextString();
+	mysql.createUser(parentUser,parentPass,parentfirstname,parentlastname, "parent", childUser);
+	mysql.createUser(childUser, childpass, childfirstname, childlastname, "child", parentUser);
+
+}
+
+bool Interfaces::authenticateUser()
+{
+	string user =txtusername->getTextString();
+	string pass = txtpassword->getTextString();
+	if (mysql.authenticateUser(user,pass))
+		return true;
+	else return false;
 }
 	
 	void Interfaces::setRecordingState(string state)
