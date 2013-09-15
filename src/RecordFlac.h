@@ -2,31 +2,21 @@
 
 #include "ofMain.h"
 #include <sndfile.h>
+#include <curl/curl.h>
+#include "ofxJSONElement.h"
 
 
 
 class RecordFlac
 {
 public:
-		void setup();
-		void update();
-		void draw();
-		void exit();
+		
 		void start();
 		void stop();
+		void postFLAC();
+		void jSONSetup();
+		void clearBuffer();
 		
-		
-
-		void keyPressed(int key);
-		void keyReleased(int key);
-		void mouseMoved(int x, int y);
-		void mouseDragged(int x, int y, int button);
-		void mousePressed(int x, int y, int button);
-		void mouseReleased(int x, int y, int button);
-		void windowResized(int w, int h);
-		void dragEvent(ofDragInfo dragInfo);
-		void gotMessage(ofMessage msg);
-
 		void audioReceived(float * input, int bufferSize, int nChannels);
 
 		float * left;
@@ -36,6 +26,7 @@ public:
 		string recState;
 		void setState(string state);
 		string getState();
+		string getResult();
 
         int      format;
         int      channels;
@@ -45,6 +36,9 @@ public:
         char   * outfilename;
         SNDFILE * outfile;
         SF_INFO    info;
+
+		string readBuffer;
+		ofxJSONElement result;
 
 	
 		

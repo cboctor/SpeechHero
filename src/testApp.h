@@ -4,8 +4,7 @@
 #include "ofxUI.h"
 #include "Interfaces.h"
 #include "RecordFlac.h"
-#include <curl/curl.h>
-#include "ofxJSONElement.h"
+
 #include "MySQLConn.h"
 
 
@@ -18,8 +17,8 @@ class testApp : public ofBaseApp{
 		void draw();
 		void draw(ofxUIEventArgs &args);
 		void exit();
-		void postFLAC();
-		void jSONSetup();
+		void loadWords();
+		
 
 		void keyPressed(int key);
 		void keyReleased(int key);
@@ -36,11 +35,20 @@ class testApp : public ofBaseApp{
 		ofxUICanvas *gui;
 		void guiEvent(ofxUIEventArgs &e);
 		void audioReceived 	(float * input, int bufferSize, int nChannels);
-		string readBuffer;
-		ofxJSONElement result;
+		
 		ofstream mfile;
 		int spacecount;
 		MySQLConn mysql;
+		string word;
+		float time;
+		float startTime;
+		float wordTime;
+		float wordStartTime;
+		float currentWordStart;
+		float currentWordTime;
+		bool isReady;
+		vector<string> wordArray;
+		
 		
 		
 		

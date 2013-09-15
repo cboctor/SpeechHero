@@ -17,8 +17,8 @@ void Interfaces::setup(){
 	msgBox.addNewMessage("Incorrect Login", "Please enter correct login", OFX_MESSAGEBOX_OK);
 	//msgBox.
 	
-	view="login";
-	interfaceState(view);
+	view="main";
+	setView(view);
 	
 }
 
@@ -29,7 +29,7 @@ string Interfaces::getView()
 	
 }
 
-void Interfaces::interfaceState(string view)
+void Interfaces::setView(string view)
 {
 	if (view == "login")
 	{
@@ -58,6 +58,14 @@ void Interfaces::interfaceState(string view)
 		uimain->setVisible(false);
 		uipractice->setVisible(true);
 		uiregister->setVisible(false);
+	}
+	else if ( view =="game")
+	{
+		uilogin->setVisible(false);
+		uimain->setVisible(false);
+		uipractice->setVisible(false);
+		uiregister->setVisible(false);
+
 	}
 }
 
@@ -134,7 +142,7 @@ void Interfaces::setUIMain(){
 	
 	uimain->addSpacer(butSize, 2);
 	uimain->addSpacer(butSize, 30);
-	uimain->addLabelButton("Play", false,butSize);
+	playButton = uimain->addLabelButton("Play", false,butSize);
 	uimain->addSpacer(0,15);
 	uimain->addLabelButton("Highscores", false, butSize);
 	uimain->addSpacer(0,15);
@@ -175,7 +183,7 @@ void Interfaces::guiEventPractice(ofxUIEventArgs &e)
 	if (view =="practice"){
 	if (name =="Back" &&back->getValue()==1)
 		view = "main";
-	interfaceState(view);
+	setView(view);
 }
 
 
@@ -186,8 +194,8 @@ void Interfaces::guiEventMain(ofxUIEventArgs &e)
 	string name = e.widget->getName();
 	if (view =="main")
 	{
-	if (name == "Play")
-	{}
+	if (name == "Play" && playButton->getValue() == 1)
+	{ view = "game";}
 	else if (name == "Highscores")
 	{}
 	else if (name == "Sessions")
@@ -200,7 +208,7 @@ void Interfaces::guiEventMain(ofxUIEventArgs &e)
 	else if (name == "Quit")
 		ofExit();
 	
-	interfaceState(view);
+	setView(view);
 	}
 
 
@@ -227,7 +235,7 @@ void Interfaces::guiEvent(ofxUIEventArgs &e)
 		 ofExit();
 	else if (name == "CREATE" & createButton->getValue()==1)
 		createUser();
-	interfaceState(view);
+	setView(view);
 }
 
 void Interfaces::createUser()

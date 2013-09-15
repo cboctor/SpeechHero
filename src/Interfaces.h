@@ -39,11 +39,12 @@ class Interfaces {
 		string getView();
 		string recState;
 		void visible(ofxUICanvas *uiInt, bool intVisible);
-		void interfaceState(string intstate);
+		void setView(string view);
 		string view;
 		ofxUIButton *practice;
 		ofxUIButton *back;
 		ofxUIButton *createButton;
+		ofxUIButton *playButton;
 		ofxUITextInput *txtusername;
 		ofxUITextInput *txtpassword;
 		ofxUITextInput *txtparentusername;

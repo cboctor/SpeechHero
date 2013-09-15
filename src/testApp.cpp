@@ -3,98 +3,22 @@
 
 
 
-static size_t WriteCallback(void *contents, size_t size, size_t nmemb, void *userp)
-{
-    ((std::string*)userp)->append((char*)contents, size * nmemb);
-    return size * nmemb;
-}
-//--------------------------------------------------------------
-
-void testApp::postFLAC()
-{
-  CURL *curl;
-  CURLcode res;
-  
-//  mfile.open ("data/myjson.json");
-  curl = curl_easy_init();
-  if(curl) {
-	           curl_easy_setopt(curl, CURLOPT_VERBOSE, 1);
- 
-         // Headers
-         // Disable "Expect: 100-continue"
-       //  headers = curl_slist_append(headers, "Expect:");
-		 struct curl_slist *headers=NULL;  headers = curl_slist_append(headers, "Content-Type: audio/x-flac; rate=16000");
-         curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
- 
-         // POST
-         curl_easy_setopt(curl, CURLOPT_HTTPPOST, 1);
- 
-         curl_httppost* post_start = 0;
-         curl_httppost* post_end = 0;
- 
-         // Upload File
-         curl_formadd(&post_start, &post_end,
-             CURLFORM_COPYNAME, "fileupload",
-             CURLFORM_FILE, "data/audio.flac",
-             CURLFORM_END);
- 
-         
- 
-         curl_easy_setopt(curl, CURLOPT_HTTPPOST, post_start);
-    curl_easy_setopt(curl, CURLOPT_URL,
-             "http://www.google.com/speech-api/v1/recognize?xjerr=1&client=chromium&lang=en-AU");
-    curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
-    curl_easy_setopt(curl, CURLOPT_WRITEDATA, &readBuffer);
-    res = curl_easy_perform(curl);
-        // Cleanup
-         curl_easy_cleanup(curl);
-         curl_formfree(post_start);
-         curl_slist_free_all(headers);
-
-  //  std::cout << readBuffer << std::endl;
-  }
-  curl_global_cleanup();
- // cout<< "this is" + readBuffer + "readBuffer";
- // mfile <<readBuffer;
- // mfile.close();
-  
-}
-
-void testApp::jSONSetup(){
-//	  std::string file = "myjson.json";
-	
-	// Now parse the JSON
-	//bool parsingSuccessful = result.open(file);
-	bool parsingSuccessful = result.parse(readBuffer);
-	
-    if (parsingSuccessful) {
-		cout << result.getRawString() << endl;
-        
-        // now write pretty print
-        if(!result.save("example_output_pretty.json",true)) {
-            cout << "example_output_pretty.json written unsuccessfully." << endl;
-        } else {
-            cout << "example_output_pretty.json written successfully." << endl;
-        }
-        
-        // now write without pretty print
-        if(!result.save("example_output_fast.json",false)) {
-            cout << "example_output_pretty.json written unsuccessfully." << endl;
-        } else {
-            cout << "example_output_pretty.json written successfully." << endl;
-        }
-		
-	} else {
-		cout  << "Failed to parse JSON" << endl;
-	}
-}
 //--------------------------------------------------------------
 
 void testApp::setup(){
-	ofBackground(50,50,50);
+	ofBackground(0,76,153);
+	ofSetWindowPosition((ofGetScreenWidth() - ofGetWindowWidth())/2, (ofGetScreenHeight() - ofGetWindowHeight())/2);
 	pixfont.loadFont("pix.ttf", 32);
 	spacecount=0;
 	mainWindow.setup();
+	word="";
+	startTime=ofGetElapsedTimeMillis();
+	wordStartTime = ofGetElapsedTimeMillis();
+	currentWordStart =ofGetElapsedTimeMillis();
+	isReady = false;
+	
+
+	
 	
 }
 
@@ -106,33 +30,81 @@ void testApp::update(){
 
 //--------------------------------------------------------------
 void testApp::draw(){
-
+	
 	//jSONSetup();
 //pixfont.drawString(readBuffer, 100,100);
 	if (mainWindow.getView()=="practice")
 	{
-std::stringstream ss;
-    
-    ss << "confidence   = " << result["hypotheses"][0]["confidence"].asDouble() << endl;
-    ss << "utterance = " << result["hypotheses"][0]["utterance"].asString() << endl;
 	
+	string resultWord = rec.getResult();
+	pixfont.drawString(resultWord, ((ofGetWindowWidth() - resultWord.size()) / 2), ofGetWindowHeight()/2);
+    ofDrawBitmapString(resultWord, 200, 200);
+	ofDrawBitmapString(word, 200, 500);
+	if (resultWord == word)
+		ofDrawBitmapString("Correct", 200, 550);
+	else
+		ofDrawBitmapString("Incorrect", 200,550);
 
-    ofDrawBitmapString(ss.str(), 200, 200);
-}
-	 
-	/*if (mainWindow.getRecordingState()=="start")
-	{
-		rec.start();
-		mainWindow.setRecordingState("recording");
 	}
-	if (mainWindow.getRecordingState()=="stop")
+
+	if (mainWindow.getView() == "game")
 	{
-		rec.stop();
-		mainWindow.setRecordingState("stopped");
-	}*/
+		pixfont.drawString(word, 50 , 50);
+		time = (ofGetElapsedTimeMillis() - startTime) / 1000;
+		wordTime = (ofGetElapsedTimeMillis() - wordStartTime) / 1000;
+		currentWordTime = (ofGetElapsedTimeMillis() - currentWordStart) /1000;
+
+		if (wordTime >= 10)
+		{
+
+			loadWords();
+
+			wordStartTime = ofGetElapsedTimeMillis();
+			currentWordStart = ofGetElapsedTimeMillis();
+			
+			
+		}
+		
+		string s = "Time: " + ofToString(time,1) + "\n";
+		s+= "Word Time: "+ ofToString(wordTime,1) + "\n";
+		s+= "CTime: " + ofToString(currentWordTime,1);
+		pixfont.drawString(s ,ofGetWidth() - 200, 50);
+		if (currentWordTime >=5)
+		{
+			//currentWordStart = ofGetElapsedTimeMillis();
+			isReady = true;
+		}
+		else
+			isReady = false;
+
+		if (isReady == true)
+		{
+			
+		 ofEnableAlphaBlending();    // turn on alpha blending
+		 ofSetColor(0,0,0,50);  
+		ofRect( 0, 0.4 * ofGetHeight(), 0 ,ofGetWidth() , 0.2* ofGetHeight());
+		}
+
+
+	}
+	 
 
 	
 }
+
+void testApp::loadWords()
+{
+	ifstream myfile ("data/words/b/b-initial.word");
+	
+		copy(istream_iterator<string>(myfile),
+         istream_iterator<string>(),
+         back_inserter(wordArray));
+		int randnum = std::rand() % wordArray.size();
+
+		 word = wordArray[randnum];
+		 cout<<word;
+}
+
 
 
 
@@ -146,9 +118,9 @@ void testApp::keyPressed(int key){
 	}
 	
 
-	if (key=='d')
+	if (key==358)
 	{
-		
+		loadWords();
 	}
 
 	if (key ==32) //Spacebar pressed
@@ -158,15 +130,15 @@ void testApp::keyPressed(int key){
 			spacecount++;
 			if (!(spacecount%2==0))
 			{
-				readBuffer.clear();
+				rec.clearBuffer();
 				mfile.clear();
 				rec.start();
 			}
 			else
 			{
 				rec.stop();
-				postFLAC();
-				jSONSetup();
+				rec.postFLAC();
+				rec.jSONSetup();
 			}
 	}
 	}
