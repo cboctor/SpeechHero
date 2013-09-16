@@ -3,19 +3,27 @@
 
 
 
+
+
 //--------------------------------------------------------------
 
 void testApp::setup(){
 	ofBackground(0,76,153);
 	ofSetWindowPosition((ofGetScreenWidth() - ofGetWindowWidth())/2, (ofGetScreenHeight() - ofGetWindowHeight())/2);
 	pixfont.loadFont("pix.ttf", 32);
+	bigPixfont.loadFont("pix.ttf", 55);
 	spacecount=0;
 	mainWindow.setup();
 	word="";
 	startTime=ofGetElapsedTimeMillis();
 	wordStartTime = ofGetElapsedTimeMillis();
-	currentWordStart =ofGetElapsedTimeMillis();
-	isReady = false;
+	isWordReady = false;
+	loadWords();
+	selectRandomWord();
+	wordsCorrect = 0;
+	wordsIncorrect = 0;
+	scoreMultiplier = 0;
+	
 	
 
 	
@@ -28,11 +36,12 @@ void testApp::update(){
 	
 }
 
+
 //--------------------------------------------------------------
 void testApp::draw(){
 	
-	//jSONSetup();
-//pixfont.drawString(readBuffer, 100,100);
+
+
 	if (mainWindow.getView()=="practice")
 	{
 	
@@ -49,47 +58,62 @@ void testApp::draw(){
 
 	if (mainWindow.getView() == "game")
 	{
-		pixfont.drawString(word, 50 , 50);
-		time = (ofGetElapsedTimeMillis() - startTime) / 1000;
-		wordTime = (ofGetElapsedTimeMillis() - wordStartTime) / 1000;
-		currentWordTime = (ofGetElapsedTimeMillis() - currentWordStart) /1000;
-
-		if (wordTime >= 10)
-		{
-
-			loadWords();
-
-			wordStartTime = ofGetElapsedTimeMillis();
-			currentWordStart = ofGetElapsedTimeMillis();
-			
-			
-		}
-		
-		string s = "Time: " + ofToString(time,1) + "\n";
-		s+= "Word Time: "+ ofToString(wordTime,1) + "\n";
-		s+= "CTime: " + ofToString(currentWordTime,1);
-		pixfont.drawString(s ,ofGetWidth() - 200, 50);
-		if (currentWordTime >=5)
-		{
-			//currentWordStart = ofGetElapsedTimeMillis();
-			isReady = true;
-		}
-		else
-			isReady = false;
-
-		if (isReady == true)
-		{
-			
-		 ofEnableAlphaBlending();    // turn on alpha blending
-		 ofSetColor(0,0,0,50);  
-		ofRect( 0, 0.4 * ofGetHeight(), 0 ,ofGetWidth() , 0.2* ofGetHeight());
-		}
+		loadHUD();
 
 
 	}
 	 
 
 	
+}
+
+void testApp::loadHUD()
+{
+	pixfont.drawString(word, 50 , 50);
+		time = (ofGetElapsedTimeMillis() - startTime) / 1000;
+		wordTime = (ofGetElapsedTimeMillis() - wordStartTime) / 1000;
+
+		
+
+		if (wordTime > 10 && wordTime < 15)
+			isWordReady = true;
+		else
+			isWordReady = false;
+		
+
+		 if (wordTime >= 15)
+			{
+			wordStartTime = ofGetElapsedTimeMillis();
+			selectRandomWord();
+		}
+		
+		string s = "Multiplier: x" + ofToString(scoreMultiplier,1) + "    ";
+		s+= "Correct: " + ofToString(wordsCorrect,1) + "    ";
+		s+="Incorrect: " + ofToString(wordsIncorrect,1) + "    ";
+		string s1 ="Time: " + ofToString(time,1);
+		
+
+		string nextword;
+		const double NEXTWORD_TIME = 15;
+		double nextwordTime = NEXTWORD_TIME - wordTime;
+		nextword = "Next Word: " + word;
+		nextword += " in " + ofToString(nextwordTime,1);
+
+		pixfont.drawString(s1 ,ofGetWidth() - 150, 50);
+		pixfont.drawString(s ,50, ofGetHeight() -50);
+		pixfont.drawString(nextword, (ofGetWidth() - 200) /2, 50);
+
+		if (isWordReady == true)
+		{
+			
+		 ofEnableAlphaBlending();    // turn on alpha blending
+		 ofSetColor(0,0,0,50);  
+		ofRect( 0, 0.4 * ofGetHeight(), 0 ,ofGetWidth() , 0.2* ofGetHeight());
+		
+		ofSetColor(255,255,255);
+		bigPixfont.drawString(word, (ofGetWidth() - 30) /2, ofGetHeight()/2);
+
+		}
 }
 
 void testApp::loadWords()
@@ -99,10 +123,17 @@ void testApp::loadWords()
 		copy(istream_iterator<string>(myfile),
          istream_iterator<string>(),
          back_inserter(wordArray));
-		int randnum = std::rand() % wordArray.size();
+		
+}
+
+void testApp::selectRandomWord()
+{
+	int randnum = std::rand() % wordArray.size();
 
 		 word = wordArray[randnum];
+		 cout << wordArray.size();
 		 cout<<word;
+		  
 }
 
 
@@ -120,7 +151,7 @@ void testApp::keyPressed(int key){
 
 	if (key==358)
 	{
-		loadWords();
+		selectRandomWord();
 	}
 
 	if (key ==32) //Spacebar pressed

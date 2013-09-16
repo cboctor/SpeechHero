@@ -18,6 +18,8 @@ class testApp : public ofBaseApp{
 		void draw(ofxUIEventArgs &args);
 		void exit();
 		void loadWords();
+		void selectRandomWord();
+		void loadHUD();
 		
 
 		void keyPressed(int key);
@@ -30,6 +32,7 @@ class testApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
 		ofTrueTypeFont pixfont;
+		ofTrueTypeFont bigPixfont;
 		Interfaces mainWindow;
 		RecordFlac rec;
 		ofxUICanvas *gui;
@@ -44,10 +47,13 @@ class testApp : public ofBaseApp{
 		float startTime;
 		float wordTime;
 		float wordStartTime;
-		float currentWordStart;
-		float currentWordTime;
-		bool isReady;
+		bool isWordReady;
 		vector<string> wordArray;
+
+		int multiplier;
+		int wordsCorrect;
+		int wordsIncorrect;
+		int scoreMultiplier;
 		
 		
 		
