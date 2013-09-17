@@ -195,7 +195,7 @@ void testApp::keyPressed(int key){
 
 void testApp::startRecording()
 {
-				rec.clearBuffer();
+				thread.clearBuffer();
 				rec.start();
 				
 }
