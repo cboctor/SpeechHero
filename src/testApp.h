@@ -4,6 +4,7 @@
 #include "ofxUI.h"
 #include "Interfaces.h"
 #include "RecordFlac.h"
+#include "MyThread.h"
 
 #include "MySQLConn.h"
 
@@ -20,6 +21,8 @@ class testApp : public ofBaseApp{
 		void loadWords();
 		void selectRandomWord();
 		void loadHUD();
+		void startRecording();
+		void stopRecording();
 		
 
 		void keyPressed(int key);
@@ -48,12 +51,15 @@ class testApp : public ofBaseApp{
 		float wordTime;
 		float wordStartTime;
 		bool isWordReady;
+		bool isNow;
 		vector<string> wordArray;
 
 		int multiplier;
 		int wordsCorrect;
 		int wordsIncorrect;
 		int scoreMultiplier;
+
+		MyThread thread;
 		
 		
 		

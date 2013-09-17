@@ -419,6 +419,9 @@
     <ClInclude Include="..\..\..\addons\ofxMessageBox\src\ofxMessageBox.h">
       <Filter>addons\ofxMessageBox\src</Filter>
     </ClInclude>
+    <ClInclude Include="src\MyThread.h">
+      <Filter>src</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="icon.rc" />

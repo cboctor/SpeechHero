@@ -18,6 +18,7 @@ void testApp::setup(){
 	startTime=ofGetElapsedTimeMillis();
 	wordStartTime = ofGetElapsedTimeMillis();
 	isWordReady = false;
+	isNow = false;
 	loadWords();
 	selectRandomWord();
 	wordsCorrect = 0;
@@ -45,7 +46,7 @@ void testApp::draw(){
 	if (mainWindow.getView()=="practice")
 	{
 	
-	string resultWord = rec.getResult();
+	string resultWord = thread.getResult();
 	pixfont.drawString(resultWord, ((ofGetWindowWidth() - resultWord.size()) / 2), ofGetWindowHeight()/2);
     ofDrawBitmapString(resultWord, 200, 200);
 	ofDrawBitmapString(word, 200, 500);
@@ -69,23 +70,33 @@ void testApp::draw(){
 
 void testApp::loadHUD()
 {
+	string resultWord = thread.getResult();
 	pixfont.drawString(word, 50 , 50);
+	pixfont.drawString(resultWord, 50, 100);
 		time = (ofGetElapsedTimeMillis() - startTime) / 1000;
 		wordTime = (ofGetElapsedTimeMillis() - wordStartTime) / 1000;
 
-		
+		const double NEXTWORD_TIME = 20;
 
-		if (wordTime > 10 && wordTime < 15)
+		if (wordTime > 10 && wordTime < NEXTWORD_TIME)
 			isWordReady = true;
 		else
 			isWordReady = false;
 		
 
-		 if (wordTime >= 15)
+		 if (wordTime >= 20)
 			{
 			wordStartTime = ofGetElapsedTimeMillis();
 			selectRandomWord();
 		}
+
+		 if (wordTime ==10)
+			 startRecording();
+		 if (wordTime ==13)
+			 stopRecording();
+
+		 if (resultWord == word)
+			 wordsCorrect++;
 		
 		string s = "Multiplier: x" + ofToString(scoreMultiplier,1) + "    ";
 		s+= "Correct: " + ofToString(wordsCorrect,1) + "    ";
@@ -94,7 +105,7 @@ void testApp::loadHUD()
 		
 
 		string nextword;
-		const double NEXTWORD_TIME = 15;
+		
 		double nextwordTime = NEXTWORD_TIME - wordTime;
 		nextword = "Next Word: " + word;
 		nextword += " in " + ofToString(nextwordTime,1);
@@ -106,6 +117,14 @@ void testApp::loadHUD()
 		if (isWordReady == true)
 		{
 			
+			if (resultWord == word)
+			{
+				
+				ofEnableAlphaBlending();    // turn on alpha blending
+			    ofSetColor(0,255,0,50);  
+				ofRect( 0, 0.4 * ofGetHeight(), 0 ,ofGetWidth() , 0.2* ofGetHeight());
+				wordsCorrect++;
+			}
 		 ofEnableAlphaBlending();    // turn on alpha blending
 		 ofSetColor(0,0,0,50);  
 		ofRect( 0, 0.4 * ofGetHeight(), 0 ,ofGetWidth() , 0.2* ofGetHeight());
@@ -161,15 +180,11 @@ void testApp::keyPressed(int key){
 			spacecount++;
 			if (!(spacecount%2==0))
 			{
-				rec.clearBuffer();
-				mfile.clear();
-				rec.start();
+				startRecording();
 			}
 			else
 			{
-				rec.stop();
-				rec.postFLAC();
-				rec.jSONSetup();
+				stopRecording();
 			}
 	}
 	}
@@ -177,6 +192,24 @@ void testApp::keyPressed(int key){
 	cout<<key;
 }
 
+
+void testApp::startRecording()
+{
+				rec.clearBuffer();
+				rec.start();
+				
+}
+
+void testApp::stopRecording()
+{
+				rec.stop();
+				thread.start();
+				
+				
+				//rec.postFLAC();
+				//rec.jSONSetup();
+
+}
 //--------------------------------------------------------------
 void testApp::keyReleased(int key){
 

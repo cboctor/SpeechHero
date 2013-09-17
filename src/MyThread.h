@@ -1,79 +1,100 @@
-#include "RecordFlac.h"
+#ifndef _THREADED_OBJECT
+#define _THREADED_OBJECT
+
 #include "ofMain.h"
-#include <thread>
+//#include "RecordFlac.h"
+#include "ofxJSONElement.h"
+
+// this is not a very exciting example yet
+// but ofThread provides the basis for ofNetwork and other
+// operations that require threading.
+//
+// please be careful - threading problems are notoriously hard
+// to debug and working with threads can be quite difficult
 
 
+class MyThread : public ofThread{
+
+	public:
 
 
+	    int count;  // threaded fucntions that share data need to use lock (mutex)
+	                // and unlock in order to write to that data
+	                // otherwise it's possible to get crashes.
+	                //
+	                // also no opengl specific stuff will work in a thread...
+	                // threads can't create textures, or draw stuff on the screen
+	                // since opengl is single thread safe
 
-//--------------------------------------------------------------
+		string readBuffer;
+		ofxJSONElement result;
 
-void RecordFlac::start(){
-		
-	left = new float[256];
-	right = new float[256];
-	
-	bufferCounter = 0;
-	drawCounter = 0;
-	
-    sampleRate = 16000;
-	ofSoundStreamSetup(0,2, sampleRate, 256, 4);
-	
-    info.format=SF_FORMAT_FLAC | SF_FORMAT_PCM_16;
-    info.frames = sampleRate*60;
-    info.samplerate = sampleRate;
-    info.channels = 2;
-    outfile = sf_open ("data/audio.flac", SFM_WRITE, &info) ;
+	   
 
-    if (!outfile)
-        {
-            cerr<<"Error opening ["<<outfilename<<"] : "<<sf_strerror (outfile)<<endl;
+		//--------------------------
+		MyThread(){
+			count = 0;
+		}
+
+		void start(){
+            startThread(true, false);   // blocking, verbose
         }
-	}
 
-
-void RecordFlac::audioReceived 	(float * input, int bufferSize, int nChannels){
-	// samples are "interleaved"
-
-	for (int i = 0; i < bufferSize; i++){
-		left[i] = input[i*2];
-		right[i] = input[i*2+1];
-	}
-	bufferCounter++;
-	try
-	{sf_write_float(outfile, input, bufferSize*2);}
-	catch(...)
-	{cout<<"could not output";}
-
-}
-
-
-//--------------------------------------------------------------
-void RecordFlac::stop(){
-
-	   if (!outfile)
-        {
-            cerr<<"Error opening ["<<outfilename<<"] : "<<sf_strerror (outfile)<<endl;
+        void stop(){
+            stopThread();
         }
-	   else {
-		   
-	ofSoundStreamClose();
-	sf_close(outfile);
-	   }
 
-	
-}
+		//--------------------------
+		 void threadedFunction() {
+ 
+        // start
+ 
+        while(isThreadRunning()) {
+ 
+           
+           
+ 
+                // lock access to the resource
+                lock();
+ 
+                // load the image
+				postFLAC();
+				jSONSetup();
+                
+                // done with the resource
+                unlock();
+				stop();
+              
+        }
+ 
+        // done
+    }
+ 
+ 
 
 
+		//--------------------------
+		void draw(){
 
-static size_t WriteCallback(void *contents, size_t size, size_t nmemb, void *userp)
+			string str = "I am a slowly increasing thread. \nmy current count is: ";
+
+			if( lock() ){
+				str += ofToString(count);
+				unlock();
+			}else{
+				str = "can't lock!\neither an error\nor the thread has stopped";
+			}
+			ofDrawBitmapString(str, 50, 56);
+		}
+
+		static size_t WriteCallback(void *contents, size_t size, size_t nmemb, void *userp)
 {
     ((std::string*)userp)->append((char*)contents, size * nmemb);
     return size * nmemb;
 }
 //--------------------------------------------------------------
 
-void RecordFlac::postFLAC()
+void postFLAC()
 {
 
   CURL *curl;
@@ -121,7 +142,7 @@ void RecordFlac::postFLAC()
   
 }
 
-void RecordFlac::jSONSetup(){
+void jSONSetup(){
 //	  std::string file = "myjson.json";
 	
 	// Now parse the JSON
@@ -153,12 +174,20 @@ void RecordFlac::jSONSetup(){
 }
 
 
-string RecordFlac::getResult()
+string getResult()
 {
 	return result["hypotheses"][0]["utterance"].asString();
 }
 
-void RecordFlac::clearBuffer()
+void clearBuffer()
 {
 	readBuffer.clear();
 }
+
+		
+
+
+
+};
+
+#endif

@@ -4,6 +4,7 @@
 #include <sndfile.h>
 #include <curl/curl.h>
 #include "ofxJSONElement.h"
+#include "MyThread.h"
 
 
 
@@ -39,6 +40,8 @@ public:
 
 		string readBuffer;
 		ofxJSONElement result;
+
+		MyThread thread1;
 
 	
 		
