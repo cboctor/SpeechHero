@@ -12,12 +12,13 @@ void Interfaces::setup(){
 	setUILogin();
 	setUIRegister();
 	setUIMain();
+	
 	mysql.setup();
 	
 	msgBox.addNewMessage("Incorrect Login", "Please enter correct login", OFX_MESSAGEBOX_OK);
 	//msgBox.
 	
-	view="main";
+	view="login";
 	setView(view);
 	
 }
@@ -260,6 +261,7 @@ bool Interfaces::authenticateUser()
 	if (mysql.authenticateUser(user,pass))
 		return true;
 	else return false;
+	return true;
 }
 	
 	void Interfaces::setRecordingState(string state)

@@ -1,6 +1,9 @@
 ofxXmlSettings
+ofxBox2dVanderlin
 ofxcURL
 ofxJSON
 ofxLibsndfile
+ofxMessageBox
 ofxMySQLConn
+ofxSpine
 ofxUI

@@ -49,22 +49,10 @@ class MyThread : public ofThread{
  
         // start
  
-        while(isThreadRunning()) {
- 
-           
-           
- 
-                // lock access to the resource
-                lock();
- 
-                // load the image
+        while(isThreadRunning()) {         
 				postFLAC();
 				jSONSetup();
-                
-                // done with the resource
-                unlock();
 				stop();
-              
         }
  
         // done
@@ -144,10 +132,10 @@ void postFLAC()
 
 void jSONSetup(){
 //	  std::string file = "myjson.json";
-	
+	result.parse(readBuffer);
 	// Now parse the JSON
 	//bool parsingSuccessful = result.open(file);
-	bool parsingSuccessful = result.parse(readBuffer);
+	/*bool parsingSuccessful = result.parse(readBuffer);
 	
     if (parsingSuccessful) {
 		cout << result.getRawString() << endl;
@@ -169,7 +157,7 @@ void jSONSetup(){
 	} else {
 		cout  << "Failed to parse JSON" << endl;
 	}
-
+*/
 	
 }
 

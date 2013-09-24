@@ -13,6 +13,9 @@
     <ClCompile Include="src\main.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\MySQLConn.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
     <ClCompile Include="src\RecordFlac.cpp">
       <Filter>src</Filter>
     </ClCompile>
@@ -31,6 +34,132 @@
     <ClCompile Include="..\..\..\addons\ofxXmlSettings\libs\tinyxmlparser.cpp">
       <Filter>addons\ofxXmlSettings\libs</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxBox2dVanderlin\src\ofxBox2d.cpp">
+      <Filter>addons\ofxBox2dVanderlin\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxBox2dVanderlin\src\ofxBox2dBaseShape.cpp">
+      <Filter>addons\ofxBox2dVanderlin\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxBox2dVanderlin\src\ofxBox2dCircle.cpp">
+      <Filter>addons\ofxBox2dVanderlin\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxBox2dVanderlin\src\ofxBox2dJoint.cpp">
+      <Filter>addons\ofxBox2dVanderlin\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxBox2dVanderlin\src\ofxBox2dPolygon.cpp">
+      <Filter>addons\ofxBox2dVanderlin\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxBox2dVanderlin\src\ofxBox2dRect.cpp">
+      <Filter>addons\ofxBox2dVanderlin\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Collision\b2BroadPhase.cpp">
+      <Filter>addons\ofxBox2dVanderlin\libs\Box2D\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Collision\b2CollideCircle.cpp">
+      <Filter>addons\ofxBox2dVanderlin\libs\Box2D\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Collision\b2CollidePolygon.cpp">
+      <Filter>addons\ofxBox2dVanderlin\libs\Box2D\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Collision\b2Collision.cpp">
+      <Filter>addons\ofxBox2dVanderlin\libs\Box2D\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Collision\b2Distance.cpp">
+      <Filter>addons\ofxBox2dVanderlin\libs\Box2D\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Collision\b2DynamicTree.cpp">
+      <Filter>addons\ofxBox2dVanderlin\libs\Box2D\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Collision\b2TimeOfImpact.cpp">
+      <Filter>addons\ofxBox2dVanderlin\libs\Box2D\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Collision\Shapes\b2CircleShape.cpp">
+      <Filter>addons\ofxBox2dVanderlin\libs\Box2D\Collision\Shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Collision\Shapes\b2PolygonShape.cpp">
+      <Filter>addons\ofxBox2dVanderlin\libs\Box2D\Collision\Shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Common\b2BlockAllocator.cpp">
+      <Filter>addons\ofxBox2dVanderlin\libs\Box2D\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Common\b2Math.cpp">
+      <Filter>addons\ofxBox2dVanderlin\libs\Box2D\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Common\b2Settings.cpp">
+      <Filter>addons\ofxBox2dVanderlin\libs\Box2D\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Common\b2StackAllocator.cpp">
+      <Filter>addons\ofxBox2dVanderlin\libs\Box2D\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\b2Body.cpp">
+      <Filter>addons\ofxBox2dVanderlin\libs\Box2D\Dynamics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\b2ContactManager.cpp">
+      <Filter>addons\ofxBox2dVanderlin\libs\Box2D\Dynamics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\b2Fixture.cpp">
+      <Filter>addons\ofxBox2dVanderlin\libs\Box2D\Dynamics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\b2Island.cpp">
+      <Filter>addons\ofxBox2dVanderlin\libs\Box2D\Dynamics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\b2World.cpp">
+      <Filter>addons\ofxBox2dVanderlin\libs\Box2D\Dynamics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\b2WorldCallbacks.cpp">
+      <Filter>addons\ofxBox2dVanderlin\libs\Box2D\Dynamics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Contacts\b2CircleContact.cpp">
+      <Filter>addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Contacts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Contacts\b2Contact.cpp">
+      <Filter>addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Contacts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Contacts\b2ContactSolver.cpp">
+      <Filter>addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Contacts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Contacts\b2PolygonAndCircleContact.cpp">
+      <Filter>addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Contacts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Contacts\b2PolygonContact.cpp">
+      <Filter>addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Contacts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Contacts\b2TOISolver.cpp">
+      <Filter>addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Contacts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Joints\b2DistanceJoint.cpp">
+      <Filter>addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Joints</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Joints\b2FrictionJoint.cpp">
+      <Filter>addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Joints</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Joints\b2GearJoint.cpp">
+      <Filter>addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Joints</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Joints\b2Joint.cpp">
+      <Filter>addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Joints</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Joints\b2LineJoint.cpp">
+      <Filter>addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Joints</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Joints\b2MouseJoint.cpp">
+      <Filter>addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Joints</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Joints\b2PrismaticJoint.cpp">
+      <Filter>addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Joints</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Joints\b2PulleyJoint.cpp">
+      <Filter>addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Joints</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Joints\b2RevoluteJoint.cpp">
+      <Filter>addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Joints</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Joints\b2WeldJoint.cpp">
+      <Filter>addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Joints</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxBox2dVanderlin\libs\triangle\del_impl.cpp">
+      <Filter>addons\ofxBox2dVanderlin\libs\triangle</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\addons\ofxJSON\src\ofxJSONElement.cpp">
       <Filter>addons\ofxJSON\src</Filter>
     </ClCompile>
@@ -42,9 +171,6 @@
     </ClCompile>
     <ClCompile Include="..\..\..\addons\ofxJSON\libs\jsoncpp\src\json_writer.cpp">
       <Filter>addons\ofxJSON\libs\jsoncpp\src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\MySQLConn.cpp">
-      <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\addons\ofxMessageBox\src\EaseRectBox.cpp">
       <Filter>addons\ofxMessageBox\src</Filter>
@@ -68,6 +194,39 @@
     </Filter>
     <Filter Include="addons\ofxXmlSettings\libs">
       <UniqueIdentifier>{687714A8-1662-FA1C-261F-50F0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxBox2dVanderlin">
+      <UniqueIdentifier>{FAD195F4-F661-7D83-A4EB-8174}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxBox2dVanderlin\src">
+      <UniqueIdentifier>{D45DCDE1-58B4-31B2-F6E2-A1A0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxBox2dVanderlin\libs">
+      <UniqueIdentifier>{700F7DF5-83BB-6E4A-0E59-1F29}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxBox2dVanderlin\libs\Box2D">
+      <UniqueIdentifier>{CA1FF914-B9D9-B3F0-0A1D-D884}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxBox2dVanderlin\libs\Box2D\Collision">
+      <UniqueIdentifier>{C17A2DD2-1F04-70C1-9118-E27F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxBox2dVanderlin\libs\Box2D\Collision\Shapes">
+      <UniqueIdentifier>{694682DA-7B80-A5E8-7F3A-8B8B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxBox2dVanderlin\libs\Box2D\Common">
+      <UniqueIdentifier>{CB4F2F33-508D-CC57-F645-8660}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxBox2dVanderlin\libs\Box2D\Dynamics">
+      <UniqueIdentifier>{BE8D3781-0B63-95CE-60DC-0DFB}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Contacts">
+      <UniqueIdentifier>{8B92547C-B9EF-5227-7861-AD6C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Joints">
+      <UniqueIdentifier>{2C84843E-46E1-C75C-3951-2E46}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxBox2dVanderlin\libs\triangle">
+      <UniqueIdentifier>{ABF24ABF-2585-FE1D-9AC0-CEF6}</UniqueIdentifier>
     </Filter>
     <Filter Include="addons\ofxcURL">
       <UniqueIdentifier>{0E00FCEA-B287-7124-6230-E9F5}</UniqueIdentifier>
@@ -111,6 +270,12 @@
     <Filter Include="addons\ofxLibsndfile\libs\include">
       <UniqueIdentifier>{155139D0-84CA-D5F2-FD1D-E5BA}</UniqueIdentifier>
     </Filter>
+    <Filter Include="addons\ofxMessageBox">
+      <UniqueIdentifier>{0B2F4CE4-8ABB-A143-7059-16FA}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxMessageBox\src">
+      <UniqueIdentifier>{87D034A3-65EA-8057-C26B-8AB2}</UniqueIdentifier>
+    </Filter>
     <Filter Include="addons\ofxMySQLConn">
       <UniqueIdentifier>{F62F36C2-27F8-2589-D1C3-9E7B}</UniqueIdentifier>
     </Filter>
@@ -129,18 +294,18 @@
     <Filter Include="addons\ofxUI\src">
       <UniqueIdentifier>{A00C2D23-6C11-BC86-3993-2CF0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="addons\ofxMessageBox">
-      <UniqueIdentifier>{2e152120-8c18-45cf-9141-54652bfdc335}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="addons\ofxMessageBox\src">
-      <UniqueIdentifier>{29848a2a-1a8a-42f6-8b21-51130068a900}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\testApp.h">
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="src\Interfaces.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MySQLConn.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MyThread.h">
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="src\RecordFlac.h">
@@ -154,6 +319,159 @@
     </ClInclude>
     <ClInclude Include="..\..\..\addons\ofxXmlSettings\libs\tinyxml.h">
       <Filter>addons\ofxXmlSettings\libs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\src\ofxBox2d.h">
+      <Filter>addons\ofxBox2dVanderlin\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\src\ofxBox2dBaseShape.h">
+      <Filter>addons\ofxBox2dVanderlin\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\src\ofxBox2dCircle.h">
+      <Filter>addons\ofxBox2dVanderlin\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\src\ofxBox2dContactListener.h">
+      <Filter>addons\ofxBox2dVanderlin\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\src\ofxBox2dJoint.h">
+      <Filter>addons\ofxBox2dVanderlin\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\src\ofxBox2dPolygon.h">
+      <Filter>addons\ofxBox2dVanderlin\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\src\ofxBox2dPolygonUtils.h">
+      <Filter>addons\ofxBox2dVanderlin\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\src\ofxBox2dRect.h">
+      <Filter>addons\ofxBox2dVanderlin\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\src\ofxBox2dRender.h">
+      <Filter>addons\ofxBox2dVanderlin\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\src\ofxBox2dUtils.h">
+      <Filter>addons\ofxBox2dVanderlin\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Box2D.h">
+      <Filter>addons\ofxBox2dVanderlin\libs\Box2D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Collision\b2BroadPhase.h">
+      <Filter>addons\ofxBox2dVanderlin\libs\Box2D\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Collision\b2Collision.h">
+      <Filter>addons\ofxBox2dVanderlin\libs\Box2D\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Collision\b2Distance.h">
+      <Filter>addons\ofxBox2dVanderlin\libs\Box2D\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Collision\b2DynamicTree.h">
+      <Filter>addons\ofxBox2dVanderlin\libs\Box2D\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Collision\b2TimeOfImpact.h">
+      <Filter>addons\ofxBox2dVanderlin\libs\Box2D\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Collision\Shapes\b2CircleShape.h">
+      <Filter>addons\ofxBox2dVanderlin\libs\Box2D\Collision\Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Collision\Shapes\b2PolygonShape.h">
+      <Filter>addons\ofxBox2dVanderlin\libs\Box2D\Collision\Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Collision\Shapes\b2Shape.h">
+      <Filter>addons\ofxBox2dVanderlin\libs\Box2D\Collision\Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Common\b2BlockAllocator.h">
+      <Filter>addons\ofxBox2dVanderlin\libs\Box2D\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Common\b2Math.h">
+      <Filter>addons\ofxBox2dVanderlin\libs\Box2D\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Common\b2Settings.h">
+      <Filter>addons\ofxBox2dVanderlin\libs\Box2D\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Common\b2StackAllocator.h">
+      <Filter>addons\ofxBox2dVanderlin\libs\Box2D\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\b2Body.h">
+      <Filter>addons\ofxBox2dVanderlin\libs\Box2D\Dynamics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\b2ContactManager.h">
+      <Filter>addons\ofxBox2dVanderlin\libs\Box2D\Dynamics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\b2Fixture.h">
+      <Filter>addons\ofxBox2dVanderlin\libs\Box2D\Dynamics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\b2Island.h">
+      <Filter>addons\ofxBox2dVanderlin\libs\Box2D\Dynamics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\b2TimeStep.h">
+      <Filter>addons\ofxBox2dVanderlin\libs\Box2D\Dynamics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\b2World.h">
+      <Filter>addons\ofxBox2dVanderlin\libs\Box2D\Dynamics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\b2WorldCallbacks.h">
+      <Filter>addons\ofxBox2dVanderlin\libs\Box2D\Dynamics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Contacts\b2CircleContact.h">
+      <Filter>addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Contacts</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Contacts\b2Contact.h">
+      <Filter>addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Contacts</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Contacts\b2ContactSolver.h">
+      <Filter>addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Contacts</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Contacts\b2PolygonAndCircleContact.h">
+      <Filter>addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Contacts</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Contacts\b2PolygonContact.h">
+      <Filter>addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Contacts</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Contacts\b2TOISolver.h">
+      <Filter>addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Contacts</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Joints\b2DistanceJoint.h">
+      <Filter>addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Joints</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Joints\b2FrictionJoint.h">
+      <Filter>addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Joints</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Joints\b2GearJoint.h">
+      <Filter>addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Joints</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Joints\b2Joint.h">
+      <Filter>addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Joints</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Joints\b2LineJoint.h">
+      <Filter>addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Joints</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Joints\b2MouseJoint.h">
+      <Filter>addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Joints</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Joints\b2PrismaticJoint.h">
+      <Filter>addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Joints</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Joints\b2PulleyJoint.h">
+      <Filter>addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Joints</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Joints\b2RevoluteJoint.h">
+      <Filter>addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Joints</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Joints\b2WeldJoint.h">
+      <Filter>addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Joints</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\libs\triangle\assert.hpp">
+      <Filter>addons\ofxBox2dVanderlin\libs\triangle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\libs\triangle\del_interface.hpp">
+      <Filter>addons\ofxBox2dVanderlin\libs\triangle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\libs\triangle\dpoint.hpp">
+      <Filter>addons\ofxBox2dVanderlin\libs\triangle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\libs\triangle\triangle.h">
+      <Filter>addons\ofxBox2dVanderlin\libs\triangle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\libs\triangle\triangle_impl.hpp">
+      <Filter>addons\ofxBox2dVanderlin\libs\triangle</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\addons\ofxcURL\libs\include\curl\curl.h">
       <Filter>addons\ofxcURL\libs\include\curl</Filter>
@@ -217,6 +535,12 @@
     </ClInclude>
     <ClInclude Include="..\..\..\addons\ofxLibsndfile\libs\include\sndfile.h">
       <Filter>addons\ofxLibsndfile\libs\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxMessageBox\src\EaseRectBox.h">
+      <Filter>addons\ofxMessageBox\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxMessageBox\src\ofxMessageBox.h">
+      <Filter>addons\ofxMessageBox\src</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\addons\ofxMySQLConn\libs\include\cppconn\build_config.h">
       <Filter>addons\ofxMySQLConn\libs\include\cppconn</Filter>
@@ -409,18 +733,6 @@
     </ClInclude>
     <ClInclude Include="..\..\..\addons\ofxUI\src\ofxUIWidgetWithLabel.h">
       <Filter>addons\ofxUI\src</Filter>
-    </ClInclude>
-    <ClInclude Include="src\MySQLConn.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\addons\ofxMessageBox\src\EaseRectBox.h">
-      <Filter>addons\ofxMessageBox\src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\addons\ofxMessageBox\src\ofxMessageBox.h">
-      <Filter>addons\ofxMessageBox\src</Filter>
-    </ClInclude>
-    <ClInclude Include="src\MyThread.h">
-      <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

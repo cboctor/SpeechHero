@@ -7,6 +7,7 @@
 #include "MyThread.h"
 
 #include "MySQLConn.h"
+#include "ofxBox2d.h"
 
 
 
@@ -48,8 +49,12 @@ class testApp : public ofBaseApp{
 		string word;
 		float time;
 		float startTime;
-		float wordTime;
-		float wordStartTime;
+		float wordRecordTime;
+		float wordRecordStartTime;
+		float wordStopTime;
+		float wordStopStartTime;
+		float displayTime;
+		float displayStartTime;
 		bool isWordReady;
 		bool isNow;
 		vector<string> wordArray;
@@ -60,6 +65,19 @@ class testApp : public ofBaseApp{
 		int scoreMultiplier;
 
 		MyThread thread;
+		ofImage floorImage;
+		ofPoint floorpoint;
+		ofRectangle worldBounds;
+		ofxBox2d box2dworld;
+		vector <ofxBox2dCircle> circlesA;
+		ofImage characterImage;
+		ofPoint circlepos;
+		ofxBox2dCircle c;
+		float force;
+		float desiredVel;
+		string keypressed;
+		bool isMidAir;
+
 		
 		
 		

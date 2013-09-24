@@ -43,7 +43,7 @@
     <TargetName>$(ProjectName)_debug</TargetName>
     <LinkIncremental>true</LinkIncremental>
     <GenerateManifest>true</GenerateManifest>
-    <IncludePath>C:\Program Files %28x86%29\MySQL\MySQL Connector C++ 1.1.3\include;C:\lib;C:\lib\boost_1_54_0;C:\Users\Christopher\Documents\GitHub\of_v0.8.0_vs_release\addons\ofxMessageBox;$(IncludePath)</IncludePath>
+    <IncludePath>C:\lib\boost_1_54_0;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>bin\</OutDir>
@@ -59,14 +59,14 @@
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);src;..\..\..\addons\ofxXmlSettings\libs;..\..\..\addons\ofxXmlSettings\src;..\..\..\addons\ofxcURL\libs;..\..\..\addons\ofxcURL\src;..\..\..\addons\ofxcURL\libs\include;..\..\..\addons\ofxcURL\libs\include\curl;..\..\..\addons\ofxcURL\libs\lib;..\..\..\addons\ofxJSON\libs;..\..\..\addons\ofxJSON\src;..\..\..\addons\ofxJSON\libs\jsoncpp;..\..\..\addons\ofxJSON\libs\jsoncpp\include;..\..\..\addons\ofxJSON\libs\jsoncpp\include\json;..\..\..\addons\ofxJSON\libs\jsoncpp\src;..\..\..\addons\ofxLibsndfile\libs;..\..\..\addons\ofxLibsndfile\src;..\..\..\addons\ofxLibsndfile\libs\include;..\..\..\addons\ofxLibsndfile\libs\lib;..\..\..\addons\ofxMySQLConn\libs;..\..\..\addons\ofxMySQLConn\src;..\..\..\addons\ofxMySQLConn\libs\include;..\..\..\addons\ofxMySQLConn\libs\include\cppconn;..\..\..\addons\ofxMySQLConn\libs\lib;..\..\..\addons\ofxMySQLConn\libs\lib\opt;..\..\..\addons\ofxUI\libs;..\..\..\addons\ofxUI\src;..\..\..\addons\ofxMessageBox\src\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);src;..\..\..\addons\ofxXmlSettings\libs;..\..\..\addons\ofxXmlSettings\src;..\..\..\addons\ofxBox2dVanderlin\libs;..\..\..\addons\ofxBox2dVanderlin\src;..\..\..\addons\ofxBox2dVanderlin\libs\Box2D;..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Collision;..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Collision\Shapes;..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Common;..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Dynamics;..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Contacts;..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Joints;..\..\..\addons\ofxBox2dVanderlin\libs\triangle;..\..\..\addons\ofxcURL\libs;..\..\..\addons\ofxcURL\src;..\..\..\addons\ofxcURL\libs\include;..\..\..\addons\ofxcURL\libs\include\curl;..\..\..\addons\ofxcURL\libs\lib;..\..\..\addons\ofxJSON\libs;..\..\..\addons\ofxJSON\src;..\..\..\addons\ofxJSON\libs\jsoncpp;..\..\..\addons\ofxJSON\libs\jsoncpp\include;..\..\..\addons\ofxJSON\libs\jsoncpp\include\json;..\..\..\addons\ofxJSON\libs\jsoncpp\src;..\..\..\addons\ofxLibsndfile\libs;..\..\..\addons\ofxLibsndfile\src;..\..\..\addons\ofxLibsndfile\libs\include;..\..\..\addons\ofxLibsndfile\libs\lib;..\..\..\addons\ofxMessageBox\libs;..\..\..\addons\ofxMessageBox\src;..\..\..\addons\ofxMySQLConn\libs;..\..\..\addons\ofxMySQLConn\src;..\..\..\addons\ofxMySQLConn\libs\include;..\..\..\addons\ofxMySQLConn\libs\include\cppconn;..\..\..\addons\ofxMySQLConn\libs\lib;..\..\..\addons\ofxMySQLConn\libs\lib\opt;..\..\..\addons\ofxSpine\libs;..\..\..\addons\ofxSpine\src;..\..\..\addons\ofxSpine\libs\spine-c;..\..\..\addons\ofxSpine\libs\spine-c\include;..\..\..\addons\ofxSpine\libs\spine-c\include\spine;..\..\..\addons\ofxSpine\libs\spine-c\lib;..\..\..\addons\ofxSpine\libs\spine-c\lib\osx32;..\..\..\addons\ofxSpine\libs\spine-c\lib\osx64;..\..\..\addons\ofxSpine\libs\spine-c\src;..\..\..\addons\ofxUI\libs;..\..\..\addons\ofxUI\src</AdditionalIncludeDirectories>
       <CompileAs>CompileAsCpp</CompileAs>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
-      <AdditionalDependencies>C:/lib/libcurl.lib;C:/lib/libsndfile-1.lib;C:\Program Files (x86)\MySQL\MySQL Connector C++ 1.1.3\lib\opt\mysqlcppconn.lib;C:\Program Files (x86)\MySQL\MySQL Connector C++ 1.1.3\lib\opt\mysqlcppconn-static.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>C:\lib\libsndfile-1.lib;C:\lib\libcurl.lib;C:\lib\mysqlcppconn-static.lib;C:\lib\mysqlcppconn.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
@@ -76,7 +76,7 @@
       <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);src;..\..\..\addons\ofxXmlSettings\libs;..\..\..\addons\ofxXmlSettings\src;..\..\..\addons\ofxcURL\libs;..\..\..\addons\ofxcURL\src;..\..\..\addons\ofxcURL\libs\include;..\..\..\addons\ofxcURL\libs\include\curl;..\..\..\addons\ofxcURL\libs\lib;..\..\..\addons\ofxJSON\libs;..\..\..\addons\ofxJSON\src;..\..\..\addons\ofxJSON\libs\jsoncpp;..\..\..\addons\ofxJSON\libs\jsoncpp\include;..\..\..\addons\ofxJSON\libs\jsoncpp\include\json;..\..\..\addons\ofxJSON\libs\jsoncpp\src;..\..\..\addons\ofxLibsndfile\libs;..\..\..\addons\ofxLibsndfile\src;..\..\..\addons\ofxLibsndfile\libs\include;..\..\..\addons\ofxLibsndfile\libs\lib;..\..\..\addons\ofxMySQLConn\libs;..\..\..\addons\ofxMySQLConn\src;..\..\..\addons\ofxMySQLConn\libs\include;..\..\..\addons\ofxMySQLConn\libs\include\cppconn;..\..\..\addons\ofxMySQLConn\libs\lib;..\..\..\addons\ofxMySQLConn\libs\lib\opt;..\..\..\addons\ofxUI\libs;..\..\..\addons\ofxUI\src</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);src;..\..\..\addons\ofxXmlSettings\libs;..\..\..\addons\ofxXmlSettings\src;..\..\..\addons\ofxBox2dVanderlin\libs;..\..\..\addons\ofxBox2dVanderlin\src;..\..\..\addons\ofxBox2dVanderlin\libs\Box2D;..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Collision;..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Collision\Shapes;..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Common;..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Dynamics;..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Contacts;..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Joints;..\..\..\addons\ofxBox2dVanderlin\libs\triangle;..\..\..\addons\ofxcURL\libs;..\..\..\addons\ofxcURL\src;..\..\..\addons\ofxcURL\libs\include;..\..\..\addons\ofxcURL\libs\include\curl;..\..\..\addons\ofxcURL\libs\lib;..\..\..\addons\ofxJSON\libs;..\..\..\addons\ofxJSON\src;..\..\..\addons\ofxJSON\libs\jsoncpp;..\..\..\addons\ofxJSON\libs\jsoncpp\include;..\..\..\addons\ofxJSON\libs\jsoncpp\include\json;..\..\..\addons\ofxJSON\libs\jsoncpp\src;..\..\..\addons\ofxLibsndfile\libs;..\..\..\addons\ofxLibsndfile\src;..\..\..\addons\ofxLibsndfile\libs\include;..\..\..\addons\ofxLibsndfile\libs\lib;..\..\..\addons\ofxMessageBox\libs;..\..\..\addons\ofxMessageBox\src;..\..\..\addons\ofxMySQLConn\libs;..\..\..\addons\ofxMySQLConn\src;..\..\..\addons\ofxMySQLConn\libs\include;..\..\..\addons\ofxMySQLConn\libs\include\cppconn;..\..\..\addons\ofxMySQLConn\libs\lib;..\..\..\addons\ofxMySQLConn\libs\lib\opt;..\..\..\addons\ofxSpine\libs;..\..\..\addons\ofxSpine\src;..\..\..\addons\ofxSpine\libs\spine-c;..\..\..\addons\ofxSpine\libs\spine-c\include;..\..\..\addons\ofxSpine\libs\spine-c\include\spine;..\..\..\addons\ofxSpine\libs\spine-c\lib;..\..\..\addons\ofxSpine\libs\spine-c\lib\osx32;..\..\..\addons\ofxSpine\libs\spine-c\lib\osx64;..\..\..\addons\ofxSpine\libs\spine-c\src;..\..\..\addons\ofxUI\libs;..\..\..\addons\ofxUI\src</AdditionalIncludeDirectories>
       <CompileAs>CompileAsCpp</CompileAs>
     </ClCompile>
     <Link>
@@ -91,33 +91,123 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\addons\ofxMessageBox\src\EaseRectBox.cpp" />
-    <ClCompile Include="..\..\..\addons\ofxMessageBox\src\ofxMessageBox.cpp">
-      <DeploymentContent>false</DeploymentContent>
-    </ClCompile>
     <ClCompile Include="src\main.cpp" />
-    <ClCompile Include="src\MySQLConn.cpp" />
     <ClCompile Include="src\testApp.cpp" />
     <ClCompile Include="src\Interfaces.cpp" />
+    <ClCompile Include="src\MySQLConn.cpp" />
     <ClCompile Include="src\RecordFlac.cpp" />
     <ClCompile Include="..\..\..\addons\ofxXmlSettings\src\ofxXmlSettings.cpp" />
     <ClCompile Include="..\..\..\addons\ofxXmlSettings\libs\tinyxml.cpp" />
     <ClCompile Include="..\..\..\addons\ofxXmlSettings\libs\tinyxmlerror.cpp" />
     <ClCompile Include="..\..\..\addons\ofxXmlSettings\libs\tinyxmlparser.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxBox2dVanderlin\src\ofxBox2d.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxBox2dVanderlin\src\ofxBox2dBaseShape.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxBox2dVanderlin\src\ofxBox2dCircle.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxBox2dVanderlin\src\ofxBox2dJoint.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxBox2dVanderlin\src\ofxBox2dPolygon.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxBox2dVanderlin\src\ofxBox2dRect.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Collision\b2BroadPhase.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Collision\b2CollideCircle.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Collision\b2CollidePolygon.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Collision\b2Collision.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Collision\b2Distance.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Collision\b2DynamicTree.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Collision\b2TimeOfImpact.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Collision\Shapes\b2CircleShape.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Collision\Shapes\b2PolygonShape.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Common\b2BlockAllocator.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Common\b2Math.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Common\b2Settings.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Common\b2StackAllocator.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\b2Body.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\b2ContactManager.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\b2Fixture.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\b2Island.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\b2World.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\b2WorldCallbacks.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Contacts\b2CircleContact.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Contacts\b2Contact.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Contacts\b2ContactSolver.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Contacts\b2PolygonAndCircleContact.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Contacts\b2PolygonContact.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Contacts\b2TOISolver.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Joints\b2DistanceJoint.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Joints\b2FrictionJoint.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Joints\b2GearJoint.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Joints\b2Joint.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Joints\b2LineJoint.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Joints\b2MouseJoint.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Joints\b2PrismaticJoint.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Joints\b2PulleyJoint.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Joints\b2RevoluteJoint.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Joints\b2WeldJoint.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxBox2dVanderlin\libs\triangle\del_impl.cpp" />
     <ClCompile Include="..\..\..\addons\ofxJSON\src\ofxJSONElement.cpp" />
     <ClCompile Include="..\..\..\addons\ofxJSON\libs\jsoncpp\src\json_reader.cpp" />
     <ClCompile Include="..\..\..\addons\ofxJSON\libs\jsoncpp\src\json_value.cpp" />
     <ClCompile Include="..\..\..\addons\ofxJSON\libs\jsoncpp\src\json_writer.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxMessageBox\src\EaseRectBox.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxMessageBox\src\ofxMessageBox.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\addons\ofxMessageBox\src\EaseRectBox.h" />
-    <ClInclude Include="..\..\..\addons\ofxMessageBox\src\ofxMessageBox.h" />
-    <ClInclude Include="src\MySQLConn.h" />
     <ClInclude Include="src\testApp.h" />
     <ClInclude Include="src\Interfaces.h" />
+    <ClInclude Include="src\MySQLConn.h" />
+    <ClInclude Include="src\MyThread.h" />
     <ClInclude Include="src\RecordFlac.h" />
     <ClInclude Include="..\..\..\addons\ofxXmlSettings\src\ofxXmlSettings.h" />
     <ClInclude Include="..\..\..\addons\ofxXmlSettings\libs\tinyxml.h" />
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\src\ofxBox2d.h" />
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\src\ofxBox2dBaseShape.h" />
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\src\ofxBox2dCircle.h" />
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\src\ofxBox2dContactListener.h" />
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\src\ofxBox2dJoint.h" />
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\src\ofxBox2dPolygon.h" />
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\src\ofxBox2dPolygonUtils.h" />
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\src\ofxBox2dRect.h" />
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\src\ofxBox2dRender.h" />
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\src\ofxBox2dUtils.h" />
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Box2D.h" />
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Collision\b2BroadPhase.h" />
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Collision\b2Collision.h" />
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Collision\b2Distance.h" />
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Collision\b2DynamicTree.h" />
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Collision\b2TimeOfImpact.h" />
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Collision\Shapes\b2CircleShape.h" />
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Collision\Shapes\b2PolygonShape.h" />
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Collision\Shapes\b2Shape.h" />
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Common\b2BlockAllocator.h" />
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Common\b2Math.h" />
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Common\b2Settings.h" />
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Common\b2StackAllocator.h" />
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\b2Body.h" />
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\b2ContactManager.h" />
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\b2Fixture.h" />
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\b2Island.h" />
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\b2TimeStep.h" />
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\b2World.h" />
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\b2WorldCallbacks.h" />
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Contacts\b2CircleContact.h" />
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Contacts\b2Contact.h" />
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Contacts\b2ContactSolver.h" />
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Contacts\b2PolygonAndCircleContact.h" />
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Contacts\b2PolygonContact.h" />
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Contacts\b2TOISolver.h" />
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Joints\b2DistanceJoint.h" />
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Joints\b2FrictionJoint.h" />
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Joints\b2GearJoint.h" />
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Joints\b2Joint.h" />
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Joints\b2LineJoint.h" />
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Joints\b2MouseJoint.h" />
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Joints\b2PrismaticJoint.h" />
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Joints\b2PulleyJoint.h" />
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Joints\b2RevoluteJoint.h" />
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\libs\Box2D\Dynamics\Joints\b2WeldJoint.h" />
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\libs\triangle\assert.hpp" />
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\libs\triangle\del_interface.hpp" />
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\libs\triangle\dpoint.hpp" />
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\libs\triangle\triangle.h" />
+    <ClInclude Include="..\..\..\addons\ofxBox2dVanderlin\libs\triangle\triangle_impl.hpp" />
     <ClInclude Include="..\..\..\addons\ofxcURL\libs\include\curl\curl.h" />
     <ClInclude Include="..\..\..\addons\ofxcURL\libs\include\curl\curlbuild.h" />
     <ClInclude Include="..\..\..\addons\ofxcURL\libs\include\curl\curlrules.h" />
@@ -139,6 +229,8 @@
     <ClInclude Include="..\..\..\addons\ofxJSON\libs\jsoncpp\src\json_batchallocator.h" />
     <ClInclude Include="..\..\..\addons\ofxJSON\libs\jsoncpp\src\json_tool.h" />
     <ClInclude Include="..\..\..\addons\ofxLibsndfile\libs\include\sndfile.h" />
+    <ClInclude Include="..\..\..\addons\ofxMessageBox\src\EaseRectBox.h" />
+    <ClInclude Include="..\..\..\addons\ofxMessageBox\src\ofxMessageBox.h" />
     <ClInclude Include="..\..\..\addons\ofxMySQLConn\libs\include\cppconn\build_config.h" />
     <ClInclude Include="..\..\..\addons\ofxMySQLConn\libs\include\cppconn\config.h" />
     <ClInclude Include="..\..\..\addons\ofxMySQLConn\libs\include\cppconn\connection.h" />
@@ -203,7 +295,6 @@
     <ClInclude Include="..\..\..\addons\ofxUI\src\ofxUIWaveform.h" />
     <ClInclude Include="..\..\..\addons\ofxUI\src\ofxUIWidget.h" />
     <ClInclude Include="..\..\..\addons\ofxUI\src\ofxUIWidgetWithLabel.h" />
-    <ClInclude Include="src\MyThread.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\libs\openFrameworksCompiled\project\vs\openframeworksLib.vcxproj">
