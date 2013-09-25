@@ -5,7 +5,7 @@
 //--------------------------------------------------------------
 
 void testApp::setup(){
-	ofBackground(0,76,153);
+	ofBackground(0,0,0);
 	ofSetWindowPosition((ofGetScreenWidth() - ofGetWindowWidth())/2, (ofGetScreenHeight() - ofGetWindowHeight())/2);
 	pixfont.loadFont("pix.ttf", 32);
 	bigPixfont.loadFont("pix.ttf", 55);
@@ -34,6 +34,7 @@ void testApp::setup(){
 	box2dworld.registerGrabbing();
 	ofSetFrameRate(60);
 	characterImage.loadImage("assets/char.png");
+	backgroundImage.loadImage("assets/trees.png");
 	
 	
 	 c.setPhysics(1, 0.1, 1);
@@ -42,7 +43,9 @@ void testApp::setup(){
 	 keypressed = "nothing";
 	desiredVel =0 ;
 	isMidAir = false;
-
+	last = ofGetElapsedTimeMillis();
+	col.setHsb(0,255,255);
+	counter = 0;
 
 
 }
@@ -50,6 +53,12 @@ void testApp::setup(){
 
 //--------------------------------------------------------------
 void testApp::update(){
+	ofBackground(col);
+	if (ofGetElapsedTimeMillis()-last > 2000)
+	{
+		col.setHue(counter%256);
+		counter++;
+	}
 	box2dworld.update();
 	circlepos = c.getPosition();
 	b2Vec2 vel = c.body->GetLinearVelocity();
@@ -95,7 +104,7 @@ void testApp::draw(){
 	if (mainWindow.getView() == "game")
 	{
 		
-   
+		backgroundImage.draw(0, floorpoint.y - backgroundImage.getHeight()+10);
 		floorImage.draw(floorpoint.x,floorpoint.y);
 		characterImage.draw(circlepos.x-30,circlepos.y-84);
 

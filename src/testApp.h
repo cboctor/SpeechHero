@@ -71,12 +71,17 @@ class testApp : public ofBaseApp{
 		ofxBox2d box2dworld;
 		vector <ofxBox2dCircle> circlesA;
 		ofImage characterImage;
+		ofImage backgroundImage;
 		ofPoint circlepos;
 		ofxBox2dCircle c;
 		float force;
 		float desiredVel;
 		string keypressed;
 		bool isMidAir;
+
+		unsigned long last;
+		int counter;
+		ofColor col;
 
 		
 		

@@ -18,7 +18,7 @@ void Interfaces::setup(){
 	msgBox.addNewMessage("Incorrect Login", "Please enter correct login", OFX_MESSAGEBOX_OK);
 	//msgBox.
 	
-	view="login";
+	view="game";
 	setView(view);
 	
 }
