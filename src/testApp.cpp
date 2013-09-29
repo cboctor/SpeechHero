@@ -1,11 +1,12 @@
 #include "testApp.h"
 #include "Interfaces.h"
+#define PI 3.14159265
 
 
 //--------------------------------------------------------------
 
 void testApp::setup(){
-	ofBackground(0,0,0);
+	//ofBackground(0,0,0);
 	ofSetWindowPosition((ofGetScreenWidth() - ofGetWindowWidth())/2, (ofGetScreenHeight() - ofGetWindowHeight())/2);
 	pixfont.loadFont("pix.ttf", 32);
 	bigPixfont.loadFont("pix.ttf", 55);
@@ -44,7 +45,9 @@ void testApp::setup(){
 	desiredVel =0 ;
 	isMidAir = false;
 	last = ofGetElapsedTimeMillis();
-	col.setHsb(0,255,255);
+	col.r = 0;
+	col.g = 0;
+	col.b = 128;
 	counter = 0;
 
 
@@ -56,8 +59,16 @@ void testApp::update(){
 	ofBackground(col);
 	if (ofGetElapsedTimeMillis()-last > 2000)
 	{
-		col.setHue(counter%256);
+		double bluechange =  abs(128* sin(counter * PI /180));
+		double brightness = 100 * abs (sin (counter * PI/180));
+		double saturation = 100/ brightness;
+		//col.b = bluechange;
+		col.setBrightness(brightness);
+		//col.setSaturation(saturation);
 		counter++;
+
+	//	if (counter > 255)
+	//	{counter --;}
 	}
 	box2dworld.update();
 	circlepos = c.getPosition();
