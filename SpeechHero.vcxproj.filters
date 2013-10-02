@@ -238,6 +238,9 @@
     <ClCompile Include="..\..\..\addons\ofxSpine\libs\spine-c\src\SlotData.c">
       <Filter>addons\ofxSpine\libs\spine-c\src</Filter>
     </ClCompile>
+    <ClCompile Include="src\Player.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -877,6 +880,9 @@
     </ClInclude>
     <ClInclude Include="..\..\..\addons\ofxSpine\libs\spine-c\include\spine\spine.h">
       <Filter>addons\ofxSpine\libs\spine-c\include\spine</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Player.h">
+      <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
