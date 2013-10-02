@@ -91,6 +91,26 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\addons\ofxSpine\libs\spine-c\src\Animation.c" />
+    <ClCompile Include="..\..\..\addons\ofxSpine\libs\spine-c\src\AnimationState.c" />
+    <ClCompile Include="..\..\..\addons\ofxSpine\libs\spine-c\src\AnimationStateData.c" />
+    <ClCompile Include="..\..\..\addons\ofxSpine\libs\spine-c\src\Atlas.c" />
+    <ClCompile Include="..\..\..\addons\ofxSpine\libs\spine-c\src\AtlasAttachmentLoader.c" />
+    <ClCompile Include="..\..\..\addons\ofxSpine\libs\spine-c\src\Attachment.c" />
+    <ClCompile Include="..\..\..\addons\ofxSpine\libs\spine-c\src\AttachmentLoader.c" />
+    <ClCompile Include="..\..\..\addons\ofxSpine\libs\spine-c\src\Bone.c" />
+    <ClCompile Include="..\..\..\addons\ofxSpine\libs\spine-c\src\BoneData.c" />
+    <ClCompile Include="..\..\..\addons\ofxSpine\libs\spine-c\src\extension.c" />
+    <ClCompile Include="..\..\..\addons\ofxSpine\libs\spine-c\src\Json.c" />
+    <ClCompile Include="..\..\..\addons\ofxSpine\libs\spine-c\src\RegionAttachment.c" />
+    <ClCompile Include="..\..\..\addons\ofxSpine\libs\spine-c\src\Skeleton.c" />
+    <ClCompile Include="..\..\..\addons\ofxSpine\libs\spine-c\src\SkeletonData.c" />
+    <ClCompile Include="..\..\..\addons\ofxSpine\libs\spine-c\src\SkeletonJson.c" />
+    <ClCompile Include="..\..\..\addons\ofxSpine\libs\spine-c\src\Skin.c" />
+    <ClCompile Include="..\..\..\addons\ofxSpine\libs\spine-c\src\Slot.c" />
+    <ClCompile Include="..\..\..\addons\ofxSpine\libs\spine-c\src\SlotData.c" />
+    <ClCompile Include="..\..\..\addons\ofxSpine\src\ofxSkeleton.cpp" />
+    <ClCompile Include="..\..\..\addons\ofxSpine\src\ofxSpine.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\testApp.cpp" />
     <ClCompile Include="src\Interfaces.cpp" />
@@ -150,6 +170,27 @@
     <ClCompile Include="..\..\..\addons\ofxMessageBox\src\ofxMessageBox.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\addons\ofxSpine\libs\spine-c\include\Json.h" />
+    <ClInclude Include="..\..\..\addons\ofxSpine\libs\spine-c\include\spine\Animation.h" />
+    <ClInclude Include="..\..\..\addons\ofxSpine\libs\spine-c\include\spine\AnimationState.h" />
+    <ClInclude Include="..\..\..\addons\ofxSpine\libs\spine-c\include\spine\AnimationStateData.h" />
+    <ClInclude Include="..\..\..\addons\ofxSpine\libs\spine-c\include\spine\Atlas.h" />
+    <ClInclude Include="..\..\..\addons\ofxSpine\libs\spine-c\include\spine\AtlasAttachmentLoader.h" />
+    <ClInclude Include="..\..\..\addons\ofxSpine\libs\spine-c\include\spine\Attachment.h" />
+    <ClInclude Include="..\..\..\addons\ofxSpine\libs\spine-c\include\spine\AttachmentLoader.h" />
+    <ClInclude Include="..\..\..\addons\ofxSpine\libs\spine-c\include\spine\Bone.h" />
+    <ClInclude Include="..\..\..\addons\ofxSpine\libs\spine-c\include\spine\BoneData.h" />
+    <ClInclude Include="..\..\..\addons\ofxSpine\libs\spine-c\include\spine\extension.h" />
+    <ClInclude Include="..\..\..\addons\ofxSpine\libs\spine-c\include\spine\RegionAttachment.h" />
+    <ClInclude Include="..\..\..\addons\ofxSpine\libs\spine-c\include\spine\Skeleton.h" />
+    <ClInclude Include="..\..\..\addons\ofxSpine\libs\spine-c\include\spine\SkeletonData.h" />
+    <ClInclude Include="..\..\..\addons\ofxSpine\libs\spine-c\include\spine\SkeletonJson.h" />
+    <ClInclude Include="..\..\..\addons\ofxSpine\libs\spine-c\include\spine\Skin.h" />
+    <ClInclude Include="..\..\..\addons\ofxSpine\libs\spine-c\include\spine\Slot.h" />
+    <ClInclude Include="..\..\..\addons\ofxSpine\libs\spine-c\include\spine\SlotData.h" />
+    <ClInclude Include="..\..\..\addons\ofxSpine\libs\spine-c\include\spine\spine.h" />
+    <ClInclude Include="..\..\..\addons\ofxSpine\src\ofxSkeleton.h" />
+    <ClInclude Include="..\..\..\addons\ofxSpine\src\ofxSpine.h" />
     <ClInclude Include="src\testApp.h" />
     <ClInclude Include="src\Interfaces.h" />
     <ClInclude Include="src\MySQLConn.h" />

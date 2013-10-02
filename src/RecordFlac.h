@@ -34,6 +34,7 @@ public:
         int      sampleRate;
         int      sndBuffSize;
         int      sndBuffPos;
+
         char   * outfilename;
         SNDFILE * outfile;
         SF_INFO    info;

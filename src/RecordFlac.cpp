@@ -25,6 +25,7 @@ void RecordFlac::start(){
 		info.frames = sampleRate*60;
 		info.samplerate = sampleRate;
 		info.channels = 2;
+
 		outfile = sf_open ("data/audio.flac", SFM_WRITE, &info) ;
 
 		if (!outfile)
@@ -63,8 +64,8 @@ void RecordFlac::stop(){
 	else {
 
 		
-		sf_close(outfile);
 		ofSoundStreamClose();
+		sf_close(outfile);
 	}
 	}catch(...)
 	{cout<<"could not output";}

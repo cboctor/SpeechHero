@@ -8,6 +8,7 @@
 
 #include "MySQLConn.h"
 #include "ofxBox2d.h"
+#include "ofxSpine.h"
 
 
 
@@ -82,6 +83,10 @@ class testApp : public ofBaseApp{
 		unsigned long last;
 		int counter;
 		ofColor col;
+		bool isDirectionRight;
+		ofxSkeleton skeleton;
+		ofxSkeleton dragon;
+
 
 		
 		

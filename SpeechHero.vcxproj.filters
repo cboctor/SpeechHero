@@ -178,6 +178,66 @@
     <ClCompile Include="..\..\..\addons\ofxMessageBox\src\ofxMessageBox.cpp">
       <Filter>addons\ofxMessageBox\src</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxSpine\src\ofxSkeleton.cpp">
+      <Filter>addons\ofxSpine\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxSpine\src\ofxSpine.cpp">
+      <Filter>addons\ofxSpine\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxSpine\libs\spine-c\src\Animation.c">
+      <Filter>addons\ofxSpine\libs\spine-c\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxSpine\libs\spine-c\src\AnimationState.c">
+      <Filter>addons\ofxSpine\libs\spine-c\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxSpine\libs\spine-c\src\AnimationStateData.c">
+      <Filter>addons\ofxSpine\libs\spine-c\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxSpine\libs\spine-c\src\Atlas.c">
+      <Filter>addons\ofxSpine\libs\spine-c\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxSpine\libs\spine-c\src\AtlasAttachmentLoader.c">
+      <Filter>addons\ofxSpine\libs\spine-c\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxSpine\libs\spine-c\src\Attachment.c">
+      <Filter>addons\ofxSpine\libs\spine-c\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxSpine\libs\spine-c\src\AttachmentLoader.c">
+      <Filter>addons\ofxSpine\libs\spine-c\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxSpine\libs\spine-c\src\Bone.c">
+      <Filter>addons\ofxSpine\libs\spine-c\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxSpine\libs\spine-c\src\BoneData.c">
+      <Filter>addons\ofxSpine\libs\spine-c\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxSpine\libs\spine-c\src\extension.c">
+      <Filter>addons\ofxSpine\libs\spine-c\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxSpine\libs\spine-c\src\Json.c">
+      <Filter>addons\ofxSpine\libs\spine-c\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxSpine\libs\spine-c\src\RegionAttachment.c">
+      <Filter>addons\ofxSpine\libs\spine-c\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxSpine\libs\spine-c\src\Skeleton.c">
+      <Filter>addons\ofxSpine\libs\spine-c\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxSpine\libs\spine-c\src\SkeletonData.c">
+      <Filter>addons\ofxSpine\libs\spine-c\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxSpine\libs\spine-c\src\SkeletonJson.c">
+      <Filter>addons\ofxSpine\libs\spine-c\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxSpine\libs\spine-c\src\Skin.c">
+      <Filter>addons\ofxSpine\libs\spine-c\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxSpine\libs\spine-c\src\Slot.c">
+      <Filter>addons\ofxSpine\libs\spine-c\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxSpine\libs\spine-c\src\SlotData.c">
+      <Filter>addons\ofxSpine\libs\spine-c\src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -293,6 +353,27 @@
     </Filter>
     <Filter Include="addons\ofxUI\src">
       <UniqueIdentifier>{A00C2D23-6C11-BC86-3993-2CF0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxSpine">
+      <UniqueIdentifier>{322b4fa8-ba7f-484d-877c-613717569803}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxSpine\libs">
+      <UniqueIdentifier>{6cfdd22e-f980-4a7a-9f55-6072eabb0271}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxSpine\libs\spine-c">
+      <UniqueIdentifier>{f01f1300-0506-4aa4-a895-f59d6ea3c244}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxSpine\src">
+      <UniqueIdentifier>{ef10cf2e-e0cf-4d5a-8c82-f7ff78eefa47}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxSpine\libs\spine-c\include">
+      <UniqueIdentifier>{4009a007-513f-494f-9ac4-592fab7745bf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxSpine\libs\spine-c\src">
+      <UniqueIdentifier>{0a6325dc-3c90-4431-a200-b24ff2c7840e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxSpine\libs\spine-c\include\spine">
+      <UniqueIdentifier>{eb8b576d-cbc5-4f4a-9eb2-895963383a3f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -733,6 +814,69 @@
     </ClInclude>
     <ClInclude Include="..\..\..\addons\ofxUI\src\ofxUIWidgetWithLabel.h">
       <Filter>addons\ofxUI\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxSpine\src\ofxSkeleton.h">
+      <Filter>addons\ofxSpine\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxSpine\src\ofxSpine.h">
+      <Filter>addons\ofxSpine\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxSpine\libs\spine-c\include\Json.h">
+      <Filter>addons\ofxSpine\libs\spine-c\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxSpine\libs\spine-c\include\spine\Animation.h">
+      <Filter>addons\ofxSpine\libs\spine-c\include\spine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxSpine\libs\spine-c\include\spine\AnimationState.h">
+      <Filter>addons\ofxSpine\libs\spine-c\include\spine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxSpine\libs\spine-c\include\spine\AnimationStateData.h">
+      <Filter>addons\ofxSpine\libs\spine-c\include\spine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxSpine\libs\spine-c\include\spine\Atlas.h">
+      <Filter>addons\ofxSpine\libs\spine-c\include\spine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxSpine\libs\spine-c\include\spine\AtlasAttachmentLoader.h">
+      <Filter>addons\ofxSpine\libs\spine-c\include\spine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxSpine\libs\spine-c\include\spine\Attachment.h">
+      <Filter>addons\ofxSpine\libs\spine-c\include\spine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxSpine\libs\spine-c\include\spine\AttachmentLoader.h">
+      <Filter>addons\ofxSpine\libs\spine-c\include\spine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxSpine\libs\spine-c\include\spine\Bone.h">
+      <Filter>addons\ofxSpine\libs\spine-c\include\spine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxSpine\libs\spine-c\include\spine\BoneData.h">
+      <Filter>addons\ofxSpine\libs\spine-c\include\spine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxSpine\libs\spine-c\include\spine\extension.h">
+      <Filter>addons\ofxSpine\libs\spine-c\include\spine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxSpine\libs\spine-c\include\spine\RegionAttachment.h">
+      <Filter>addons\ofxSpine\libs\spine-c\include\spine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxSpine\libs\spine-c\include\spine\Skeleton.h">
+      <Filter>addons\ofxSpine\libs\spine-c\include\spine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxSpine\libs\spine-c\include\spine\SkeletonData.h">
+      <Filter>addons\ofxSpine\libs\spine-c\include\spine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxSpine\libs\spine-c\include\spine\SkeletonJson.h">
+      <Filter>addons\ofxSpine\libs\spine-c\include\spine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxSpine\libs\spine-c\include\spine\Skin.h">
+      <Filter>addons\ofxSpine\libs\spine-c\include\spine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxSpine\libs\spine-c\include\spine\Slot.h">
+      <Filter>addons\ofxSpine\libs\spine-c\include\spine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxSpine\libs\spine-c\include\spine\SlotData.h">
+      <Filter>addons\ofxSpine\libs\spine-c\include\spine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxSpine\libs\spine-c\include\spine\spine.h">
+      <Filter>addons\ofxSpine\libs\spine-c\include\spine</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
