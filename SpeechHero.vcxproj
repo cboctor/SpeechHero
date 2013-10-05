@@ -113,6 +113,7 @@
     <ClCompile Include="..\..\..\addons\ofxSpine\src\ofxSpine.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Player.cpp" />
+    <ClCompile Include="src\Skulls.cpp" />
     <ClCompile Include="src\testApp.cpp" />
     <ClCompile Include="src\Interfaces.cpp" />
     <ClCompile Include="src\MySQLConn.cpp" />
@@ -193,6 +194,7 @@
     <ClInclude Include="..\..\..\addons\ofxSpine\src\ofxSkeleton.h" />
     <ClInclude Include="..\..\..\addons\ofxSpine\src\ofxSpine.h" />
     <ClInclude Include="src\Player.h" />
+    <ClInclude Include="src\Skulls.h" />
     <ClInclude Include="src\testApp.h" />
     <ClInclude Include="src\Interfaces.h" />
     <ClInclude Include="src\MySQLConn.h" />

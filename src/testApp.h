@@ -9,6 +9,8 @@
 #include "MySQLConn.h"
 #include "ofxBox2d.h"
 #include "ofxSpine.h"
+#include "Player.h"
+#include "Skulls.h"
 
 
 
@@ -86,6 +88,8 @@ class testApp : public ofBaseApp{
 		bool isDirectionRight;
 		ofxSkeleton skeleton;
 		ofxSkeleton dragon;
+		Player player;
+		Skulls skull;
 
 
 		

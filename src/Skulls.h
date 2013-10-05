@@ -6,7 +6,7 @@
 
 
 
-class Player
+class Skulls
 {
 public:
 		
@@ -14,17 +14,19 @@ public:
 		void update();
 		float getX();
 		float getY();
-		void setX();
-		void setY();
+		void createSkulls();
+		void updateSmallSkulls();
+		void updateBigSkull();
 		void keyPressed(int key);
-		void keyReleased(int key);
+		void exit();
+		
 		void draw();
 
 
-		ofxSkeleton player;
+		ofxSkeleton skeleton;
 
 		ofxSkeleton getSkeleton(){
-        return player;
+        return skeleton;
 		}
 
 

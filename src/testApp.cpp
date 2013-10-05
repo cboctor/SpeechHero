@@ -52,19 +52,19 @@ void testApp::setup(){
 	col.b = 128;
 	counter = 0;
 	
-	skeleton.setup("assets/skeleton.atlas", "assets/skeleton.json", 0.4);
 	dragon.setup("assets/dragon.atlas", "assets/dragon.json", 0.3);
+	player.setup();
+	skull.setup();
+
 	
 	p1.x = -50;
 	p1.y = 250;
 	dragon.setPosition(p1);
 	//AnimationStateData_setMixByName(skeleton.getStateData(), "walk", "jump", 0.2f);
 	//AnimationStateData_setMixByName(skeleton.getStateData(), "jump", "walk", 0.4f);
-    
-	AnimationState_setAnimationByName(skeleton.getState(), "standing", true);
+
 	AnimationState_setAnimationByName(dragon.getState(), "fly", true);
-	isDirectionRight = false;
-	keycount = 0;
+
 
 	
 
@@ -75,7 +75,8 @@ void testApp::setup(){
 //--------------------------------------------------------------
 void testApp::update(){
 	ofBackground(col);
-	skeleton.update(1.0f /60);
+	player.update();
+	skull.update();
 	dragon.update(1.0f/60);
 	charpos.x = circlepos.x -30;
 	charpos.y = circlepos.y+28;
@@ -83,64 +84,19 @@ void testApp::update(){
 	 if (p1.x >= ofGetWidth() + 200)
 		 p1.x = -150;
 	dragon.setPosition(p1);
-	skeleton.setPosition(charpos);
 
 	if (ofGetElapsedTimeMillis()-last > 2000)
 	{
 		double bluechange =  abs(128* sin(counter * PI /180));
 		double brightness = 100 * abs (sin (counter * PI/180));
 		double saturation = 100/ brightness;
-		//col.b = bluechange;
+
 		col.setBrightness(brightness);
-		//col.setSaturation(saturation);
 		counter++;
 
-	//	if (counter > 255)
-	//	{counter --;}
 	}
 	box2dworld.update();
-	circlepos = c.getPosition();
-	b2Vec2 vel = c.body->GetLinearVelocity();
 
-	if (keypressed == "key-left" && !isMidAir)
-		{
-			if (keycount ==1)
-				AnimationState_setAnimationByName(skeleton.getState(), "walk", true);
-			vel.x = -10;
-			keycount ++;
-		}
-
-	else if (keypressed == "key-right" && !isMidAir)
-	{
-		if (keycount ==1)
-			AnimationState_setAnimationByName(skeleton.getState(), "walk", true);
-		keycount ++;
-		vel.x = 10;
-	}
-	else if (keypressed == "key-up" && !isMidAir)
-		vel.y = 100;
-	else if (keypressed =="released" && !isMidAir)
-	{
-		vel.x= 0;
-	}
-	else if (keypressed == "released" && isMidAir)
-		vel.x *=0.99;
-	else if (keypressed == "key-down")
-	{
-		if (keycount ==1)
-		AnimationState_setAnimationByName(skeleton.getState(), "duck", false);
-		keycount ++;
-
-	}
-
-
-	c.body->SetLinearVelocity(vel);
-
-	if ( c.body->GetLinearVelocity().y != 0 ) {
-    isMidAir = true;
-	} else { 
-    isMidAir = false;
-	}
 }
 
 
@@ -167,16 +123,13 @@ void testApp::draw(){
 		
 		backgroundImage.draw(0, floorpoint.y - backgroundImage.getHeight()+10);
 		floorImage.draw(floorpoint.x,floorpoint.y);
-		skeleton.draw();
 		dragon.draw();
+		player.draw();
+		skull.draw();
 		loadHUD();
-
-		
 
 
 	}
-
-
 
 }
 
@@ -288,6 +241,8 @@ void testApp::selectRandomWord()
 
 //--------------------------------------------------------------
 void testApp::keyPressed(int key){
+	player.keyPressed(key);
+	skull.keyPressed(key);
 
 	if (key == 's')
 	{
@@ -295,36 +250,7 @@ void testApp::keyPressed(int key){
 
 	}
 
-	if (key == OF_KEY_UP)
-	{
-		keypressed = "key-up";
-	}
-
-	if (key == OF_KEY_DOWN)
-	{
-		keypressed = "key-down";
-	}
-
-	if (key == OF_KEY_RIGHT)
-	{
-		keypressed = "key-right";
-		if (!isDirectionRight)
-		{
-			isDirectionRight = true;
-			skeleton.getSkeleton()->flipX = false;
-		}
-	}
-
-	if (key == OF_KEY_LEFT)
-	{
-		keypressed = "key-left";
-		if (isDirectionRight)
-		{
-			isDirectionRight = false;
-			skeleton.getSkeleton()->flipX = true;
-		}
-	}
-
+	
 
 	if (key=='n')
 	{
@@ -355,9 +281,7 @@ void testApp::keyPressed(int key){
 
 
 void testApp::keyReleased(int key){
-	keypressed = "released";
-	keycount = 0;
-	AnimationState_setAnimationByName(skeleton.getState(), "standing", true);
+	player.keyReleased(key);
 
 }
 
@@ -374,8 +298,6 @@ void testApp::stopRecording()
 	rec.stop();
 	thread.start();
 	
-	//rec.postFLAC();
-	//rec.jSONSetup();
 
 }
 //--------------------------------------------------------------
@@ -424,5 +346,8 @@ void testApp::audioReceived 	(float * input, int bufferSize, int nChannels){
 
 void testApp::exit()
 {
+	player.getSkeleton().~ofxSkeleton();
+	dragon.~ofxSkeleton();
+	skull.exit();
 	mainWindow.exit();
 }
