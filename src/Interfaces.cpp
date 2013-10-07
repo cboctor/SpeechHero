@@ -8,17 +8,19 @@ void Interfaces::setup(){
 	//pfont->loadFont("password.ttf", OFX_UI_FONT_MEDIUM);
 	//pfont->loadFont("password.ttf", );
 	//txtparentpassword->setFont(pfont);
+	isLoggedIn = false;
 	setUIPractice();
 	setUILogin();
 	setUIRegister();
 	setUIMain();
+	setUISessions();
 	
 	mysql.setup();
 	
 	msgBox.addNewMessage("Incorrect Login", "Please enter correct login", OFX_MESSAGEBOX_OK);
 	//msgBox.
 	
-	view="game";
+	view="login";
 	setView(view);
 	
 }
@@ -38,6 +40,7 @@ void Interfaces::setView(string view)
 		uimain->setVisible(false);
 		uipractice->setVisible(false);
 		uiregister->setVisible(false);
+		uisessions->setVisible(false);
 	}
 	else if (view =="register")
 	{
@@ -45,6 +48,7 @@ void Interfaces::setView(string view)
 		uimain->setVisible(false);
 		uipractice->setVisible(false);
 		uiregister->setVisible(true);
+		uisessions->setVisible(false);
 	}
 	else if (view == "main")
 	{
@@ -52,6 +56,7 @@ void Interfaces::setView(string view)
 		uimain->setVisible(true);
 		uipractice->setVisible(false);
 		uiregister->setVisible(false);
+		uisessions->setVisible(false);
 	}
 	else if (view =="practice")
 	{
@@ -59,6 +64,7 @@ void Interfaces::setView(string view)
 		uimain->setVisible(false);
 		uipractice->setVisible(true);
 		uiregister->setVisible(false);
+		uisessions->setVisible(false);
 	}
 	else if ( view =="game")
 	{
@@ -66,6 +72,16 @@ void Interfaces::setView(string view)
 		uimain->setVisible(false);
 		uipractice->setVisible(false);
 		uiregister->setVisible(false);
+		uisessions->setVisible(false);
+
+	}
+	else if ( view =="sessions")
+	{
+		uilogin->setVisible(false);
+		uimain->setVisible(false);
+		uipractice->setVisible(false);
+		uiregister->setVisible(false);
+		uisessions->setVisible(true);
 
 	}
 }
@@ -158,6 +174,36 @@ void Interfaces::setUIMain(){
 	ofAddListener(uimain->newGUIEvent,this,&Interfaces::guiEventMain);
 }
 
+void Interfaces::setUISessions(){
+
+	uisessions = new ofxUICanvas(0,0,ofGetWidth(), ofGetHeight());
+	uisessions->addWidgetDown(new ofxUILabel ("Past Sessions", OFX_UI_FONT_LARGE));
+	uisessions->addSpacer(ofGetWidth(), 2);
+	 vector<string> users;
+	 string user = getUser();
+	 if(isLoggedIn)
+	 {
+		  if (mysql.getType(user) == "parent"){
+			 users.push_back(user);
+			 users.push_back(mysql.getBoundedUser(user));
+		 }
+		  else
+			  users.push_back(user);
+
+	 }
+	 ofxUIDropDownList *ddl;
+	 ddl = uisessions->addDropDownList("SELECT USERS", users);
+	 ddl->setShowCurrentSelected(true);
+
+	
+	
+		 
+
+
+
+
+}
+
 void Interfaces::setUIPractice(){
 	float xInit = OFX_UI_GLOBAL_WIDGET_SPACING;
 	float length = 255-xInit;
@@ -196,11 +242,15 @@ void Interfaces::guiEventMain(ofxUIEventArgs &e)
 	if (view =="main")
 	{
 	if (name == "Play" && playButton->getValue() == 1)
-	{ view = "game";}
+	{ 
+	    setSessionID(ofGetHours(), ofGetMinutes(), ofGetDay(), ofGetMonth(), ofGetYear());
+		view = "game";
+	}
 	else if (name == "Highscores")
 	{}
 	else if (name == "Sessions")
-	{}
+	{setUISessions();
+	view = "sessions";}
 	else if (name == "Options")
 	{}
 	else if (name =="Practice" && practice->getValue() == 1)
@@ -215,6 +265,11 @@ void Interfaces::guiEventMain(ofxUIEventArgs &e)
 
 }
 
+string Interfaces::getSessionID()
+{
+	return "Date:";
+}
+
 
 
 void Interfaces::guiEvent(ofxUIEventArgs &e)
@@ -224,7 +279,10 @@ void Interfaces::guiEvent(ofxUIEventArgs &e)
 	{
 		//authenticateUser();
 		if (authenticateUser())
-		view = "main";
+		{
+			view = "main";
+			isLoggedIn=true;
+		}
 		else
 			msgBox.viewMessage(0);
 	}
@@ -264,17 +322,11 @@ bool Interfaces::authenticateUser()
 	return true;
 }
 	
-	void Interfaces::setRecordingState(string state)
-{
-	recState =state;
-}
 
- string Interfaces::getRecordingState()
-{
-	return recState;	
-}
-
-	
+	string Interfaces::getUser()
+	{
+		return txtusername->getTextString();
+	}
 
 
 //--------------------------------------------------------------
@@ -338,8 +390,23 @@ void Interfaces::dragEvent(ofDragInfo dragInfo){
 
 void Interfaces::exit()
 {
+/*	 delete practice;
+	 delete back;
+	 delete createButton;
+	 delete playButton;
+	delete txtusername;
+	 delete txtpassword;
+	 delete txtparentusername;
+	 delete txtparentpassword;
+	 delete txtchildusername;
+	 delete txtchildpassword;
+	 delete txtchildfirstname;
+	 delete txtchildlastname;
+	delete txtparentfirstname;
+    delete txtparentlastname;
 	delete uilogin;
 	delete uiregister;
-	delete uipractice;
 	delete uimain;
+	delete uipractice;*/
+	
 }

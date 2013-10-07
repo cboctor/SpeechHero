@@ -85,16 +85,16 @@ void testApp::update(){
 		 p1.x = -150;
 	dragon.setPosition(p1);
 
-	if (ofGetElapsedTimeMillis()-last > 2000)
-	{
-		double bluechange =  abs(128* sin(counter * PI /180));
-		double brightness = 100 * abs (sin (counter * PI/180));
-		double saturation = 100/ brightness;
+//	if (ofGetElapsedTimeMillis()-last > 2000)
+//	{
+//		double bluechange =  abs(128* sin(counter * PI /180));
+//		double brightness = 100 * abs (sin (counter * PI/180));
+//		double saturation = 100/ brightness;
 
-		col.setBrightness(brightness);
-		counter++;
+//		col.setBrightness(brightness);
+//		counter++;
 
-	}
+//	}
 	box2dworld.update();
 
 }
@@ -297,10 +297,23 @@ void testApp::stopRecording()
 {
 	rec.stop();
 	thread.start();
+	//mkdir ("data/
+	copyFile();
 	
 
 }
 //--------------------------------------------------------------
+
+
+void testApp::copyFile()
+{
+	string srcfile = "data/audio.flac";
+	string dstfile = "data/user/" + mainWindow.getUser() + "/words/" + word + ".flac";
+	string pathdest ="data/user/" + mainWindow.getUser() + "/words/";
+	CreateDirectoryA(pathdest.c_str(),NULL);
+	CopyFileA(srcfile.c_str(),dstfile.c_str(),false);
+}
+
 
 
 //--------------------------------------------------------------

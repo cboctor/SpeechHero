@@ -43,7 +43,7 @@
     <TargetName>$(ProjectName)_debug</TargetName>
     <LinkIncremental>true</LinkIncremental>
     <GenerateManifest>true</GenerateManifest>
-    <IncludePath>C:\lib\boost_1_54_0;C:\Users\Christopher\Documents\GitHub\of_v0.8.0_vs_release\addons\ofxSpine;C:\Users\Christopher\Documents\GitHub\of_v0.8.0_vs_release\addons\ofxSpine\libs;C:\Users\Christopher\Documents\GitHub\of_v0.8.0_vs_release\addons\ofxSpine\libs\spine-c\src;$(IncludePath)</IncludePath>
+    <IncludePath>C:\lib\boost_1_54_0;C:\Users\Christopher\Documents\GitHub\of_v0.8.0_vs_release\addons\ofxSpine;C:\Users\Christopher\Documents\GitHub\of_v0.8.0_vs_release\addons\ofxSpine\libs;C:\Users\Christopher\Documents\GitHub\of_v0.8.0_vs_release\addons\ofxSpine\libs\spine-c\src;C:\lib\mysql;C:\lib\mysql\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>bin\</OutDir>

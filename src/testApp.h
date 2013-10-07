@@ -27,6 +27,8 @@ class testApp : public ofBaseApp{
 		void loadHUD();
 		void startRecording();
 		void stopRecording();
+		void copyFile();
+		string setFileDest();
 		
 
 		void keyPressed(int key);
@@ -90,6 +92,8 @@ class testApp : public ofBaseApp{
 		ofxSkeleton dragon;
 		Player player;
 		Skulls skull;
+		ofFile file;
+
 
 
 		

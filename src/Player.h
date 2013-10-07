@@ -19,6 +19,7 @@ public:
 		void keyPressed(int key);
 		void keyReleased(int key);
 		void draw();
+		void exit();
 
 
 		ofxSkeleton player;

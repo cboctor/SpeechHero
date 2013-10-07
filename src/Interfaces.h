@@ -30,11 +30,12 @@ class Interfaces {
 		void setUIRegister();
 		void setUIMain();
 		void setUIPractice();
+		void setUISessions();
 		ofxUICanvas *uilogin;
 		ofxUICanvas *uiregister;
 		ofxUICanvas *uimain;
 		ofxUICanvas *uipractice;
-		void setRecordingState(string state);
+		ofxUICanvas *uisessions;
 		string getRecordingState();
 		string getView();
 		string recState;
@@ -60,10 +61,18 @@ class Interfaces {
 		EaseRectBox rr;
 		ofxMessageBox msgBox;
 		
-		
+		string getUser();
 		void guiEvent(ofxUIEventArgs &e);
 		void guiEventPractice(ofxUIEventArgs &e);
 		void guiEventMain(ofxUIEventArgs &e);
 		void createUser();
+		bool isLoggedIn;
+
+		string getSessionID();
+		int hours;
+		int minutes;
+		int day;
+		int month;
+		int year;
 		
 };

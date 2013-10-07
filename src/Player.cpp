@@ -144,3 +144,8 @@ void Player::draw()
 	player.draw();
 	circle.draw();
 }
+
+void Player::exit()
+{
+	player.~ofxSkeleton();
+}

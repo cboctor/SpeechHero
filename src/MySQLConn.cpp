@@ -27,6 +27,57 @@ void MySQLConn::createUserTable()
 
 }
 
+string MySQLConn::getUser(string user)
+{
+
+		string queryString = "SELECT username FROM user";
+	queryString += " WHERE username = '" +user+ "'";
+	query(queryString);
+	if (res->next())
+		return res->getString ("username");
+	else
+		return "Username not found";
+
+}
+
+string MySQLConn::getPassword(string user)
+{
+
+		string queryString = "SELECT username, password FROM user";
+	queryString += " WHERE username = '" +user+ "'";
+	query(queryString);
+	if (res->next())
+		return res->getString ("password");
+	else
+		return "Password not found";
+
+}
+
+string MySQLConn::getType(string user)
+{
+	string queryString = "SELECT username, type FROM user";
+	queryString += " WHERE username = '" +user+ "'";
+	query(queryString);
+	if (res->next())
+		return res->getString ("type");
+	else
+		return "Type not found";
+
+}
+
+string MySQLConn::getBoundedUser(string user)
+{
+	string queryString = "SELECT username, boundeduser FROM user";
+	queryString += " WHERE username = '" +user+ "'";
+	query(queryString);
+	if (res->next())
+		return res->getString ("boundeduser");
+	else
+		return "Bounded User not found";
+
+
+}
+
 bool MySQLConn::authenticateUser(string user, string pass)
 {
 	string dbuser;
@@ -183,5 +234,9 @@ void MySQLConn::dragEvent(ofDragInfo dragInfo){
 
 void MySQLConn::exit()
 {
+
+	con->~Connection();
+	
+
 	
 }

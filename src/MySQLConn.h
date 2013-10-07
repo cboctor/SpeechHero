@@ -22,6 +22,10 @@ public:
 		void createUser(string username, string password, string firstname, string lastname, string type, string boundeduser);
 		void createUserTable();
 		bool authenticateUser(string user, string password);
+		string getUser(string user);
+		string getPassword(string user);
+		string getType(string user);
+		string getBoundedUser(string user);
 		
 		
 
