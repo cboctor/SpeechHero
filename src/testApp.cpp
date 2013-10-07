@@ -148,9 +148,17 @@ void testApp::loadHUD()
 	if (displayTime >= NEXTWORD_TIME)
 	{
 		if (resultWord == word)
-			wordsCorrect ++;
+			{
+				wordsCorrect ++;
+				copyFile("-correct");
+				correctwords.push_back(word);
+			}
 		else
-			wordsIncorrect++;
+			{
+				wordsIncorrect++;
+				copyFile("-incorrect");
+				incorrectwords.push_back(word);
+			}
 
 		displayStartTime = ofGetElapsedTimeMillis();
 		wordRecordStartTime = ofGetElapsedTimeMillis();
@@ -298,22 +306,24 @@ void testApp::stopRecording()
 	rec.stop();
 	thread.start();
 	//mkdir ("data/
-	copyFile();
+	
 	
 
 }
 //--------------------------------------------------------------
 
 
-void testApp::copyFile()
+void testApp::copyFile(string status)
 {
-	string srcfile = "data/audio.flac";
-	string dstfile = "data/user/" + mainWindow.getUser() + "/words/" + word + ".flac";
-	string pathdest ="data/user/" + mainWindow.getUser() + "/words/";
-	CreateDirectoryA(pathdest.c_str(),NULL);
-	CopyFileA(srcfile.c_str(),dstfile.c_str(),false);
+	
+	string srcdest = "data/audio.flac";
+	string dst = "user/" + mainWindow.getUser() + "/" + mainWindow.getSessionID() + "/" + mainWindow.getSessionID() + ".df";
+	string dstpath = "data/user/" + mainWindow.getUser() + "/" + mainWindow.getSessionID() + "/" + word + status + ".flac";
+	ofFile newFile(ofToDataPath(dst), ofFile::WriteOnly);
+	newFile.create();
+	CopyFileA(srcdest.c_str(), dstpath.c_str(), false);
+	
 }
-
 
 
 //--------------------------------------------------------------

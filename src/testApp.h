@@ -27,8 +27,8 @@ class testApp : public ofBaseApp{
 		void loadHUD();
 		void startRecording();
 		void stopRecording();
-		void copyFile();
-		string setFileDest();
+		void copyFile(string status);
+		
 		
 
 		void keyPressed(int key);
@@ -67,6 +67,8 @@ class testApp : public ofBaseApp{
 		int multiplier;
 		int wordsCorrect;
 		int wordsIncorrect;
+		vector<string> incorrectwords;
+		vector<string> correctwords;
 		int scoreMultiplier;
 
 		MyThread thread;
@@ -92,7 +94,8 @@ class testApp : public ofBaseApp{
 		ofxSkeleton dragon;
 		Player player;
 		Skulls skull;
-		ofFile file;
+		
+
 
 
 

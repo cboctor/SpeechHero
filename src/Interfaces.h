@@ -69,6 +69,7 @@ class Interfaces {
 		bool isLoggedIn;
 
 		string getSessionID();
+		void setSessionID();
 		int hours;
 		int minutes;
 		int day;

@@ -243,18 +243,21 @@ void Interfaces::guiEventMain(ofxUIEventArgs &e)
 	{
 	if (name == "Play" && playButton->getValue() == 1)
 	{ 
-	    setSessionID(ofGetHours(), ofGetMinutes(), ofGetDay(), ofGetMonth(), ofGetYear());
+	    setSessionID();
 		view = "game";
+		
 	}
 	else if (name == "Highscores")
-	{}
+	{
+	}
 	else if (name == "Sessions")
 	{setUISessions();
 	view = "sessions";}
 	else if (name == "Options")
 	{}
 	else if (name =="Practice" && practice->getValue() == 1)
-		{view = "practice";
+		{setSessionID();
+			view = "practice";
 	uipractice->disable();}
 	else if (name == "Quit")
 		ofExit();
@@ -267,7 +270,17 @@ void Interfaces::guiEventMain(ofxUIEventArgs &e)
 
 string Interfaces::getSessionID()
 {
-	return "Date:";
+	return "Session" + ofToString(day) +"." + ofToString(month) +"."+ ofToString(year) +"-"  + ofToString(hours)+"."+ ofToString(minutes);
+}
+
+void Interfaces::setSessionID()
+{
+	hours = ofGetHours();
+	minutes = ofGetMinutes();
+	day = ofGetDay();
+	month = ofGetMonth();
+	year = ofGetYear();
+
 }
 
 
