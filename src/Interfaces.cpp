@@ -13,7 +13,6 @@ void Interfaces::setup(){
 	setUILogin();
 	setUIRegister();
 	setUIMain();
-	setUISessions();
 	
 	mysql.setup();
 	
@@ -23,9 +22,10 @@ void Interfaces::setup(){
 	view="login";
 	setView(view);
 	
+	
 }
 
-
+#pragma region views
 string Interfaces::getView()
 {
 	return view;
@@ -40,7 +40,7 @@ void Interfaces::setView(string view)
 		uimain->setVisible(false);
 		uipractice->setVisible(false);
 		uiregister->setVisible(false);
-		uisessions->setVisible(false);
+		//uisessions->setVisible(false);
 	}
 	else if (view =="register")
 	{
@@ -48,7 +48,7 @@ void Interfaces::setView(string view)
 		uimain->setVisible(false);
 		uipractice->setVisible(false);
 		uiregister->setVisible(true);
-		uisessions->setVisible(false);
+		//uisessions->setVisible(false);
 	}
 	else if (view == "main")
 	{
@@ -56,7 +56,7 @@ void Interfaces::setView(string view)
 		uimain->setVisible(true);
 		uipractice->setVisible(false);
 		uiregister->setVisible(false);
-		uisessions->setVisible(false);
+		//uisessions->setVisible(false);
 	}
 	else if (view =="practice")
 	{
@@ -64,7 +64,7 @@ void Interfaces::setView(string view)
 		uimain->setVisible(false);
 		uipractice->setVisible(true);
 		uiregister->setVisible(false);
-		uisessions->setVisible(false);
+		//uisessions->setVisible(false);
 	}
 	else if ( view =="game")
 	{
@@ -72,7 +72,7 @@ void Interfaces::setView(string view)
 		uimain->setVisible(false);
 		uipractice->setVisible(false);
 		uiregister->setVisible(false);
-		uisessions->setVisible(false);
+		//uisessions->setVisible(false);
 
 	}
 	else if ( view =="sessions")
@@ -82,9 +82,15 @@ void Interfaces::setView(string view)
 		uipractice->setVisible(false);
 		uiregister->setVisible(false);
 		uisessions->setVisible(true);
+		//sessionpanel1->setVisible(true);
 
 	}
 }
+
+#pragma endregion 
+
+
+#pragma region setUI
 
 void Interfaces::setUILogin(){
 	float xInit = OFX_UI_GLOBAL_WIDGET_SPACING;
@@ -93,9 +99,9 @@ void Interfaces::setUILogin(){
 	uilogin = new ofxUICanvas(0,0, length+xInit, ofGetHeight());
 	uilogin->addWidgetDown(new ofxUILabel("SPEECH HERO", OFX_UI_FONT_LARGE));
 	uilogin->addWidgetDown(new ofxUILabel("Username:", OFX_UI_FONT_MEDIUM));
-	txtusername= uilogin->addTextInput("Username", "Enter Username", length-xInit);
+	txtusername= uilogin->addTextInput("Username", "", length-xInit);
 	uilogin->addWidgetDown(new ofxUILabel("Password:", OFX_UI_FONT_MEDIUM));
-	txtpassword = uilogin->addTextInput("Password", "Enter Password", length-xInit);
+	txtpassword = uilogin->addTextInput("Password", "", length-xInit);
 	txtpassword->setAutoClear(false);
 	uilogin->addSpacer(length-xInit, 2);
 	uilogin->addSpacer(length-xInit, 30);
@@ -175,8 +181,12 @@ void Interfaces::setUIMain(){
 }
 
 void Interfaces::setUISessions(){
-
-	uisessions = new ofxUICanvas(0,0,ofGetWidth(), ofGetHeight());
+	float x,y,w,h;
+	x = 0;
+	y = 50;
+	h = ofGetHeight() -y;
+	w = 200 ;
+	uisessions = new ofxUICanvas(x,y,w,h);
 	uisessions->addWidgetDown(new ofxUILabel ("Past Sessions", OFX_UI_FONT_LARGE));
 	uisessions->addSpacer(ofGetWidth(), 2);
 	 vector<string> users;
@@ -184,24 +194,82 @@ void Interfaces::setUISessions(){
 	 if(isLoggedIn)
 	 {
 		  if (mysql.getType(user) == "parent"){
-			 users.push_back(user);
-			 users.push_back(mysql.getBoundedUser(user));
+			string boundeduser = mysql.getBoundedUser(user);
+			  users.push_back(user);
+			 users.push_back(boundeduser);
+		//	 uisessions->addToggle(user, false);
+			// uisessions->addToggle(boundeduser, false);
 		 }
 		  else
+		  {
 			  users.push_back(user);
+			 // uisessions->addToggle(user, false);
+		  }
+
+		  userButtons = uisessions->addRadio("vr", users, OFX_UI_ORIENTATION_VERTICAL);
+
 
 	 }
-	 ofxUIDropDownList *ddl;
-	 ddl = uisessions->addDropDownList("SELECT USERS", users);
-	 ddl->setShowCurrentSelected(true);
+	setUISessionPanelUser();
+	setUISessionPanelChild();
+
+	 ofAddListener(uisessions->newGUIEvent, this, &Interfaces::guiEventSessions);
+	
+}
+
+
+void Interfaces::setUISessionPanelUser(){
+	float x,y,w,h;
+	x = 205;
+	y = 50;
+	h = ofGetHeight() -y;
+	w = 250;
+	sessionpanel1 = new ofxUICanvas(x,y,w,h);
+	getSessions(getUser());
+	sessionpanel1->addRadio("vr", sessions, OFX_UI_ORIENTATION_VERTICAL);
+
+}
+void Interfaces::getSessions(string user)
+{
+			ofDirectory dir;
+			string dirString;
+			sessionpanel1->addWidgetDown(new ofxUILabel("Sessions", OFX_UI_FONT_LARGE));
+			sessionpanel1->addSpacer(2, 2);
+			dirString = "user/" + user+ "/";
+			dir.listDir(dirString);	
+			for (int i=0; i < (int)dir.size(); i++)
+			{cout<< dir.getName(i);
+			string session = dir.getName(i);
+			sessions.push_back(session);			
+			}
+			
+
+
+
 
 	
 	
-		 
+}
 
-
-
-
+void Interfaces::getWords(string user,string session, string status)
+{
+	ofDirectory dir;
+			string dirString;
+			sessionpanel2->addWidgetDown(new ofxUILabel(status, OFX_UI_FONT_LARGE));
+			sessionpanel2->addSpacer(2, 2);
+			dirString = "user/" + user+ "/"+ session+ "/" + status; //+ getUser();
+			dir.listDir(dirString);	
+			for (int i=0; i < (int)dir.size(); i++)
+			{
+				
+				cout<< dir.getName(i);
+			string word = dir.getName(i);
+			wordToggles[i] = sessionpanel2->addToggle(word,false);
+			words.push_back(word);			
+			}
+			
+	
+	
 }
 
 void Interfaces::setUIPractice(){
@@ -222,6 +290,11 @@ back=	uipractice->addLabelButton("Back", false, butSize);
 	
 	ofAddListener(uipractice->newGUIEvent,this,&Interfaces::guiEventPractice);
 }
+
+
+#pragma endregion
+
+# pragma region GUI Events
 
 void Interfaces::guiEventPractice(ofxUIEventArgs &e)
 {
@@ -268,23 +341,6 @@ void Interfaces::guiEventMain(ofxUIEventArgs &e)
 
 }
 
-string Interfaces::getSessionID()
-{
-	return "Session" + ofToString(day) +"." + ofToString(month) +"."+ ofToString(year) +"-"  + ofToString(hours)+"."+ ofToString(minutes);
-}
-
-void Interfaces::setSessionID()
-{
-	hours = ofGetHours();
-	minutes = ofGetMinutes();
-	day = ofGetDay();
-	month = ofGetMonth();
-	year = ofGetYear();
-
-}
-
-
-
 void Interfaces::guiEvent(ofxUIEventArgs &e)
 {
 	string name = e.widget->getName();
@@ -309,6 +365,65 @@ void Interfaces::guiEvent(ofxUIEventArgs &e)
 		createUser();
 	setView(view);
 }
+
+
+
+void Interfaces::guiEventSessions(ofxUIEventArgs &e)
+{
+	string name = e.widget->getName();
+		if (name == "SELECT USERS")
+		{
+			ofxUIDropDownList *ddlist = (ofxUIDropDownList *) e.widget;
+			vector<ofxUIWidget *> &selected = ddlist->getSelected(); 
+			for(int i = 0; i < selected.size(); i++)
+			{
+				selectedUser = selected[i]->getName();
+				cout << "SELECTED: " << selected[i]->getName() << endl; 
+			}
+		}
+
+		if (name == getUser())
+		{
+			ofxUIToggle *toggle = (ofxUIToggle *) e.widget;
+			if (toggle->getValue() == 0)
+			{sessionpanel1->setVisible(false);
+			}
+			else if (toggle->getValue() ==1)
+			{
+				sessionpanel1->setVisible(true);
+			}
+			
+		
+		}
+
+	//	if (name ==
+			
+
+}
+#pragma endregion
+
+
+#pragma region sessionID
+string Interfaces::getSessionID()
+{
+	return "Session" + ofToString(day) +"." + ofToString(month) +"."+ ofToString(year) +"-"  + ofToString(hours)+"."+ ofToString(minutes);
+}
+
+void Interfaces::setSessionID()
+{
+	hours = ofGetHours();
+	minutes = ofGetMinutes();
+	day = ofGetDay();
+	month = ofGetMonth();
+	year = ofGetYear();
+
+}
+
+#pragma endregion
+
+
+
+
 
 void Interfaces::createUser()
 {
@@ -403,23 +518,10 @@ void Interfaces::dragEvent(ofDragInfo dragInfo){
 
 void Interfaces::exit()
 {
-/*	 delete practice;
-	 delete back;
-	 delete createButton;
-	 delete playButton;
-	delete txtusername;
-	 delete txtpassword;
-	 delete txtparentusername;
-	 delete txtparentpassword;
-	 delete txtchildusername;
-	 delete txtchildpassword;
-	 delete txtchildfirstname;
-	 delete txtchildlastname;
-	delete txtparentfirstname;
-    delete txtparentlastname;
+	
 	delete uilogin;
 	delete uiregister;
 	delete uimain;
-	delete uipractice;*/
+	delete uipractice;
 	
 }

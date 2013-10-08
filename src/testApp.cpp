@@ -150,13 +150,13 @@ void testApp::loadHUD()
 		if (resultWord == word)
 			{
 				wordsCorrect ++;
-				copyFile("-correct");
+				copyFile("correct");
 				correctwords.push_back(word);
 			}
 		else
 			{
 				wordsIncorrect++;
-				copyFile("-incorrect");
+				copyFile("incorrect");
 				incorrectwords.push_back(word);
 			}
 
@@ -317,8 +317,8 @@ void testApp::copyFile(string status)
 {
 	
 	string srcdest = "data/audio.flac";
-	string dst = "user/" + mainWindow.getUser() + "/" + mainWindow.getSessionID() + "/" + mainWindow.getSessionID() + ".df";
-	string dstpath = "data/user/" + mainWindow.getUser() + "/" + mainWindow.getSessionID() + "/" + word + status + ".flac";
+	string dst = "user/" + mainWindow.getUser() + "/" + mainWindow.getSessionID() + "/"+ status+ "/" + status + ".df";
+	string dstpath = "data/user/" + mainWindow.getUser() + "/" + mainWindow.getSessionID() + "/"+ status+ "/" + word+ ".flac";
 	ofFile newFile(ofToDataPath(dst), ofFile::WriteOnly);
 	newFile.create();
 	CopyFileA(srcdest.c_str(), dstpath.c_str(), false);

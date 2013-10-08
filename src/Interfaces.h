@@ -31,11 +31,15 @@ class Interfaces {
 		void setUIMain();
 		void setUIPractice();
 		void setUISessions();
+		void setUISessionPanelUser();
+		//void setUISessionPanel2();
 		ofxUICanvas *uilogin;
 		ofxUICanvas *uiregister;
 		ofxUICanvas *uimain;
 		ofxUICanvas *uipractice;
 		ofxUICanvas *uisessions;
+		ofxUICanvas *sessionpanel1;
+		ofxUICanvas *sessionpanel2;
 		string getRecordingState();
 		string getView();
 		string recState;
@@ -65,6 +69,7 @@ class Interfaces {
 		void guiEvent(ofxUIEventArgs &e);
 		void guiEventPractice(ofxUIEventArgs &e);
 		void guiEventMain(ofxUIEventArgs &e);
+		void guiEventSessions(ofxUIEventArgs &e);
 		void createUser();
 		bool isLoggedIn;
 
@@ -75,5 +80,18 @@ class Interfaces {
 		int day;
 		int month;
 		int year;
+
+		string selectedUser;
+		vector<string> sessions;
+		vector<string> words;
+		void getSessions(string user);
+		void getWords(string user, string session, string status);
+		ofxUIDropDownList *sessionsddl;
+
+		vector<ofxUIToggle*> wordToggles;
+		vector<ofxUIToggle*> sessionToggles;
+
+		ofxUIRadio *sessionButtons;
+		ofxUIRadio *userButtons;
 		
 };
