@@ -14,12 +14,20 @@ void Interfaces::setup(){
 	setUIRegister();
 	setUIMain();
 	
+	userlist = " ";
+	sessionlist = " ";
+	wordlist= " ";
+	currentuser = 0;
+	currentsession = 0;
+	currentword = 0;
+	selectionstate = "user";
+
 	mysql.setup();
 	
 	msgBox.addNewMessage("Incorrect Login", "Please enter correct login", OFX_MESSAGEBOX_OK);
 	//msgBox.
 	
-	view="login";
+	view="game";
 	setView(view);
 	
 	
@@ -180,6 +188,44 @@ void Interfaces::setUIMain(){
 	ofAddListener(uimain->newGUIEvent,this,&Interfaces::guiEventMain);
 }
 
+void Interfaces::setUISession()
+{
+	
+	vector<string> users;
+	string user = getUser();
+	string boundeduser = getBoundedUser();
+	string type = getType();
+
+	
+	userlist.append(users[currentuser]);
+	if (isLoggedIn)
+	{
+		users.clear();
+
+		if(type == "parent")
+		{
+			pathInfoUser = "user/" + user;
+			pathInfoChild = "user/" + boundeduser;
+			pathInfoSessions = "user/" +currentSelectedUser + "/";
+			pathInfoCorrect = "user/" + currentSelectedUser + "/correct/" + currentSelectedWord;
+			pathInfoIncorrect = "user/" + currentSelectedUser + "/correct/" + currentSelectedWord;
+
+			users.push_back(user);
+			users.push_back(boundeduser);
+		}
+		else
+		{
+			pathInfoUser = "user/" + user;
+			users.push_back(user);
+		}
+
+	}
+	
+	//dir.listDir("user/" + getUser()
+}
+
+
+
 void Interfaces::setUISessions(){
 	float x,y,w,h;
 	x = 0;
@@ -197,7 +243,7 @@ void Interfaces::setUISessions(){
 			string boundeduser = mysql.getBoundedUser(user);
 			  users.push_back(user);
 			 users.push_back(boundeduser);
-		//	 uisessions->addToggle(user, false);
+			// uisessions->addToggle(user, false);
 			// uisessions->addToggle(boundeduser, false);
 		 }
 		  else
@@ -211,11 +257,11 @@ void Interfaces::setUISessions(){
 
 	 }
 	setUISessionPanelUser();
-	setUISessionPanelChild();
+	//setUISessionPanelChild();
 
 	 ofAddListener(uisessions->newGUIEvent, this, &Interfaces::guiEventSessions);
 	
-}
+} 
 
 
 void Interfaces::setUISessionPanelUser(){
@@ -225,15 +271,21 @@ void Interfaces::setUISessionPanelUser(){
 	h = ofGetHeight() -y;
 	w = 250;
 	sessionpanel1 = new ofxUICanvas(x,y,w,h);
+	sessionpanel1->addWidgetDown(new ofxUILabel("Sessions", OFX_UI_FONT_LARGE));
 	getSessions(getUser());
-	sessionpanel1->addRadio("vr", sessions, OFX_UI_ORIENTATION_VERTICAL);
+	//sessionpanel1->addRadio("vr", sessions, OFX_UI_ORIENTATION_VERTICAL);
+	for (int i = 0 ; i< sessions.size(); i++)
+		sessionpanel1->addButton(sessions[i], false);
 
+	sessionpanel2 = new ofxUICanvas(x+ w,y,w,h);
 }
+
+
 void Interfaces::getSessions(string user)
 {
 			ofDirectory dir;
 			string dirString;
-			sessionpanel1->addWidgetDown(new ofxUILabel("Sessions", OFX_UI_FONT_LARGE));
+			
 			sessionpanel1->addSpacer(2, 2);
 			dirString = "user/" + user+ "/";
 			dir.listDir(dirString);	
@@ -351,6 +403,7 @@ void Interfaces::guiEvent(ofxUIEventArgs &e)
 		{
 			view = "main";
 			isLoggedIn=true;
+			setUserInfo();
 		}
 		else
 			msgBox.viewMessage(0);
@@ -395,6 +448,19 @@ void Interfaces::guiEventSessions(ofxUIEventArgs &e)
 			
 		
 		}
+
+		for (int i =0; i<sessions.size(); i++)
+		{
+			if (name ==sessions[i])
+			{
+				getWords(getUser(), sessions[i], "correct");
+				getWords(getUser(), sessions[i], "incorrect");
+				//sessionpanel1->addButton(
+			}
+
+		}
+
+		
 
 	//	if (name ==
 			
@@ -450,11 +516,40 @@ bool Interfaces::authenticateUser()
 	return true;
 }
 	
-
+#pragma region Get Info from MySQL
 	string Interfaces::getUser()
 	{
 		return txtusername->getTextString();
 	}
+
+	string Interfaces::getBoundedUser()
+	{
+		return boundeduser;
+	}
+
+	void Interfaces::setBoundedUser(string _user)
+	{	boundeduser = mysql.getBoundedUser(_user);
+	}
+
+	void Interfaces::setUserInfo()
+	{
+		setBoundedUser(getUser());
+		setType(getUser());
+
+	}
+
+	string Interfaces::getType()
+	{
+		return type;
+
+	}
+
+	void Interfaces::setType(string _user)
+	{
+		type = mysql.getType(_user);
+	}
+
+#pragma endregion
 
 
 //--------------------------------------------------------------
@@ -473,6 +568,33 @@ void Interfaces::draw(){
 
 //--------------------------------------------------------------
 void Interfaces::keyPressed(int key){
+	
+	if (view == "sessions")
+	{
+			if (key == OF_KEY_UP)
+			{
+				if (selectionstate == "user")
+					currentuser --;
+
+			}
+
+			if (key == OF_KEY_DOWN)
+			{
+				if (selectionstate =="user")
+					currentuser ++;
+
+			}
+
+			if (key == OF_KEY_RETURN)
+			{
+		
+				if (selectionstate == "user")
+				selectionstate = "session";
+				else if (selectionstate == "session")
+					selectionstate =="word";
+				}
+
+	}
 
 }
 

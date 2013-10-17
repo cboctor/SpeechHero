@@ -5,6 +5,7 @@
 #include "RecordFlac.h"
 #include "MySQLConn.h"
 #include "ofxMessageBox.h"
+#include "ofxGui.h"
 
 class Interfaces {
 	public:
@@ -30,8 +31,10 @@ class Interfaces {
 		void setUIRegister();
 		void setUIMain();
 		void setUIPractice();
+		void setUISession();
 		void setUISessions();
 		void setUISessionPanelUser();
+		//void setUISessionPanelChild();
 		//void setUISessionPanel2();
 		ofxUICanvas *uilogin;
 		ofxUICanvas *uiregister;
@@ -88,10 +91,47 @@ class Interfaces {
 		void getWords(string user, string session, string status);
 		ofxUIDropDownList *sessionsddl;
 
-		vector<ofxUIToggle*> wordToggles;
+		ofxUIToggle *wordToggles [50];
 		vector<ofxUIToggle*> sessionToggles;
 
 		ofxUIRadio *sessionButtons;
 		ofxUIRadio *userButtons;
+		string boundeduser;
+		string getBoundedUser();
+		void setUserInfo();
+		void setBoundedUser(string _user);
+
+		string getType();
+		void setType(string _user);
+		string type;
+
+		string userlist;
+		string sessionlist;
+		string wordlist;
+
+		int currentuser;
+		int currentsession;
+		int currentword;
+
+		string selectionstate;
+		string currentSelectedUser;
+		string currentSelectedSession;
+		string currentSelectedWord;
+
+			string pathInfoUser;
+	string pathInfoChild;
+	string pathInfoSessions;
+	string pathInfoCorrect;
+	string pathInfoIncorrect;
+
+	ofDirectory dirSession;
+	ofDirectory dirCorrect;
+	ofDirectory dirIncorrect;
+
+	ofxPanel sessiongui;
+	ofxButton sessionbuttons1[100];
+
+	
+
 		
 };

@@ -72,6 +72,8 @@ void testApp::setup(){
 }
 
 
+
+
 //--------------------------------------------------------------
 void testApp::update(){
 	ofBackground(col);
@@ -130,6 +132,11 @@ void testApp::draw(){
 
 
 	}
+
+	
+
+	//if (mainWindow.getView() == "sessions")
+	//	mainWindow.setUISession();
 
 }
 
