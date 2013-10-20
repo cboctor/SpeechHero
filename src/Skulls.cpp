@@ -4,16 +4,17 @@ ofxBox2dCircle circles [10];
 ofxSkeleton skulls [10];
 ofPoint bigskullpos;
 bool isNoAmmo;
+//ofxBox2d box2dworld;
 
 void Skulls::setup(){
 	
 	isNoAmmo = false;
-	worldBounds.set(0, 0 , ofGetWidth(), 650);
+	/*worldBounds.set(0, 0 , ofGetWidth(), 650);
 	box2dworld.init();
 	box2dworld.setFPS(60);
 	box2dworld.setGravity(0, 10);
 	box2dworld.createBounds(worldBounds);
-	box2dworld.registerGrabbing();
+	box2dworld.registerGrabbing();*/
 	skeleton.setup("assets/skull.atlas", "assets/skull.json", 0.6);
 	
 	bigskullpos.x = -250;
@@ -75,7 +76,7 @@ float Skulls::getY()
 
 void Skulls::update()
 {
-	box2dworld.update();
+//	_box2dworld.update();
 	
 	skeleton.update(1.0f /60);
 	

@@ -6,6 +6,7 @@
 
 
 extern  int numFootContacts;
+extern ofxBox2d box2dworld;
 
 class Player
 {
@@ -40,8 +41,6 @@ protected:
 		bool isMidAir;
 		bool isDirectionRight;
 		ofxBox2dCircle circle;
-		
-		ofxBox2d box2dworld;
 		ofRectangle worldBounds;
 
 

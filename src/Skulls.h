@@ -3,6 +3,7 @@
 #include "ofMain.h"
 #include "ofxSpine.h"
 #include "ofxBox2d.h"
+#include "Player.h"
 
 
 
@@ -38,7 +39,6 @@ protected:
 		bool isMidAir;
 		bool isDirectionRight;
 		ofxBox2dCircle circle;
-		ofxBox2d box2dworld;
 		ofRectangle worldBounds;
 
 		

@@ -5,6 +5,7 @@
  MyContactListener myContactListenerInstance;
  int numFootContacts;
  int setJump;
+ //ofxBox2d box2dworld;
 
 
 
@@ -14,11 +15,11 @@ void Player::setup(){
 	isDirectionRight = true;
 	circle.setPhysics(1, 0.1, 1);
 	worldBounds.set(0, 0 , ofGetWidth(), 650);
-	box2dworld.init();
+	/*box2dworld.init();
 	box2dworld.setFPS(60);
-	box2dworld.setGravity(0, 25);
+	box2dworld.setGravity(0, -10);
 	box2dworld.createBounds(worldBounds);
-	box2dworld.registerGrabbing();
+	box2dworld.registerGrabbing();*/
 	//box2dworld.fixture
 	circle.setup(box2dworld.getWorld(), 500,500, 30);
 	keypressed = "nothing";
@@ -152,7 +153,7 @@ void Player::update()
 	{
 		if (numFootContacts >= 1 && !isMidAir)
 		{
-		 float force = dynamicBody->GetMass() * 250 ;
+		 float force = dynamicBody->GetMass() * 200 ;
 		  dynamicBody->ApplyForce( b2Vec2(0,-force), dynamicBody->GetWorldCenter() );
 		}
 	}

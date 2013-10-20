@@ -75,7 +75,7 @@ class testApp : public ofBaseApp{
 		ofImage floorImage;
 		ofPoint floorpoint;
 		ofRectangle worldBounds;
-		ofxBox2d box2dworld;
+		//ofxBox2d box2dworld;
 		vector <ofxBox2dCircle> circlesA;
 		ofImage characterImage;
 		ofImage backgroundImage;

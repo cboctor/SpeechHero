@@ -5,6 +5,8 @@
 ofPoint p1;
 ofPoint charpos;
 int keycount;
+ofxBox2d box2dworld;
+
 //--------------------------------------------------------------
 
 void testApp::setup(){
@@ -35,6 +37,7 @@ void testApp::setup(){
 	box2dworld.setGravity(0, 10);
 	box2dworld.createBounds(worldBounds);
 	box2dworld.registerGrabbing();
+
 	ofSetFrameRate(60);
 	characterImage.loadImage("assets/char.png");
 	backgroundImage.loadImage("assets/trees.png");
