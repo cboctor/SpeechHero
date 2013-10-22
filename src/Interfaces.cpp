@@ -1,5 +1,67 @@
 #include "Interfaces.h"
 
+vector<string> wordArray;
+#pragma region settings boolean declaration
+bool b_initial;
+bool b_medial;
+bool b_final;
+bool ch_initial;
+bool ch_medial;
+bool ch_final;
+bool d_initial;
+bool d_medial;
+bool d_final;
+bool f_initial;
+bool f_medial;
+bool f_final;
+bool g_initial;
+bool g_medial;
+bool g_final;
+bool h_initial;
+bool j_initial;
+bool j_medial;
+bool j_final;
+bool k_initial;
+bool k_medial;
+bool k_final;
+bool l_initial;
+bool l_medial;
+bool l_final;
+bool m_initial;
+bool m_medial;
+bool m_final;
+bool n_initial;
+bool n_medial;
+bool n_final;
+bool ng_initial;
+bool p_initial;
+bool p_medial;
+bool p_final;
+bool r_initial;
+bool r_medial;
+bool r_final;
+bool s_initial;
+bool s_medial;
+bool s_final;
+bool sh_initial;
+bool sh_medial;
+bool sh_final;
+bool t_initial;
+bool t_medial;
+bool t_final;
+bool th_initial;
+bool th_medial;
+bool th_final;
+bool v_initial;
+bool v_medial;
+bool v_final;
+bool w_final;
+bool y_final;
+bool z_initial;
+bool z_medial;
+bool z_final;
+
+#pragma endregion
 //--------------------------------------------------------------
 void Interfaces::setup(){
 	
@@ -122,6 +184,138 @@ void Interfaces::setView(string view)
 }
 
 #pragma endregion 
+
+
+void Interfaces::loadWords(string _letter, string _placement)
+{
+	ifstream myfile ("data/words/" + _letter +"/" + _letter +"-" + _placement + ".word");
+	
+	copy(istream_iterator<string>(myfile),
+		istream_iterator<string>(),
+		back_inserter(wordArray));
+
+}
+
+void Interfaces::setWords()
+{
+	if(b_initial) 
+	 loadWords("b", "initial");
+	if(b_medial) 
+	 loadWords("b", "medial");
+	if(b_final) 
+	 loadWords("b", "final");
+	if(ch_initial) 
+	 loadWords("ch", "initial");
+	if(ch_medial) 
+	 loadWords("ch", "medial");
+	if(ch_final) 
+	 loadWords("ch", "final");
+	if(d_initial) 
+	 loadWords("d", "initial");
+	if(d_medial) 
+	 loadWords("d", "medial");
+	if(d_final) 
+	 loadWords("d", "final");
+	if(f_initial) 
+	 loadWords("f", "initial");
+	if(f_medial) 
+	 loadWords("f", "medial");
+	if(f_final) 
+	 loadWords("f", "final");
+	if(g_initial) 
+	 loadWords("g", "initial");
+	if(g_medial) 
+	 loadWords("g", "medial");
+	if(g_final) 
+	 loadWords("g", "final");
+	if(h_initial) 
+	 loadWords("h", "initial");
+	if(j_initial) 
+	 loadWords("j", "initial");
+	if(j_medial) 
+	 loadWords("j", "medial");
+	if(j_final) 
+	 loadWords("j", "final");
+	if(k_initial) 
+	 loadWords("k", "initial");
+	if(k_medial) 
+	 loadWords("k", "medial");
+	if(k_final) 
+	 loadWords("k", "final");
+	if(l_initial) 
+	 loadWords("l", "initial");
+	if(l_medial) 
+	 loadWords("l", "medial");
+	if(l_final) 
+	 loadWords("l", "final");
+	if(m_initial) 
+	 loadWords("m", "initial");
+	if(m_medial) 
+	 loadWords("m", "medial");
+	if(m_final) 
+	 loadWords("m", "final");
+	if(n_initial) 
+	 loadWords("n", "initial");
+	if(n_medial) 
+	 loadWords("n", "medial");
+	if(n_final) 
+	 loadWords("n", "final");
+	if(ng_initial) 
+	 loadWords("ng", "initial");
+	if(p_initial) 
+	 loadWords("p", "initial");
+	if(p_medial) 
+	 loadWords("p", "medial");
+	if(p_final) 
+	 loadWords("p", "final");
+	if(r_initial) 
+	 loadWords("r", "initial");
+	if(r_medial) 
+	 loadWords("r", "medial");
+	if(r_final) 
+	 loadWords("r", "final");
+	if(s_initial) 
+	 loadWords("s", "initial");
+	if(s_medial) 
+	 loadWords("s", "medial");
+	if(s_final) 
+	 loadWords("s", "final");
+	if(sh_initial) 
+	 loadWords("sh", "initial");
+	if(sh_medial) 
+	 loadWords("sh", "medial");
+	if(sh_final) 
+	 loadWords("sh", "final");
+	if(t_initial) 
+	 loadWords("t", "initial");
+	if(t_medial) 
+	 loadWords("t", "medial");
+	if(t_final) 
+	 loadWords("t", "final");
+	if(th_initial) 
+	 loadWords("th", "initial");
+	if(th_medial) 
+	 loadWords("th", "medial");
+	if(th_final) 
+	 loadWords("th", "final");
+	if(v_initial) 
+	 loadWords("v", "initial");
+	if(v_medial) 
+	 loadWords("v", "medial");
+	if(v_final) 
+	 loadWords("v", "final");
+	if(w_final) 
+	 loadWords("w", "final");
+	if(y_final) 
+	 loadWords("y", "final");
+	if(z_initial) 
+	 loadWords("z", "initial");
+	if(z_medial) 
+	 loadWords("z", "medial");
+	if(z_final) 
+	 loadWords("z", "final");
+
+}
 
 
 #pragma region setUI
@@ -546,6 +740,7 @@ void Interfaces::guiEvent(ofxUIEventArgs &e)
 			isLoggedIn=true;
 			setUserInfo();
 			setUIMain();
+			setWords();
 			
 		}
 		else

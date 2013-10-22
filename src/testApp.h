@@ -13,6 +13,7 @@
 #include "Skulls.h"
 
 
+extern vector<string> wordArray;
 
 class testApp : public ofBaseApp{
 
@@ -62,7 +63,7 @@ class testApp : public ofBaseApp{
 		float displayStartTime;
 		bool isWordReady;
 		bool isNow;
-		vector<string> wordArray;
+		
 
 		int multiplier;
 		int wordsCorrect;

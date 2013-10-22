@@ -7,67 +7,7 @@ ofPoint charpos;
 int keycount;
 ofxBox2d box2dworld;
 
-#pragma region settings boolean declaration
-bool b_initial;
-bool b_medial;
-bool b_final;
-bool ch_initial;
-bool ch_medial;
-bool ch_final;
-bool d_initial;
-bool d_medial;
-bool d_final;
-bool f_initial;
-bool f_medial;
-bool f_final;
-bool g_initial;
-bool g_medial;
-bool g_final;
-bool h_initial;
-bool j_initial;
-bool j_medial;
-bool j_final;
-bool k_initial;
-bool k_medial;
-bool k_final;
-bool l_initial;
-bool l_medial;
-bool l_final;
-bool m_initial;
-bool m_medial;
-bool m_final;
-bool n_initial;
-bool n_medial;
-bool n_final;
-bool ng_initial;
-bool p_initial;
-bool p_medial;
-bool p_final;
-bool r_initial;
-bool r_medial;
-bool r_final;
-bool s_initial;
-bool s_medial;
-bool s_final;
-bool sh_initial;
-bool sh_medial;
-bool sh_final;
-bool t_initial;
-bool t_medial;
-bool t_final;
-bool th_initial;
-bool th_medial;
-bool th_final;
-bool v_initial;
-bool v_medial;
-bool v_final;
-bool w_final;
-bool y_final;
-bool z_initial;
-bool z_medial;
-bool z_final;
 
-#pragma endregion
 
 //--------------------------------------------------------------
 

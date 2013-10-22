@@ -135,6 +135,9 @@ class Interfaces {
 	ofxButton sessionbuttons1[100];
 	ofxUIButton * optionsButton;
 
+	void loadWords(string _letter, string _placement);
+	void setWords();
+
 	
 
 		
