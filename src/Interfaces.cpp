@@ -12,7 +12,15 @@ void Interfaces::setup(){
 	setUIPractice();
 	setUILogin();
 	setUIRegister();
-	setUIMain();
+	
+	uimain = new ofxUICanvas(0.2*ofGetWidth(),0, 0.6*ofGetWidth(), ofGetHeight());
+	 uioptionsuser = new ofxUICanvas(0.2*ofGetWidth(),0, 0.6*ofGetWidth(), 100);
+	 uioptions = new ofxUIScrollableCanvas(0.2*ofGetWidth(),200, 0.6*ofGetWidth(), ofGetHeight());  
+	
+	// uioptions->drawFill();
+	
+	
+	//setUIMain();
 	
 	userlist = " ";
 	sessionlist = " ";
@@ -27,7 +35,7 @@ void Interfaces::setup(){
 	msgBox.addNewMessage("Incorrect Login", "Please enter correct login", OFX_MESSAGEBOX_OK);
 	//msgBox.
 	
-	view="game";
+	view="login";
 	setView(view);
 	
 	
@@ -48,6 +56,8 @@ void Interfaces::setView(string view)
 		uimain->setVisible(false);
 		uipractice->setVisible(false);
 		uiregister->setVisible(false);
+		uioptions ->setVisible(false);
+		uioptionsuser->setVisible(false);
 		//uisessions->setVisible(false);
 	}
 	else if (view =="register")
@@ -56,6 +66,7 @@ void Interfaces::setView(string view)
 		uimain->setVisible(false);
 		uipractice->setVisible(false);
 		uiregister->setVisible(true);
+		uioptions ->setVisible(false);
 		//uisessions->setVisible(false);
 	}
 	else if (view == "main")
@@ -64,6 +75,7 @@ void Interfaces::setView(string view)
 		uimain->setVisible(true);
 		uipractice->setVisible(false);
 		uiregister->setVisible(false);
+		uioptions ->setVisible(false);
 		//uisessions->setVisible(false);
 	}
 	else if (view =="practice")
@@ -72,6 +84,7 @@ void Interfaces::setView(string view)
 		uimain->setVisible(false);
 		uipractice->setVisible(true);
 		uiregister->setVisible(false);
+		uioptions ->setVisible(false);
 		//uisessions->setVisible(false);
 	}
 	else if ( view =="game")
@@ -80,6 +93,7 @@ void Interfaces::setView(string view)
 		uimain->setVisible(false);
 		uipractice->setVisible(false);
 		uiregister->setVisible(false);
+		uioptions ->setVisible(false);
 		//uisessions->setVisible(false);
 
 	}
@@ -90,7 +104,19 @@ void Interfaces::setView(string view)
 		uipractice->setVisible(false);
 		uiregister->setVisible(false);
 		uisessions->setVisible(true);
+		uioptions ->setVisible(false);
 		//sessionpanel1->setVisible(true);
+
+	}
+	else if ( view == "options")
+	{
+		uilogin->setVisible(false);
+		uimain->setVisible(false);
+		uipractice->setVisible(false);
+		uiregister->setVisible(false);
+		//uisessions->setVisible(false);
+		uioptions ->setVisible(true);
+		uioptionsuser->setVisible(true);
 
 	}
 }
@@ -167,7 +193,7 @@ void Interfaces::setUIMain(){
 	float xInit = OFX_UI_GLOBAL_WIDGET_SPACING;
 	float length = 255-xInit;
 	float butSize = 0.59*ofGetWidth();
-	uimain = new ofxUICanvas(0.2*ofGetWidth(),0, 0.6*ofGetWidth(), ofGetHeight());
+	
 	uimain->addWidgetDown(new ofxUILabel("SPEECH HERO", OFX_UI_FONT_LARGE));
 	uimain->addSpacer(butSize, 2);
 	
@@ -179,13 +205,124 @@ void Interfaces::setUIMain(){
 	uimain->addSpacer(0,15);
     uimain->addLabelButton("Sessions", false, butSize);
 	uimain->addSpacer(0,15);
-	uimain->addLabelButton("Options", false, butSize);
+
+	if (getType() == "parent")
+	{
+	optionsButton = uimain->addLabelButton("Options", false, butSize);
 	uimain->addSpacer(0,15);
+	}
+	
 	practice = uimain->addLabelButton("Practice", false, butSize);
 	uimain->addSpacer(0,15);
 	uimain->addLabelButton("Quit", false, butSize);
 	
 	ofAddListener(uimain->newGUIEvent,this,&Interfaces::guiEventMain);
+}
+
+void Interfaces::setUIOptions(){
+	float butSize = 200.0;
+		setBoundedUser(getUser());
+	vector<string> users;
+	users.push_back(getUser());
+	users.push_back(getBoundedUser());
+	uioptionsuser ->addLabel("Select letters you wish to be tested");
+	uioptionsuser ->addDropDownList("Users", users);
+	uioptions->addSpacer(ofGetWidth(), 100);
+	uioptions->setPosition(0.2*ofGetWidth(), 250);
+	
+	uioptions ->addLabel ("B");
+	uioptions ->addToggle("b-initial", false);
+	uioptions ->addToggle ("b-medial", false);
+	uioptions ->addToggle ("b-final", false);
+	uioptions ->addLabel ("CH");
+	uioptions ->addToggle("ch-initial", false);
+	uioptions ->addToggle ("ch-medial", false);
+	uioptions ->addToggle ("ch-final", false);
+	uioptions ->addLabel ("D");
+	uioptions ->addToggle("d-initial", false);
+	uioptions ->addToggle ("d-medial", false);
+	uioptions ->addToggle ("d-final", false);
+	uioptions ->addLabel ("F");
+	uioptions ->addToggle("f-initial", false);
+	uioptions ->addToggle ("f-medial", false);
+	uioptions ->addToggle ("f-final", false);
+	uioptions ->addLabel ("G");
+	uioptions ->addToggle("g-initial", false);
+	uioptions ->addToggle ("g-medial", false);
+	uioptions ->addToggle ("g-final", false);
+	uioptions ->addLabel ("H");
+	uioptions ->addToggle("h-initial", false);
+	uioptions ->addLabel ("J");
+	uioptions ->addToggle("j-initial", false);
+	uioptions ->addToggle ("j-medial", false);
+	uioptions ->addToggle ("j-final", false);
+	uioptions ->addLabel ("K");
+	uioptions ->addToggle("k-initial", false);
+	uioptions ->addToggle ("k-medial", false);
+	uioptions ->addToggle ("k-final", false);
+	uioptions ->addLabel ("L");
+	uioptions ->addToggle("l-initial", false);
+	uioptions ->addToggle ("l-medial", false);
+	uioptions ->addToggle ("l-final", false);
+	uioptions ->addLabel ("M");
+	uioptions ->addToggle("m-initial", false);
+	uioptions ->addToggle ("m-medial", false);
+	uioptions ->addToggle ("m-final", false);
+	uioptions ->addLabel ("N");
+	uioptions ->addToggle("n-initial", false);
+	uioptions ->addToggle ("n-medial", false);
+	uioptions ->addToggle ("n-final", false);
+	uioptions ->addLabel ("NG");
+	uioptions ->addToggle("ng-initial", false);
+	uioptions ->addLabel ("P");
+	uioptions ->addToggle("p-initial", false);
+	uioptions ->addToggle ("p-medial", false);
+	uioptions ->addToggle ("p-final", false);
+	uioptions ->addLabel ("R");
+	uioptions ->addToggle("r-initial", false);
+	uioptions ->addToggle ("r-medial", false);
+	uioptions ->addToggle ("r-final", false);
+	uioptions ->addLabel ("S");
+	uioptions ->addToggle("s-initial", false);
+	uioptions ->addToggle ("s-medial", false);
+	uioptions ->addToggle ("s-final", false);
+	uioptions ->addLabel ("SH");
+	uioptions ->addToggle("sh-initial", false);
+	uioptions ->addToggle ("sh-medial", false);
+	uioptions ->addToggle ("sh-final", false);
+	uioptions ->addLabel ("T");
+	uioptions ->addToggle("t-initial", false);
+	uioptions ->addToggle ("t-medial", false);
+	uioptions ->addToggle ("t-final", false);
+		uioptions ->addLabel ("TH");
+	uioptions ->addToggle("th-initial", false);
+	uioptions ->addToggle ("th-medial", false);
+	uioptions ->addToggle ("th-final", false);
+		uioptions ->addLabel ("V");
+	uioptions ->addToggle("v-initial", false);
+	uioptions ->addToggle ("v-medial", false);
+	uioptions ->addToggle ("v-final", false);
+		uioptions ->addLabel ("W");
+	uioptions ->addToggle("w-initial", false);
+			uioptions ->addLabel ("Y");
+	uioptions ->addToggle("y-initial", false);
+		uioptions ->addLabel ("Z");
+	uioptions ->addToggle("z-initial", false);
+	uioptions ->addToggle ("z-medial", false);
+	uioptions ->addToggle ("z-final", false);
+
+	uioptions->addLabelButton("SAVE", false, butSize);
+	  uioptions->setScrollAreaToScreen();
+    uioptions->setScrollableDirections(false, true);
+	uioptions->autoSizeToFitWidgets();
+    uioptions->getRect()->setWidth(ofGetWidth());
+	uioptionsuser ->addLabelButton("SAVE", false, butSize);
+	uioptionsuser ->addLabelButton("BACK", false, butSize);
+
+	
+
+
+	//ofAddListener(uioptions->newGUIEvent,this,&Interfaces::guiEventMain);
 }
 
 void Interfaces::setUISession()
@@ -379,7 +516,10 @@ void Interfaces::guiEventMain(ofxUIEventArgs &e)
 	{setUISessions();
 	view = "sessions";}
 	else if (name == "Options")
-	{}
+	{
+		view = "options";
+		setUIOptions();
+	}
 	else if (name =="Practice" && practice->getValue() == 1)
 		{setSessionID();
 			view = "practice";
@@ -401,9 +541,12 @@ void Interfaces::guiEvent(ofxUIEventArgs &e)
 		//authenticateUser();
 		if (authenticateUser())
 		{
+			
 			view = "main";
 			isLoggedIn=true;
 			setUserInfo();
+			setUIMain();
+			
 		}
 		else
 			msgBox.viewMessage(0);
@@ -503,6 +646,8 @@ void Interfaces::createUser()
 	string childlastname = txtchildlastname->getTextString();
 	mysql.createUser(parentUser,parentPass,parentfirstname,parentlastname, "parent", childUser);
 	mysql.createUser(childUser, childpass, childfirstname, childlastname, "child", parentUser);
+	mysql.setupSettings(parentUser);
+	mysql.setupSettings(childUser);
 
 }
 
@@ -510,10 +655,12 @@ bool Interfaces::authenticateUser()
 {
 	string user =txtusername->getTextString();
 	string pass = txtpassword->getTextString();
+	mysql.setSettings(user);
 	if (mysql.authenticateUser(user,pass))
 		return true;
 	else return false;
 	return true;
+
 }
 	
 #pragma region Get Info from MySQL
@@ -554,14 +701,16 @@ bool Interfaces::authenticateUser()
 
 //--------------------------------------------------------------
 void Interfaces::update(){
-
+	uimain->update();
+	
 }
 
 //--------------------------------------------------------------
 void Interfaces::draw(){
 	
-	ofSetColor(255,255,255);
-	ofRect(100,100,100,100);
+	//ofSetColor(255,255,255);
+	//ofRect(100,100,100,100);
+	 uioptionsuser->drawFill();
 
 
 }
@@ -640,7 +789,7 @@ void Interfaces::dragEvent(ofDragInfo dragInfo){
 
 void Interfaces::exit()
 {
-	
+	mysql.exit();
 	delete uilogin;
 	delete uiregister;
 	delete uimain;

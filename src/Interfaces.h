@@ -33,6 +33,7 @@ class Interfaces {
 		void setUIPractice();
 		void setUISession();
 		void setUISessions();
+		void setUIOptions();
 		void setUISessionPanelUser();
 		//void setUISessionPanelChild();
 		//void setUISessionPanel2();
@@ -43,6 +44,8 @@ class Interfaces {
 		ofxUICanvas *uisessions;
 		ofxUICanvas *sessionpanel1;
 		ofxUICanvas *sessionpanel2;
+		ofxUICanvas *uioptionsuser;
+		ofxUIScrollableCanvas *uioptions; 
 		string getRecordingState();
 		string getView();
 		string recState;
@@ -130,6 +133,7 @@ class Interfaces {
 
 	ofxPanel sessiongui;
 	ofxButton sessionbuttons1[100];
+	ofxUIButton * optionsButton;
 
 	
 
