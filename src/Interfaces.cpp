@@ -55,8 +55,8 @@ bool th_final;
 bool v_initial;
 bool v_medial;
 bool v_final;
-bool w_final;
-bool y_final;
+bool w_initial;
+bool y_initial;
 bool z_initial;
 bool z_medial;
 bool z_final;
@@ -138,6 +138,7 @@ void Interfaces::setView(string view)
 		uipractice->setVisible(false);
 		uiregister->setVisible(false);
 		uioptions ->setVisible(false);
+		uioptionsuser->setVisible(false);
 		//uisessions->setVisible(false);
 	}
 	else if (view =="practice")
@@ -304,10 +305,10 @@ void Interfaces::setWords()
 	 loadWords("v", "medial");
 	if(v_final) 
 	 loadWords("v", "final");
-	if(w_final) 
-	 loadWords("w", "final");
-	if(y_final) 
-	 loadWords("y", "final");
+	if(w_initial) 
+	 loadWords("w", "initial");
+	if(y_initial) 
+	 loadWords("y", "initial");
 	if(z_initial) 
 	 loadWords("z", "initial");
 	if(z_medial) 
@@ -420,90 +421,91 @@ void Interfaces::setUIOptions(){
 	users.push_back(getUser());
 	users.push_back(getBoundedUser());
 	uioptionsuser ->addLabel("Select letters you wish to be tested");
-	uioptionsuser ->addDropDownList("Users", users);
+	optionsDDLUser = uioptionsuser ->addDropDownList("Users", users);
+	optionsDDLUser->setShowCurrentSelected(true);
 	uioptions->addSpacer(ofGetWidth(), 100);
 	uioptions->setPosition(0.2*ofGetWidth(), 250);
 	
 	uioptions ->addLabel ("B");
-	uioptions ->addToggle("b-initial", false);
-	uioptions ->addToggle ("b-medial", false);
-	uioptions ->addToggle ("b-final", false);
+	toggle_b_initial =uioptions ->addToggle("b-initial", false);
+	toggle_b_medial =uioptions ->addToggle ("b-medial", false);
+	toggle_b_final =uioptions ->addToggle ("b-final", false);
 	uioptions ->addLabel ("CH");
-	uioptions ->addToggle("ch-initial", false);
-	uioptions ->addToggle ("ch-medial", false);
-	uioptions ->addToggle ("ch-final", false);
+	toggle_ch_initial =uioptions ->addToggle("ch-initial", false);
+	toggle_ch_medial =uioptions ->addToggle ("ch-medial", false);
+	toggle_ch_final=uioptions ->addToggle ("ch-final", false);
 	uioptions ->addLabel ("D");
-	uioptions ->addToggle("d-initial", false);
-	uioptions ->addToggle ("d-medial", false);
-	uioptions ->addToggle ("d-final", false);
+	toggle_d_initial =uioptions ->addToggle("d-initial", false);
+	toggle_d_medial=uioptions ->addToggle ("d-medial", false);
+	toggle_d_final=uioptions ->addToggle ("d-final", false);
 	uioptions ->addLabel ("F");
-	uioptions ->addToggle("f-initial", false);
-	uioptions ->addToggle ("f-medial", false);
-	uioptions ->addToggle ("f-final", false);
+	toggle_f_initial =uioptions ->addToggle("f-initial", false);
+	toggle_f_medial =uioptions ->addToggle ("f-medial", false);
+	toggle_f_final =uioptions ->addToggle ("f-final", false);
 	uioptions ->addLabel ("G");
-	uioptions ->addToggle("g-initial", false);
-	uioptions ->addToggle ("g-medial", false);
-	uioptions ->addToggle ("g-final", false);
+	toggle_g_initial =uioptions ->addToggle("g-initial", false);
+	toggle_g_medial =uioptions ->addToggle ("g-medial", false);
+	toggle_g_final =uioptions ->addToggle ("g-final", false);
 	uioptions ->addLabel ("H");
-	uioptions ->addToggle("h-initial", false);
+	toggle_h_initial =uioptions ->addToggle("h-initial", false);
 	uioptions ->addLabel ("J");
-	uioptions ->addToggle("j-initial", false);
-	uioptions ->addToggle ("j-medial", false);
-	uioptions ->addToggle ("j-final", false);
+	toggle_j_initial =uioptions ->addToggle("j-initial", false);
+	toggle_j_medial =uioptions ->addToggle ("j-medial", false);
+	toggle_j_final =uioptions ->addToggle ("j-final", false);
 	uioptions ->addLabel ("K");
-	uioptions ->addToggle("k-initial", false);
-	uioptions ->addToggle ("k-medial", false);
-	uioptions ->addToggle ("k-final", false);
+	toggle_k_initial =uioptions ->addToggle("k-initial", false);
+	toggle_k_medial =uioptions ->addToggle ("k-medial", false);
+	toggle_k_final =uioptions ->addToggle ("k-final", false);
 	uioptions ->addLabel ("L");
-	uioptions ->addToggle("l-initial", false);
-	uioptions ->addToggle ("l-medial", false);
-	uioptions ->addToggle ("l-final", false);
+	toggle_l_initial =uioptions ->addToggle("l-initial", false);
+	toggle_l_medial =uioptions ->addToggle ("l-medial", false);
+	toggle_l_final =uioptions ->addToggle ("l-final", false);
 	uioptions ->addLabel ("M");
-	uioptions ->addToggle("m-initial", false);
-	uioptions ->addToggle ("m-medial", false);
-	uioptions ->addToggle ("m-final", false);
+	toggle_m_initial =uioptions ->addToggle("m-initial", false);
+	toggle_m_medial =uioptions ->addToggle ("m-medial", false);
+	toggle_m_final =uioptions ->addToggle ("m-final", false);
 	uioptions ->addLabel ("N");
-	uioptions ->addToggle("n-initial", false);
-	uioptions ->addToggle ("n-medial", false);
-	uioptions ->addToggle ("n-final", false);
+	toggle_n_initial =uioptions ->addToggle("n-initial", false);
+	toggle_n_medial =uioptions ->addToggle ("n-medial", false);
+	toggle_n_final =uioptions ->addToggle ("n-final", false);
 	uioptions ->addLabel ("NG");
-	uioptions ->addToggle("ng-initial", false);
+	toggle_ng_initial =uioptions ->addToggle("ng-initial", false);
 	uioptions ->addLabel ("P");
-	uioptions ->addToggle("p-initial", false);
-	uioptions ->addToggle ("p-medial", false);
-	uioptions ->addToggle ("p-final", false);
+	toggle_p_initial=uioptions ->addToggle("p-initial", false);
+	toggle_p_medial =uioptions ->addToggle ("p-medial", false);
+	toggle_p_final =uioptions ->addToggle ("p-final", false);
 	uioptions ->addLabel ("R");
-	uioptions ->addToggle("r-initial", false);
-	uioptions ->addToggle ("r-medial", false);
-	uioptions ->addToggle ("r-final", false);
+	toggle_r_initial =uioptions ->addToggle("r-initial", false);
+	toggle_r_medial =uioptions ->addToggle ("r-medial", false);
+	toggle_r_final =uioptions ->addToggle ("r-final", false);
 	uioptions ->addLabel ("S");
-	uioptions ->addToggle("s-initial", false);
-	uioptions ->addToggle ("s-medial", false);
-	uioptions ->addToggle ("s-final", false);
+	toggle_s_initial=uioptions ->addToggle("s-initial", false);
+	toggle_s_medial =uioptions ->addToggle ("s-medial", false);
+	toggle_s_final =uioptions ->addToggle ("s-final", false);
 	uioptions ->addLabel ("SH");
-	uioptions ->addToggle("sh-initial", false);
-	uioptions ->addToggle ("sh-medial", false);
-	uioptions ->addToggle ("sh-final", false);
+	toggle_sh_initial =uioptions ->addToggle("sh-initial", false);
+	toggle_sh_medial =uioptions ->addToggle ("sh-medial", false);
+	toggle_sh_final =uioptions ->addToggle ("sh-final", false);
 	uioptions ->addLabel ("T");
-	uioptions ->addToggle("t-initial", false);
-	uioptions ->addToggle ("t-medial", false);
-	uioptions ->addToggle ("t-final", false);
+	toggle_t_initial =uioptions ->addToggle("t-initial", false);
+	toggle_t_medial =uioptions ->addToggle ("t-medial", false);
+	toggle_t_final =uioptions ->addToggle ("t-final", false);
 		uioptions ->addLabel ("TH");
-	uioptions ->addToggle("th-initial", false);
-	uioptions ->addToggle ("th-medial", false);
-	uioptions ->addToggle ("th-final", false);
+	toggle_th_initial =uioptions ->addToggle("th-initial", false);
+	toggle_th_medial =uioptions ->addToggle ("th-medial", false);
+	toggle_th_final =uioptions ->addToggle ("th-final", false);
 		uioptions ->addLabel ("V");
-	uioptions ->addToggle("v-initial", false);
-	uioptions ->addToggle ("v-medial", false);
-	uioptions ->addToggle ("v-final", false);
+	toggle_v_initial =uioptions ->addToggle("v-initial", false);
+	toggle_v_medial =uioptions ->addToggle ("v-medial", false);
+	toggle_v_final =uioptions ->addToggle ("v-final", false);
 		uioptions ->addLabel ("W");
-	uioptions ->addToggle("w-initial", false);
+	toggle_w_initial =uioptions ->addToggle("w-initial", false);
 			uioptions ->addLabel ("Y");
-	uioptions ->addToggle("y-initial", false);
+	toggle_y_initial =uioptions ->addToggle("y-initial", false);
 		uioptions ->addLabel ("Z");
-	uioptions ->addToggle("z-initial", false);
-	uioptions ->addToggle ("z-medial", false);
-	uioptions ->addToggle ("z-final", false);
+	toggle_z_initial =uioptions ->addToggle("z-initial", false);
+	toggle_z_medial =uioptions ->addToggle ("z-medial", false);
+	toggle_z_final =uioptions ->addToggle ("z-final", false);
 
 	uioptions->addLabelButton("SAVE", false, butSize);
 	  uioptions->setScrollAreaToScreen();
@@ -516,7 +518,8 @@ void Interfaces::setUIOptions(){
 	
 
 
-	//ofAddListener(uioptions->newGUIEvent,this,&Interfaces::guiEventMain);
+	ofAddListener(uioptions->newGUIEvent,this,&Interfaces::guiEventOptions);
+	ofAddListener(uioptionsuser->newGUIEvent,this,&Interfaces::guiEventOptions);
 }
 
 void Interfaces::setUISession()
@@ -804,8 +807,289 @@ void Interfaces::guiEventSessions(ofxUIEventArgs &e)
 			
 
 }
+
+void Interfaces::guiEventOptions(ofxUIEventArgs &e)
+{
+	string name = e.widget->getName();
+	if (name =="SAVE")
+	{
+		updateSettings();
+		wordArray.clear();
+		setWords();
+
+	}
+	if (name == "BACK")
+	{
+		view = "main";
+		setView(view);
+	}
+
+	if(name == "Users")
+    {
+        ofxUIDropDownList *ddlist = (ofxUIDropDownList *) e.widget;
+        vector<ofxUIWidget *> &selected = ddlist->getSelected(); 
+        for(int i = 0; i < selected.size(); i++)
+        {
+            optionsSelectedUser = selected[i]->getName();
+			cout <<optionsSelectedUser;
+        }
+    }
+	
+}
 #pragma endregion
 
+
+void Interfaces::updateSettings()
+{
+	string queryString = " ";
+	if(toggle_b_initial->getValue()==true) 
+queryString +=" b_initial = true, ";
+ else 
+queryString +=" b_initial = false, ";
+if(toggle_b_medial->getValue()==true) 
+queryString +=" b_medial= true, ";
+ else 
+ queryString +=" b_medial= false, ";
+if(toggle_b_final->getValue()==true) 
+queryString +=" b_final= true, ";
+ else 
+queryString +=" b_final= false, ";
+if(toggle_ch_initial->getValue()==true) 
+queryString +=" ch_initial = true, ";
+ else 
+queryString +="ch_initial = false, ";
+if(toggle_ch_medial->getValue()==true) 
+queryString +=" ch_medial= true, ";
+ else 
+ queryString +=" ch_medial= false, ";
+if(toggle_ch_final->getValue()==true) 
+queryString +=" ch_final= true, ";
+ else 
+queryString +=" ch_final= false, ";
+if(toggle_d_initial->getValue()==true) 
+queryString +=" d_initial = true, ";
+ else 
+queryString +=" d_initial = false, ";
+if(toggle_d_medial->getValue()==true) 
+queryString +=" d_medial= true, ";
+ else 
+ queryString +=" d_medial= false, ";
+if(toggle_d_final->getValue()==true) 
+queryString +=" d_final= true, ";
+ else 
+queryString +=" d_final= false, ";
+if(toggle_f_initial->getValue()==true) 
+queryString +=" f_initial = true, ";
+ else 
+queryString +=" f_initial = false, ";
+if(toggle_f_medial->getValue()==true) 
+queryString +=" f_medial= true, ";
+ else 
+ queryString +=" f_medial= false, ";
+if(toggle_f_final->getValue()==true) 
+queryString +=" f_final= true, ";
+ else 
+queryString +=" f_final= false, ";
+if(toggle_g_initial->getValue()==true) 
+queryString +=" g_initial = true, ";
+ else 
+queryString +=" g_initial = false, ";
+if(toggle_g_medial->getValue()==true) 
+queryString +=" g_medial= true, ";
+ else 
+ queryString +=" g_medial= false, ";
+if(toggle_g_final->getValue()==true) 
+queryString +=" g_final= true, ";
+ else 
+queryString +=" g_final= false, ";
+if(toggle_h_initial->getValue()==true) 
+queryString +=" h_initial = true, ";
+ else 
+queryString +=" h_initial = false, ";
+if(toggle_j_initial->getValue()==true) 
+queryString +=" j_initial = true, ";
+ else 
+queryString +=" j_initial = false, ";
+if(toggle_j_medial->getValue()==true) 
+queryString +=" j_medial= true, ";
+ else 
+ queryString +=" j_medial= false, ";
+if(toggle_j_final->getValue()==true) 
+queryString +=" j_final= true, ";
+ else 
+queryString +=" j_final= false, ";
+if(toggle_k_initial->getValue()==true) 
+queryString +=" k_initial = true, ";
+ else 
+queryString +=" k_initial = false, ";
+if(toggle_k_medial->getValue()==true) 
+queryString +=" k_medial= true, ";
+ else 
+ queryString +=" k_medial= false, ";
+if(toggle_k_final->getValue()==true) 
+queryString +=" k_final= true, ";
+ else 
+queryString +=" k_final= false, ";
+if(toggle_l_initial->getValue()==true) 
+queryString +=" l_initial = true, ";
+ else 
+queryString +=" l_initial = false, ";
+if(toggle_l_medial->getValue()==true) 
+queryString +=" l_medial= true, ";
+ else 
+ queryString +=" l_medial= false, ";
+if(toggle_l_final->getValue()==true) 
+queryString +=" l_final= true, ";
+ else 
+queryString +=" l_final= false, ";
+if(toggle_m_initial->getValue()==true) 
+queryString +=" m_initial = true, ";
+ else 
+queryString +=" m_initial = false, ";
+if(toggle_m_medial->getValue()==true) 
+queryString +=" m_medial= true, ";
+ else 
+ queryString +=" m_medial= false, ";
+if(toggle_m_final->getValue()==true) 
+queryString +=" m_final= true, ";
+ else 
+queryString +=" m_final= false, ";
+if(toggle_n_initial->getValue()==true) 
+queryString +=" n_initial = true, ";
+ else 
+queryString +=" n_initial = false, ";
+if(toggle_n_medial->getValue()==true) 
+queryString +=" n_medial= true, ";
+ else 
+ queryString +=" n_medial= false, ";
+if(toggle_n_final->getValue()==true) 
+queryString +=" n_final= true, ";
+ else 
+queryString +=" n_final= false, ";
+if(toggle_ng_initial->getValue()==true) 
+queryString +=" ng_initial = true, ";
+ else 
+queryString +=" ng_initial = false, ";
+if(toggle_p_initial->getValue()==true) 
+queryString +=" ng_initial = true, ";
+ else 
+queryString +=" ng_initial = false, ";
+if(toggle_p_medial->getValue()==true) 
+queryString +=" p_medial= true, ";
+ else 
+ queryString +=" p_medial= false, ";
+if(toggle_p_final->getValue()==true) 
+queryString +=" p_final= true, ";
+ else 
+queryString +=" p_final= false, ";
+if(toggle_r_initial->getValue()==true) 
+queryString +=" r_initial = true, ";
+ else 
+queryString +=" r_initial = false, ";
+if(toggle_r_medial->getValue()==true) 
+queryString +=" r_medial= true, ";
+ else 
+ queryString +=" r_medial= false, ";
+if(toggle_r_final->getValue()==true) 
+queryString +=" r_final= true, ";
+ else 
+queryString +=" r_final= false, ";
+if(toggle_s_initial->getValue()==true) 
+queryString +=" s_initial = true, ";
+ else 
+queryString +=" s_initial = false, ";
+if(toggle_s_medial->getValue()==true) 
+queryString +=" s_medial= true, ";
+ else 
+ queryString +=" s_medial= false, ";
+if(toggle_s_final->getValue()==true) 
+queryString +=" s_final= true, ";
+ else 
+queryString +=" s_final= false, ";
+if(toggle_sh_initial->getValue()==true) 
+queryString +=" sh_initial = true, ";
+ else 
+queryString +=" sh_initial = false, ";
+if(toggle_sh_medial->getValue()==true) 
+queryString +=" sh_medial= true, ";
+ else 
+ queryString +=" sh_medial= false, ";
+if(toggle_sh_final->getValue()==true) 
+queryString +=" sh_final= true, ";
+ else 
+queryString +=" sh_final= false, ";
+if(toggle_t_initial->getValue()==true) 
+queryString +=" t_initial = true, ";
+ else 
+queryString +=" t_initial = false, ";
+if(toggle_t_medial->getValue()==true) 
+queryString +=" t_medial= true, ";
+ else 
+ queryString +=" t_medial= false, ";
+if(toggle_t_final->getValue()==true) 
+queryString +=" t_final= true, ";
+ else 
+queryString +=" t_final= false, ";
+if(toggle_th_initial->getValue()==true) 
+queryString +=" th_initial = true, ";
+ else 
+queryString +=" th_initial = false, ";
+if(toggle_th_medial->getValue()==true) 
+queryString +=" th_medial= true, ";
+ else 
+ queryString +=" th_medial= false, ";
+if(toggle_th_final->getValue()==true) 
+queryString +=" th_final= true, ";
+ else 
+queryString +=" th_final= false, ";
+if(toggle_v_initial->getValue()==true) 
+queryString +=" v_initial = true, ";
+ else 
+queryString +=" v_initial = false, ";
+if(toggle_v_medial->getValue()==true) 
+queryString +=" v_medial= true, ";
+ else 
+ queryString +=" v_medial= false, ";
+if(toggle_v_final->getValue()==true) 
+queryString +=" v_final= true, ";
+ else 
+queryString +=" v_final= false, ";
+if(toggle_w_initial->getValue()==true) 
+queryString +=" w_initial = true, ";
+ else 
+queryString +=" w_initial = false, ";
+if(toggle_y_initial->getValue()==true) 
+queryString +=" y_initial = true, ";
+ else 
+queryString +=" y_initial = false, ";
+if(toggle_z_initial->getValue()==true) 
+queryString +=" z_initial = true, ";
+ else 
+queryString +=" z_initial = false, ";
+if(toggle_z_medial->getValue()==true) 
+queryString +=" z_medial= true, ";
+ else 
+ queryString +=" z_medial= false, ";
+if(toggle_z_final->getValue()==true) 
+queryString +=" z_final= true ";
+ else 
+queryString +=" z_final= false ";
+
+
+setLetterInDb(queryString);
+}
+
+void Interfaces::setLetterInDb(string queryString)
+{
+	if (!optionsSelectedUser.empty())
+	{
+
+		mysql.updateSettings(optionsSelectedUser, queryString);
+		cout<<"updating...";
+		//cout<<queryString;
+	//	cout<< optionsSelectedUser <<endl << letter << endl << placement << endl <<value << endl;
+	}
+}
 
 #pragma region sessionID
 string Interfaces::getSessionID()

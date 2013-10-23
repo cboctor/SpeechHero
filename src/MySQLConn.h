@@ -62,8 +62,8 @@ extern bool th_final;
 extern bool v_initial;
 extern bool v_medial;
 extern bool v_final;
-extern bool w_final;
-extern bool y_final;
+extern bool w_initial;
+extern bool y_initial;
 extern bool z_initial;
 extern bool z_medial;
 extern bool z_final;
@@ -88,6 +88,7 @@ public:
 		string getBoundedUser(string user);
 
 		void setSettings(string user);
+		void updateSettings(string user, string _queryString);
 		
 		
 

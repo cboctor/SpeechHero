@@ -85,8 +85,8 @@ void MySQLConn::createWordTable()
 	queryString += "v_initial varchar(10) DEFAULT false,";
 	queryString += "v_medial varchar(10) DEFAULT false,";
 	queryString += "v_final varchar(10) DEFAULT false,";
-	queryString += "w_final varchar(10) DEFAULT false,";
-	queryString += "y_final varchar(10) DEFAULT false,";
+	queryString += "w_initial varchar(10) DEFAULT false,";
+	queryString += "y_initial varchar(10) DEFAULT false,";
 	queryString += "z_initial varchar(10) DEFAULT false,";
 	queryString += "z_medial varchar(10) DEFAULT false,";
 	queryString += "z_final varchar(10) DEFAULT false,";
@@ -244,8 +244,8 @@ queryString += " th_final," ;
 queryString += " v_initial," ;
 queryString += " v_medial," ;
 queryString += " v_final," ;
-queryString += " w_final," ;
-queryString += " y_final," ;
+queryString += " w_initial," ;
+queryString += " y_initial," ;
 queryString += " z_initial," ;
 queryString += " z_medial," ;
 queryString += " z_final " ;
@@ -255,68 +255,64 @@ queryString += " WHERE username = '" +user+ "'";
 
 		if (res->next())
 	{
-			  b_initial = res->getBoolean("b_initial");
-			  if (b_initial==true)
-				  cout<<"binitial true";
-			  else
-				  cout<<"binitial false";
- b_medial = res->getBoolean("b_medial");
- b_final = res->getBoolean("b_final");
- ch_initial = res->getBoolean("ch_initial");
- ch_medial = res->getBoolean("ch_medial");
- ch_final = res->getBoolean("ch_final");
- d_initial = res->getBoolean("d_initial");
- d_medial = res->getBoolean("d_medial");
- d_final = res->getBoolean("d_final");
- f_initial = res->getBoolean("f_initial");
- f_medial = res->getBoolean("f_medial");
- f_final = res->getBoolean("f_final");
- g_initial = res->getBoolean("g_initial");
- g_medial = res->getBoolean("g_medial");
- g_final = res->getBoolean("g_final");
- h_initial = res->getBoolean("h_initial");
- j_initial = res->getBoolean("j_initial");
- j_medial = res->getBoolean("j_medial");
- j_final = res->getBoolean("j_final");
- k_initial = res->getBoolean("k_initial");
- k_medial = res->getBoolean("k_medial");
- k_final = res->getBoolean("k_final");
- l_initial = res->getBoolean("l_initial");
- l_medial = res->getBoolean("l_medial");
- l_final = res->getBoolean("l_final");
- m_initial = res->getBoolean("m_initial");
- m_medial = res->getBoolean("m_medial");
- m_final = res->getBoolean("m_final");
- n_initial = res->getBoolean("n_initial");
- n_medial = res->getBoolean("n_medial");
- n_final = res->getBoolean("n_final");
- ng_initial = res->getBoolean("ng_initial");
- p_initial = res->getBoolean("p_initial");
- p_medial = res->getBoolean("p_medial");
- p_final = res->getBoolean("p_final");
- r_initial = res->getBoolean("r_initial");
- r_medial = res->getBoolean("r_medial");
- r_final = res->getBoolean("r_final");
- s_initial = res->getBoolean("s_initial");
- s_medial = res->getBoolean("s_medial");
- s_final = res->getBoolean("s_final");
- sh_initial = res->getBoolean("sh_initial");
- sh_medial = res->getBoolean("sh_medial");
- sh_final = res->getBoolean("sh_final");
- t_initial = res->getBoolean("t_initial");
- t_medial = res->getBoolean("t_medial");
- t_final = res->getBoolean("t_final");
- th_initial = res->getBoolean("th_initial");
- th_medial = res->getBoolean("th_medial");
- th_final = res->getBoolean("th_final");
- v_initial = res->getBoolean("v_initial");
- v_medial = res->getBoolean("v_medial");
- v_final = res->getBoolean("v_final");
- w_final = res->getBoolean("w_final");
- y_final = res->getBoolean("y_final");
- z_initial = res->getBoolean("z_initial");
- z_medial = res->getBoolean("z_medial");
- z_final = res->getBoolean("z_final");
+		 b_initial = res->getBoolean("b_initial");
+		 b_medial = res->getBoolean("b_medial");
+		 b_final = res->getBoolean("b_final");
+		 ch_initial = res->getBoolean("ch_initial");
+		 ch_medial = res->getBoolean("ch_medial");
+		 ch_final = res->getBoolean("ch_final");
+		 d_initial = res->getBoolean("d_initial");
+		 d_medial = res->getBoolean("d_medial");
+		 d_final = res->getBoolean("d_final");
+		 f_initial = res->getBoolean("f_initial");
+		 f_medial = res->getBoolean("f_medial");
+		 f_final = res->getBoolean("f_final");
+		 g_initial = res->getBoolean("g_initial");
+		 g_medial = res->getBoolean("g_medial");
+		 g_final = res->getBoolean("g_final");
+		 h_initial = res->getBoolean("h_initial");
+		 j_initial = res->getBoolean("j_initial");
+		 j_medial = res->getBoolean("j_medial");
+		 j_final = res->getBoolean("j_final");
+		 k_initial = res->getBoolean("k_initial");
+		 k_medial = res->getBoolean("k_medial");
+		 k_final = res->getBoolean("k_final");
+		 l_initial = res->getBoolean("l_initial");
+		 l_medial = res->getBoolean("l_medial");
+		 l_final = res->getBoolean("l_final");
+		 m_initial = res->getBoolean("m_initial");
+		 m_medial = res->getBoolean("m_medial");
+		 m_final = res->getBoolean("m_final");
+		 n_initial = res->getBoolean("n_initial");
+		 n_medial = res->getBoolean("n_medial");
+		 n_final = res->getBoolean("n_final");
+		 ng_initial = res->getBoolean("ng_initial");
+		 p_initial = res->getBoolean("p_initial");
+		 p_medial = res->getBoolean("p_medial");
+		 p_final = res->getBoolean("p_final");
+		 r_initial = res->getBoolean("r_initial");
+		 r_medial = res->getBoolean("r_medial");
+		 r_final = res->getBoolean("r_final");
+		 s_initial = res->getBoolean("s_initial");
+		 s_medial = res->getBoolean("s_medial");
+		 s_final = res->getBoolean("s_final");
+		 sh_initial = res->getBoolean("sh_initial");
+		 sh_medial = res->getBoolean("sh_medial");
+		 sh_final = res->getBoolean("sh_final");
+		 t_initial = res->getBoolean("t_initial");
+		 t_medial = res->getBoolean("t_medial");
+		 t_final = res->getBoolean("t_final");
+		 th_initial = res->getBoolean("th_initial");
+		 th_medial = res->getBoolean("th_medial");
+		 th_final = res->getBoolean("th_final");
+		 v_initial = res->getBoolean("v_initial");
+		 v_medial = res->getBoolean("v_medial");
+		 v_final = res->getBoolean("v_final");
+		 w_initial = res->getBoolean("w_initial");
+		 y_initial = res->getBoolean("y_initial");
+		 z_initial = res->getBoolean("z_initial");
+		 z_medial = res->getBoolean("z_medial");
+		 z_final = res->getBoolean("z_final");
 	
 	
 	}
@@ -389,6 +385,15 @@ void MySQLConn::setupSettings(string username)
 	queryString += " VALUES ('"+username+"');";
 	query(queryString);
 
+}
+
+void MySQLConn::updateSettings(string username, string _queryString)
+{
+	string queryString = "UPDATE words ";
+	queryString += "SET " + _queryString;
+	queryString += "WHERE username = '" + username + "';";
+	query(queryString);
+	cout<<queryString;
 }
 
 //--------------------------------------------------------------

@@ -14,6 +14,8 @@ class Interfaces {
 		void draw();
 		void exit();
 		bool authenticateUser();
+
+	
 		
 		
 
@@ -76,6 +78,7 @@ class Interfaces {
 		void guiEventPractice(ofxUIEventArgs &e);
 		void guiEventMain(ofxUIEventArgs &e);
 		void guiEventSessions(ofxUIEventArgs &e);
+		void guiEventOptions(ofxUIEventArgs &e);
 		void createUser();
 		bool isLoggedIn;
 
@@ -137,7 +140,74 @@ class Interfaces {
 
 	void loadWords(string _letter, string _placement);
 	void setWords();
+		void updateSettings();
+		void setLetterInDb(string queryString);
 
+	
+	ofxUIDropDownList *optionsDDLUser;
+	string optionsSelectedUser;
+
+#pragma region declare toggles
+	 ofxUIToggle *toggle_b_initial;
+ ofxUIToggle *toggle_b_medial;
+ ofxUIToggle *toggle_b_final;
+ ofxUIToggle *toggle_ch_initial;
+ ofxUIToggle *toggle_ch_medial;
+ ofxUIToggle *toggle_ch_final;
+ ofxUIToggle *toggle_d_initial;
+ ofxUIToggle *toggle_d_medial;
+ ofxUIToggle *toggle_d_final;
+ ofxUIToggle *toggle_f_initial;
+ ofxUIToggle *toggle_f_medial;
+ ofxUIToggle *toggle_f_final;
+ ofxUIToggle *toggle_g_initial;
+ ofxUIToggle *toggle_g_medial;
+ ofxUIToggle *toggle_g_final;
+ ofxUIToggle *toggle_h_initial;
+ ofxUIToggle *toggle_j_initial;
+ ofxUIToggle *toggle_j_medial;
+ ofxUIToggle *toggle_j_final;
+ ofxUIToggle *toggle_k_initial;
+ ofxUIToggle *toggle_k_medial;
+ ofxUIToggle *toggle_k_final;
+ ofxUIToggle *toggle_l_initial;
+ ofxUIToggle *toggle_l_medial;
+ ofxUIToggle *toggle_l_final;
+ ofxUIToggle *toggle_m_initial;
+ ofxUIToggle *toggle_m_medial;
+ ofxUIToggle *toggle_m_final;
+ ofxUIToggle *toggle_n_initial;
+ ofxUIToggle *toggle_n_medial;
+ ofxUIToggle *toggle_n_final;
+ ofxUIToggle *toggle_ng_initial;
+ ofxUIToggle *toggle_p_initial;
+ ofxUIToggle *toggle_p_medial;
+ ofxUIToggle *toggle_p_final;
+ ofxUIToggle *toggle_r_initial;
+ ofxUIToggle *toggle_r_medial;
+ ofxUIToggle *toggle_r_final;
+ ofxUIToggle *toggle_s_initial;
+ ofxUIToggle *toggle_s_medial;
+ ofxUIToggle *toggle_s_final;
+ ofxUIToggle *toggle_sh_initial;
+ ofxUIToggle *toggle_sh_medial;
+ ofxUIToggle *toggle_sh_final;
+ ofxUIToggle *toggle_t_initial;
+ ofxUIToggle *toggle_t_medial;
+ ofxUIToggle *toggle_t_final;
+ ofxUIToggle *toggle_th_initial;
+ ofxUIToggle *toggle_th_medial;
+ ofxUIToggle *toggle_th_final;
+ ofxUIToggle *toggle_v_initial;
+ ofxUIToggle *toggle_v_medial;
+ ofxUIToggle *toggle_v_final;
+ ofxUIToggle *toggle_w_initial;
+ ofxUIToggle *toggle_y_initial;
+ ofxUIToggle *toggle_z_initial;
+ ofxUIToggle *toggle_z_medial;
+ ofxUIToggle *toggle_z_final;
+
+#pragma endregion
 	
 
 		
