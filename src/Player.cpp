@@ -34,7 +34,7 @@ void Player::setup(){
 	
 
 	box2dplayerBody();
-	obstacles();
+	//obstacles();
 	
 	
 

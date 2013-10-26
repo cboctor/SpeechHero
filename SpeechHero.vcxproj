@@ -119,6 +119,7 @@
     <ClCompile Include="..\..\..\addons\ofxSpine\libs\spine-c\src\SlotData.c" />
     <ClCompile Include="..\..\..\addons\ofxSpine\src\ofxSkeleton.cpp" />
     <ClCompile Include="..\..\..\addons\ofxSpine\src\ofxSpine.cpp" />
+    <ClCompile Include="src\Monster.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Player.cpp" />
     <ClCompile Include="src\Skulls.cpp" />
@@ -210,6 +211,7 @@
     <ClInclude Include="..\..\..\addons\ofxSpine\libs\spine-c\include\spine\spine.h" />
     <ClInclude Include="..\..\..\addons\ofxSpine\src\ofxSkeleton.h" />
     <ClInclude Include="..\..\..\addons\ofxSpine\src\ofxSpine.h" />
+    <ClInclude Include="src\Monster.h" />
     <ClInclude Include="src\Player.h" />
     <ClInclude Include="src\Skulls.h" />
     <ClInclude Include="src\testApp.h" />

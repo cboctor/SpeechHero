@@ -11,9 +11,11 @@
 #include "ofxSpine.h"
 #include "Player.h"
 #include "Skulls.h"
+#include "Monster.h"
 
 
 extern vector<string> wordArray;
+extern bool isStarted;
 
 class testApp : public ofBaseApp{
 
@@ -61,6 +63,12 @@ class testApp : public ofBaseApp{
 		float wordStopStartTime;
 		float displayTime;
 		float displayStartTime;
+
+		float spawnMonsterTime;
+		float spawnMonsterStartTime;
+
+		void spawnMonster();
+
 		bool isWordReady;
 		bool isNow;
 		
@@ -95,6 +103,12 @@ class testApp : public ofBaseApp{
 		ofxSkeleton dragon;
 		Player player;
 		Skulls skull;
+		Monster monster;
+		Monster monsters[50];
+
+		int monsterCount;
+
+	
 		
 
 

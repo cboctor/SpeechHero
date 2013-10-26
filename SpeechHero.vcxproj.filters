@@ -241,9 +241,6 @@
     <ClCompile Include="src\Player.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\Skulls.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\addons\ofxGui\src\ofxBaseGui.cpp">
       <Filter>addons\ofxGui\src</Filter>
     </ClCompile>
@@ -267,6 +264,12 @@
     </ClCompile>
     <ClCompile Include="..\..\..\addons\ofxGui\src\ofxToggle.cpp">
       <Filter>addons\ofxGui\src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Skulls.cpp">
+      <Filter>src\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Monster.cpp">
+      <Filter>src\Enemies</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -410,6 +413,9 @@
     </Filter>
     <Filter Include="addons\ofxGui\src">
       <UniqueIdentifier>{66364332-6a67-465f-bafd-80e767674c21}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Enemies">
+      <UniqueIdentifier>{45da3122-54e2-4f88-8d05-821ca1ded217}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -917,9 +923,6 @@
     <ClInclude Include="src\Player.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="src\Skulls.h">
-      <Filter>src</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\addons\ofxGui\src\ofxBaseGui.h">
       <Filter>addons\ofxGui\src</Filter>
     </ClInclude>
@@ -946,6 +949,12 @@
     </ClInclude>
     <ClInclude Include="..\..\..\addons\ofxGui\src\ofxToggle.h">
       <Filter>addons\ofxGui\src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Skulls.h">
+      <Filter>src\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Monster.h">
+      <Filter>src\Enemies</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

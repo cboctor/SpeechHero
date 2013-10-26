@@ -1,6 +1,7 @@
 #include "Interfaces.h"
 
 vector<string> wordArray;
+bool isStarted;
 #pragma region settings boolean declaration
 bool b_initial;
 bool b_medial;
@@ -704,6 +705,7 @@ void Interfaces::guiEventMain(ofxUIEventArgs &e)
 	{ 
 	    setSessionID();
 		view = "game";
+		isStarted = true;
 		
 	}
 	else if (name == "Highscores")

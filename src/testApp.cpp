@@ -1,5 +1,4 @@
 #include "testApp.h"
-#include "Interfaces.h"
 #define PI 3.14159265
 
 ofPoint p1;
@@ -19,10 +18,7 @@ void testApp::setup(){
 	spacecount=0;
 	mainWindow.setup();
 	word="";
-	startTime=ofGetElapsedTimeMillis();
-	wordRecordStartTime = ofGetElapsedTimeMillis();
-	wordStopStartTime = ofGetElapsedTimeMillis();
-	displayStartTime = ofGetElapsedTimeMillis();
+	
 	isWordReady = false;
 	isNow = false;
 	loadWords();
@@ -33,25 +29,25 @@ void testApp::setup(){
 	floorImage.loadImage("assets/ground.png");
 	floorpoint.x = 0;
 	floorpoint.y = ofGetHeight() - floorImage.getHeight();
-	worldBounds.set(0, 0 , ofGetWidth(), floorpoint.y);
+	worldBounds.set(-500, 0 , ofGetWidth()+1000, floorpoint.y);
 	box2dworld.init();
 	box2dworld.setFPS(60);
 	box2dworld.setGravity(0, 10);
 	box2dworld.createBounds(worldBounds);
 	box2dworld.registerGrabbing();
+	isStarted = false;
 
 	ofSetFrameRate(60);
 	characterImage.loadImage("assets/char.png");
 	backgroundImage.loadImage("assets/trees.png");
 	
-	
+	monsterCount = 0;
 	 c.setPhysics(1, 0.1, 1);
      c.setup(box2dworld.getWorld(), 500, 500, 30);
 	 circlepos = c.getPosition();
 	 keypressed = "nothing";
 	desiredVel =0 ;
 	isMidAir = false;
-	last = ofGetElapsedTimeMillis();
 	col.r = 0;
 	col.g = 0;
 	col.b = 128;
@@ -59,7 +55,8 @@ void testApp::setup(){
 	
 	dragon.setup("assets/dragon.atlas", "assets/dragon.json", 0.3);
 	player.setup();
-	skull.setup();
+	//skull.setup();
+	//monster.setup();
 
 	
 	p1.x = -50;
@@ -84,7 +81,10 @@ void testApp::update(){
 	ofBackground(col);
 	mainWindow.update();
 	player.update();
-	skull.update();
+	//skull.update();
+	
+	for (int i=0; i < monsterCount; i++)
+		monsters[i].update();
 	dragon.update(1.0f/60);
 	charpos.x = circlepos.x -30;
 	charpos.y = circlepos.y+28;
@@ -110,8 +110,7 @@ void testApp::update(){
 
 //--------------------------------------------------------------
 void testApp::draw(){
-
-
+	
 	if (mainWindow.getView()=="practice")
 	{
 
@@ -128,12 +127,25 @@ void testApp::draw(){
 
 	if (mainWindow.getView() == "game")
 	{
-		
+		if (isStarted)
+		{
+			startTime=ofGetElapsedTimeMillis();
+			wordRecordStartTime = ofGetElapsedTimeMillis();
+			wordStopStartTime = ofGetElapsedTimeMillis();
+			displayStartTime = ofGetElapsedTimeMillis();
+			spawnMonsterStartTime = ofGetElapsedTimeMillis();
+			isStarted =false;
+		}
 		backgroundImage.draw(0, floorpoint.y - backgroundImage.getHeight()+10);
 		floorImage.draw(floorpoint.x,floorpoint.y);
 		dragon.draw();
 		player.draw();
-		skull.draw();
+		//skull.draw();
+		spawnMonster();
+		for (int i=0; i < monsterCount; i++)
+			monsters[i].draw();
+
+		box2dworld.getWorld()->DrawDebugData();
 		loadHUD();
 
 
@@ -145,6 +157,24 @@ void testApp::draw(){
 	//	mainWindow.setUISession();
 
 }
+
+
+void testApp::spawnMonster()
+{
+	spawnMonsterTime = ofGetElapsedTimeMillis() - spawnMonsterStartTime;
+	if (spawnMonsterTime >=3000)
+	{
+
+		monsters[monsterCount].setup();
+		monsterCount ++;
+		cout << endl<< "Monsters: " + monsterCount << endl;
+		if (monsterCount >=50)
+			monsterCount = 0;
+		spawnMonsterStartTime = ofGetElapsedTimeMillis();
+	}
+
+}
+
 
 void testApp::loadHUD()
 {
