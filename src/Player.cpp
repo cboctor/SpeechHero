@@ -153,7 +153,7 @@ void Player::update()
 	{
 		if (numFootContacts >= 1 && !isMidAir)
 		{
-		 float force = dynamicBody->GetMass() * 200 ;
+		 float force = dynamicBody->GetMass() * 250 ;
 		  dynamicBody->ApplyForce( b2Vec2(0,-force), dynamicBody->GetWorldCenter() );
 		}
 	}
@@ -215,6 +215,10 @@ void Player::update()
 	
 		}
 		dynamicBody->SetLinearVelocity(vel);
+
+
+	
+		
 }
 
 

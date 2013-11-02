@@ -101,12 +101,12 @@ class testApp : public ofBaseApp{
 		bool isDirectionRight;
 		ofxSkeleton skeleton;
 		ofxSkeleton dragon;
+		ofxSkeleton backgroundSet;
 		Player player;
 		Skulls skull;
+		
+		//vector<Monster> monsters;
 		Monster monster;
-		Monster monsters[50];
-
-		int monsterCount;
 
 	
 		

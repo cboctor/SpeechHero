@@ -271,6 +271,9 @@
     <ClCompile Include="src\Monster.cpp">
       <Filter>src\Enemies</Filter>
     </ClCompile>
+    <ClCompile Include="src\Dragon.cpp">
+      <Filter>src\Enemies</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -954,6 +957,9 @@
       <Filter>src\Enemies</Filter>
     </ClInclude>
     <ClInclude Include="src\Monster.h">
+      <Filter>src\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Dragon.h">
       <Filter>src\Enemies</Filter>
     </ClInclude>
   </ItemGroup>

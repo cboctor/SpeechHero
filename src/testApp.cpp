@@ -29,10 +29,12 @@ void testApp::setup(){
 	floorImage.loadImage("assets/ground.png");
 	floorpoint.x = 0;
 	floorpoint.y = ofGetHeight() - floorImage.getHeight();
-	worldBounds.set(-500, 0 , ofGetWidth()+1000, floorpoint.y);
+	worldBounds.set(-100, 0 , ofGetWidth()+500, floorpoint.y);
+	
 	box2dworld.init();
 	box2dworld.setFPS(60);
 	box2dworld.setGravity(0, 10);
+	//box2dworld.createGround(-200, floorpoint.y, ofGetWidth() + 200,floorpoint.y);
 	box2dworld.createBounds(worldBounds);
 	box2dworld.registerGrabbing();
 	isStarted = false;
@@ -41,7 +43,7 @@ void testApp::setup(){
 	characterImage.loadImage("assets/char.png");
 	backgroundImage.loadImage("assets/trees.png");
 	
-	monsterCount = 0;
+	
 	 c.setPhysics(1, 0.1, 1);
      c.setup(box2dworld.getWorld(), 500, 500, 30);
 	 circlepos = c.getPosition();
@@ -52,7 +54,7 @@ void testApp::setup(){
 	col.g = 0;
 	col.b = 128;
 	counter = 0;
-	
+	backgroundSet.setup("assets/background.atlas", "assets/background.json", 1.0);
 	dragon.setup("assets/dragon.atlas", "assets/dragon.json", 0.3);
 	player.setup();
 	//skull.setup();
@@ -62,10 +64,12 @@ void testApp::setup(){
 	p1.x = -50;
 	p1.y = 250;
 	dragon.setPosition(p1);
+	backgroundSet.setPosition(ofPoint(ofGetWidth()/2, ofGetHeight()/2));
 	//AnimationStateData_setMixByName(skeleton.getStateData(), "walk", "jump", 0.2f);
 	//AnimationStateData_setMixByName(skeleton.getStateData(), "jump", "walk", 0.4f);
 
 	AnimationState_setAnimationByName(dragon.getState(), "fly", true);
+	AnimationState_setAnimationByName(backgroundSet.getState(), "animation", true);
 
 
 	
@@ -83,9 +87,9 @@ void testApp::update(){
 	player.update();
 	//skull.update();
 	
-	for (int i=0; i < monsterCount; i++)
-		monsters[i].update();
+	monster.update();
 	dragon.update(1.0f/60);
+	backgroundSet.update(0.01f/60);
 	charpos.x = circlepos.x -30;
 	charpos.y = circlepos.y+28;
 	p1.x+=5;
@@ -136,15 +140,16 @@ void testApp::draw(){
 			spawnMonsterStartTime = ofGetElapsedTimeMillis();
 			isStarted =false;
 		}
+		backgroundSet.draw();
 		backgroundImage.draw(0, floorpoint.y - backgroundImage.getHeight()+10);
 		floorImage.draw(floorpoint.x,floorpoint.y);
 		dragon.draw();
 		player.draw();
 		//skull.draw();
 		spawnMonster();
-		for (int i=0; i < monsterCount; i++)
-			monsters[i].draw();
-
+		//for (int i=0; i < monsters.size(); i++)
+		//	monsters[i].draw();
+		monster.draw();
 		box2dworld.getWorld()->DrawDebugData();
 		loadHUD();
 
@@ -161,17 +166,30 @@ void testApp::draw(){
 
 void testApp::spawnMonster()
 {
-	spawnMonsterTime = ofGetElapsedTimeMillis() - spawnMonsterStartTime;
-	if (spawnMonsterTime >=3000)
-	{
 
-		monsters[monsterCount].setup();
-		monsterCount ++;
-		cout << endl<< "Monsters: " + monsterCount << endl;
-		if (monsterCount >=50)
-			monsterCount = 0;
+	
+	spawnMonsterTime = ofGetElapsedTimeMillis() - spawnMonsterStartTime;
+	if (spawnMonsterTime >=5000)
+	{
+		//monsters.clear();
 		spawnMonsterStartTime = ofGetElapsedTimeMillis();
+		monster.createMonster();
+		
+		
+		
 	}
+
+	
+	
+	// if we're this far, well none were found under the mouse, so add a thingy
+	
+
+	//for (int i=0; i<monsters.size(); i++)
+//	{
+	//	if (monsters[i].getX() >= ofGetWidth())
+		//	monsters.erase(monsters.begin() + i -1);
+	//}
+			
 
 }
 
