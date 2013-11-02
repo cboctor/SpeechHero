@@ -12,6 +12,7 @@
 #include "Player.h"
 #include "Skulls.h"
 #include "Monster.h"
+#include "Dragon.h"
 
 
 extern vector<string> wordArray;
@@ -100,10 +101,11 @@ class testApp : public ofBaseApp{
 		ofColor col;
 		bool isDirectionRight;
 		ofxSkeleton skeleton;
-		ofxSkeleton dragon;
+		//ofxSkeleton dragon;
 		ofxSkeleton backgroundSet;
 		Player player;
 		Skulls skull;
+		Dragon dragon;
 		
 		//vector<Monster> monsters;
 		Monster monster;

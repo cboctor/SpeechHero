@@ -55,7 +55,8 @@ void testApp::setup(){
 	col.b = 128;
 	counter = 0;
 	backgroundSet.setup("assets/background.atlas", "assets/background.json", 1.0);
-	dragon.setup("assets/dragon.atlas", "assets/dragon.json", 0.3);
+	//dragon.setup("assets/dragon.atlas", "assets/dragon.json", 0.3);
+	dragon.createDragon();
 	player.setup();
 	//skull.setup();
 	//monster.setup();
@@ -63,12 +64,12 @@ void testApp::setup(){
 	
 	p1.x = -50;
 	p1.y = 250;
-	dragon.setPosition(p1);
+	//dragon.setPosition(p1);
 	backgroundSet.setPosition(ofPoint(ofGetWidth()/2, ofGetHeight()/2));
 	//AnimationStateData_setMixByName(skeleton.getStateData(), "walk", "jump", 0.2f);
 	//AnimationStateData_setMixByName(skeleton.getStateData(), "jump", "walk", 0.4f);
 
-	AnimationState_setAnimationByName(dragon.getState(), "fly", true);
+	/*AnimationState_setAnimationByName(dragon.getState(), "fly", true);*/
 	AnimationState_setAnimationByName(backgroundSet.getState(), "animation", true);
 
 
@@ -88,14 +89,14 @@ void testApp::update(){
 	//skull.update();
 	
 	monster.update();
-	dragon.update(1.0f/60);
+	dragon.update();
 	backgroundSet.update(0.01f/60);
 	charpos.x = circlepos.x -30;
 	charpos.y = circlepos.y+28;
 	p1.x+=5;
 	 if (p1.x >= ofGetWidth() + 200)
 		 p1.x = -150;
-	dragon.setPosition(p1);
+	//dragon.setPosition(p1);
 
 //	if (ofGetElapsedTimeMillis()-last > 2000)
 //	{
@@ -399,7 +400,7 @@ void testApp::mouseDragged(int x, int y, int button){
 
 //--------------------------------------------------------------
 void testApp::mousePressed(int x, int y, int button){
-
+	dragon.mousePressed( x,  y,  button);
 }
 
 //--------------------------------------------------------------
@@ -431,7 +432,7 @@ void testApp::audioReceived 	(float * input, int bufferSize, int nChannels){
 void testApp::exit()
 {
 	player.getSkeleton().~ofxSkeleton();
-	dragon.~ofxSkeleton();
+	//dragon.~ofxSkeleton();
 	skull.exit();
 	mainWindow.exit();
 }
