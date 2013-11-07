@@ -13,6 +13,8 @@
 #include "Skulls.h"
 #include "Monster.h"
 #include "Dragon.h"
+#include "Item.h"
+#include "globaldata.h"
 
 
 extern vector<string> wordArray;
@@ -106,6 +108,7 @@ class testApp : public ofBaseApp{
 		Player player;
 		Skulls skull;
 		Dragon dragon;
+		Item item;
 		
 		//vector<Monster> monsters;
 		Monster monster;

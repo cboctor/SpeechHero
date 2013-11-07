@@ -274,6 +274,15 @@
     <ClCompile Include="src\Dragon.cpp">
       <Filter>src\Enemies</Filter>
     </ClCompile>
+    <ClCompile Include="src\Item.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ContactListener.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\globaldata.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -960,6 +969,24 @@
       <Filter>src\Enemies</Filter>
     </ClInclude>
     <ClInclude Include="src\Dragon.h">
+      <Filter>src\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Item.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ContactListener.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\globaldata.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\CustomItem.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MonsterBody.h">
+      <Filter>src\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="src\FireballProjectile.h">
       <Filter>src\Enemies</Filter>
     </ClInclude>
   </ItemGroup>

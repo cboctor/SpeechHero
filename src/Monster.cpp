@@ -1,63 +1,41 @@
 #include "Monster.h"
 
 
-
-
-
-
-
-
-
-
 void Monster::update()
 {
-for(int i=0; i<particles.size(); i++) {
-		float x = particles[i].getPosition().x;
-		float y = particles[i].getPosition().y;
-		b2Vec2 vel = particles[i].body->GetLinearVelocity();
+for(int i=0; i<GlobalData::m_bodies.size(); i++) {
+		float x = GlobalData::m_bodies[i].getPosition().x;
+		float y = GlobalData::m_bodies[i].getPosition().y;
+		b2Vec2 vel = GlobalData::m_bodies[i].body->GetLinearVelocity();
 		vel.x = 5;
-		particles[i].body->SetLinearVelocity(vel);
+		GlobalData::m_bodies[i].body->SetLinearVelocity(vel);
+		if(x <ofGetWidth() && !GlobalData::m_bodies[i].bHit)
+			GlobalData::m_bodies[i].update(x,y);
 		
-		if(x <ofGetWidth())
-			particles[i].update(x,y);
 		else
 		{
-			particles[i].body->GetWorld()->DestroyBody(particles[i].body);
-			particles.erase(particles.begin()+i );
+			GlobalData::m_bodies[i].body->GetWorld()->DestroyBody(GlobalData::m_bodies[i].body);
+			GlobalData::m_bodies.erase(GlobalData::m_bodies.begin()+i );
 		}
 
 		
-
-		
 	}
-
-
-
-
-
 }
 
 void Monster::createMonster()
 {
-	
-	CustomParticle p;
+	MonsterBody p;
 	p.setPhysics(1.0, 0.5, 0.3);
-	p.setup(box2dworld.getWorld(), 10, 500, 50);
+	p.setup(GlobalData::box2dworld.getWorld(), 10, 500, 50);
 	p. setupTheCustomData() ;
-	particles.push_back(p);
+	GlobalData::m_bodies.push_back(p);
 }
 
 
 
 void Monster::draw()
 {
-	
-
-	for(int i=0; i<particles.size(); i++) {
-		particles[i].draw();
+	for(int i=0; i<GlobalData::m_bodies.size(); i++) {
+		GlobalData::m_bodies[i].draw();
 	}
-	
-
-
-	
 }

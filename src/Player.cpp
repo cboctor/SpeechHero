@@ -1,11 +1,10 @@
 #include "Player.h"
 
 
- b2Body* dynamicBody;
+
  MyContactListener myContactListenerInstance;
- int numFootContacts;
+ //int GlobalData::numFootContacts;
  int setJump;
- //ofxBox2d box2dworld;
 
 
 
@@ -15,21 +14,21 @@ void Player::setup(){
 	isDirectionRight = true;
 	circle.setPhysics(1, 0.1, 1);
 	worldBounds.set(0, 0 , ofGetWidth(), 650);
-	/*box2dworld.init();
-	box2dworld.setFPS(60);
-	box2dworld.setGravity(0, -10);
-	box2dworld.createBounds(worldBounds);
-	box2dworld.registerGrabbing();*/
-	//box2dworld.fixture
-	circle.setup(box2dworld.getWorld(), 500,500, 30);
+	/*GlobalData::box2dworld.init();
+	GlobalData::box2dworld.setFPS(60);
+	GlobalData::box2dworld.setGravity(0, -10);
+	GlobalData::box2dworld.createBounds(worldBounds);
+	GlobalData::box2dworld.registerGrabbing();*/
+	//GlobalData::box2dworld.fixture
+	circle.setup(GlobalData::box2dworld.getWorld(), 500,500, 30);
 	keypressed = "nothing";
 	player.setup("assets/MainChar2.atlas", "assets/MainChar2.json", 0.7);
 	AnimationState_setAnimationByName(player.getState(), "standing", true);
 	player.setPosition(circle.getPosition());
-	numFootContacts = 0;
-	//box2dworld.getWorld()->SetContactListener(&myContactListenerInstance);
+	GlobalData::numFootContacts = 0;
+	//GlobalData::box2dworld.getWorld()->SetContactListener(&myContactListenerInstance);
 	
-	box2dworld.getWorld()->SetContactListener(&myContactListenerInstance);
+	GlobalData::box2dworld.getWorld()->SetContactListener(&myContactListenerInstance);
 	setJump = 0;
 	
 
@@ -61,17 +60,15 @@ void Player::box2dplayerBody()
   
       //create dynamic body
       myBodyDef.position.Set(500/OFX_BOX2D_SCALE, 500/OFX_BOX2D_SCALE); //middle
-      dynamicBody = box2dworld.getWorld()->CreateBody(&myBodyDef);
+      GlobalData::playerBody = GlobalData::box2dworld.getWorld()->CreateBody(&myBodyDef);
   
       //add main fixture
-      dynamicBody->CreateFixture(&myFixtureDef);
+      GlobalData::playerBody->CreateFixture(&myFixtureDef);
 	  
-	
-  
       //add foot sensor fixture
       polygonShape.SetAsBox(0.3, 0.3, b2Vec2(0,2.5), 0);
       myFixtureDef.isSensor = true;
-      b2Fixture* footSensorFixture = dynamicBody->CreateFixture(&myFixtureDef);
+      b2Fixture* footSensorFixture = GlobalData::playerBody->CreateFixture(&myFixtureDef);
       footSensorFixture->SetUserData( (void*)3 );
   }
 
@@ -93,7 +90,7 @@ void Player::obstacles()
   
       for (int i = 0; i < 5; i++)
       {
-          b2Fixture* fixture = box2dworld.getWorld()->CreateBody(&myBodyDef)->CreateFixture(&myFixtureDef);
+          b2Fixture* fixture = GlobalData::box2dworld.getWorld()->CreateBody(&myBodyDef)->CreateFixture(&myFixtureDef);
           fixture->SetUserData( (void*)1 );//tag square boxes as 1
       }
   
@@ -102,7 +99,7 @@ void Player::obstacles()
       
       for (int i = 0; i < 5; i++)
       {
-          b2Fixture* fixture = box2dworld.getWorld()->CreateBody(&myBodyDef)->CreateFixture(&myFixtureDef);
+          b2Fixture* fixture = GlobalData::box2dworld.getWorld()->CreateBody(&myBodyDef)->CreateFixture(&myFixtureDef);
           fixture->SetUserData( (void*)2 );//tag smaller rectangular boxes as 2
       }
   }
@@ -123,12 +120,12 @@ void setY(){}
 void Player::update()
 {
 
-	box2dworld.update();
+	GlobalData::box2dworld.update();
 	
-	b2Vec2 vel = dynamicBody->GetLinearVelocity();
+	b2Vec2 vel = GlobalData::playerBody->GetLinearVelocity();
 	b2Vec2 posVec;
 	ofPoint posPoint;
-	posVec = dynamicBody->GetPosition();
+	posVec = GlobalData::playerBody->GetPosition();
 	posPoint.x = posVec.x * OFX_BOX2D_SCALE;
 	posPoint.y = posVec.y * OFX_BOX2D_SCALE + 85;
 	player.update(1.0f /60);
@@ -151,10 +148,10 @@ void Player::update()
 	}
 	else if (keypressed == "key-up")
 	{
-		if (numFootContacts >= 1 && !isMidAir)
+		if (GlobalData::numFootContacts >= 1 && !isMidAir) //Check if Player is standing before being allowed to jump
 		{
-		 float force = dynamicBody->GetMass() * 250 ;
-		  dynamicBody->ApplyForce( b2Vec2(0,-force), dynamicBody->GetWorldCenter() );
+		 float force = GlobalData::playerBody->GetMass() * 250 ;
+		  GlobalData::playerBody->ApplyForce( b2Vec2(0,-force), GlobalData::playerBody->GetWorldCenter() );
 		}
 	}
 	else if (keypressed == "key-up" && isMidAir)
@@ -192,7 +189,7 @@ void Player::update()
 	//	isMidAir = false;
 	//}
 
-	///if (numFootContacts < 1)
+	///if (GlobalData::numFootContacts < 1)
 		//cout << "no contact";
 
 	/*if (!isMidAir)
@@ -204,7 +201,7 @@ void Player::update()
 	}
 */
 	
-		if ( numFootContacts <1 ) {
+		if ( GlobalData::numFootContacts <1 ) {
 			 isMidAir = true;			 
 			} else { 
 			  isMidAir = false;
@@ -212,12 +209,12 @@ void Player::update()
 
 		if (isMidAir)
 		{
-	
+			cout <<isMidAir;
 		}
-		dynamicBody->SetLinearVelocity(vel);
+		GlobalData::playerBody->SetLinearVelocity(vel);
 
 
-	
+
 		
 }
 
@@ -268,7 +265,7 @@ void Player::draw()
 {
 	player.draw();
 	circle.draw();
-	//box2dworld.getWorld()->DrawDebugData();
+	//GlobalData::box2dworld.getWorld()->DrawDebugData();
 }
 
 void Player::exit()

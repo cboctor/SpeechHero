@@ -3,10 +3,13 @@
 #include "ofMain.h"
 #include "ofxSpine.h"
 #include "ofxBox2d.h"
+#include "globaldata.h"
+#include "ContactListener.h"
 
 
-extern  int numFootContacts;
-extern ofxBox2d box2dworld;
+//extern ofxBox2d box2dworld;
+//extern b2Body* dynamicBody;
+//vector <CustomItem>	items;
 
 class Player
 {
@@ -24,7 +27,7 @@ public:
 		void exit();
 		void obstacles();
 		void box2dplayerBody();
-
+		
 		b2Vec2 vel ;
 		ofxSkeleton player;
 
@@ -51,28 +54,4 @@ protected:
 };
 
 
-class MyContactListener : public b2ContactListener
-  {
-      void BeginContact(b2Contact* contact) {
-          //check if fixture A was the foot sensor
-          void* fixtureUserData = contact->GetFixtureA()->GetUserData();
-          if ( (int)fixtureUserData == 3 )
-              numFootContacts++;
-          //check if fixture B was the foot sensor
-          fixtureUserData = contact->GetFixtureB()->GetUserData();
-          if ( (int)fixtureUserData == 3 )
-              numFootContacts++;
-      }
-  
-      void EndContact(b2Contact* contact) {
-          //check if fixture A was the foot sensor
-          void* fixtureUserData = contact->GetFixtureA()->GetUserData();
-          if ( (int)fixtureUserData == 3 )
-              numFootContacts--;
-          //check if fixture B was the foot sensor
-          fixtureUserData = contact->GetFixtureB()->GetUserData();
-          if ( (int)fixtureUserData == 3 )
-              numFootContacts--;
-      }
-  };
 

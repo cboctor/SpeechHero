@@ -4,7 +4,7 @@
 ofPoint p1;
 ofPoint charpos;
 int keycount;
-ofxBox2d box2dworld;
+//ofxBox2d GlobalData::box2dworld;
 
 
 
@@ -31,12 +31,12 @@ void testApp::setup(){
 	floorpoint.y = ofGetHeight() - floorImage.getHeight();
 	worldBounds.set(-100, 0 , ofGetWidth()+500, floorpoint.y);
 	
-	box2dworld.init();
-	box2dworld.setFPS(60);
-	box2dworld.setGravity(0, 10);
-	//box2dworld.createGround(-200, floorpoint.y, ofGetWidth() + 200,floorpoint.y);
-	box2dworld.createBounds(worldBounds);
-	box2dworld.registerGrabbing();
+	GlobalData::box2dworld.init();
+	GlobalData::box2dworld.setFPS(60);
+	GlobalData::box2dworld.setGravity(0, 10);
+	//GlobalData::box2dworld.createGround(-200, floorpoint.y, ofGetWidth() + 200,floorpoint.y);
+	GlobalData::box2dworld.createBounds(worldBounds);
+	GlobalData::box2dworld.registerGrabbing();
 	isStarted = false;
 
 	ofSetFrameRate(60);
@@ -45,7 +45,7 @@ void testApp::setup(){
 	
 	
 	 c.setPhysics(1, 0.1, 1);
-     c.setup(box2dworld.getWorld(), 500, 500, 30);
+     c.setup(GlobalData::box2dworld.getWorld(), 500, 500, 30);
 	 circlepos = c.getPosition();
 	 keypressed = "nothing";
 	desiredVel =0 ;
@@ -73,6 +73,7 @@ void testApp::setup(){
 	AnimationState_setAnimationByName(backgroundSet.getState(), "animation", true);
 
 
+
 	
 
 
@@ -85,37 +86,31 @@ void testApp::setup(){
 void testApp::update(){
 	ofBackground(col);
 	mainWindow.update();
+
+	if (mainWindow.getView() == "game")
+	{
 	player.update();
 	//skull.update();
-	
+	item.update();
 	monster.update();
 	dragon.update();
+	GlobalData::box2dworld.update();
+	}
 	backgroundSet.update(0.01f/60);
-	charpos.x = circlepos.x -30;
-	charpos.y = circlepos.y+28;
-	p1.x+=5;
-	 if (p1.x >= ofGetWidth() + 200)
-		 p1.x = -150;
-	//dragon.setPosition(p1);
-
-//	if (ofGetElapsedTimeMillis()-last > 2000)
-//	{
-//		double bluechange =  abs(128* sin(counter * PI /180));
-//		double brightness = 100 * abs (sin (counter * PI/180));
-//		double saturation = 100/ brightness;
-
-//		col.setBrightness(brightness);
-//		counter++;
-
-//	}
-	box2dworld.update();
 
 }
 
 
 //--------------------------------------------------------------
 void testApp::draw(){
-	
+		backgroundSet.draw();
+
+		if (mainWindow.getView() != "game")
+		{
+			ofSetColor(0,0,0,80);  
+			ofRect(0,0,0,ofGetWidth(),ofGetHeight());
+		}
+
 	if (mainWindow.getView()=="practice")
 	{
 
@@ -141,7 +136,7 @@ void testApp::draw(){
 			spawnMonsterStartTime = ofGetElapsedTimeMillis();
 			isStarted =false;
 		}
-		backgroundSet.draw();
+	
 		backgroundImage.draw(0, floorpoint.y - backgroundImage.getHeight()+10);
 		floorImage.draw(floorpoint.x,floorpoint.y);
 		dragon.draw();
@@ -151,7 +146,8 @@ void testApp::draw(){
 		//for (int i=0; i < monsters.size(); i++)
 		//	monsters[i].draw();
 		monster.draw();
-		box2dworld.getWorld()->DrawDebugData();
+		item.draw();
+		GlobalData::box2dworld.getWorld()->DrawDebugData();
 		loadHUD();
 
 
@@ -214,6 +210,7 @@ void testApp::loadHUD()
 				wordsCorrect ++;
 				copyFile("correct");
 				correctwords.push_back(word);
+				item.createItem();
 			}
 		else
 			{
@@ -400,7 +397,7 @@ void testApp::mouseDragged(int x, int y, int button){
 
 //--------------------------------------------------------------
 void testApp::mousePressed(int x, int y, int button){
-	dragon.mousePressed( x,  y,  button);
+
 }
 
 //--------------------------------------------------------------
