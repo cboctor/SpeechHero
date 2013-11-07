@@ -74,11 +74,14 @@ void MyContactListener::beginMonsterContact(b2Contact* contact)
 		 if (bodyA == GlobalData::m_bodies[i].body && bodyB == GlobalData::playerBody)
 		 {
 			 GlobalData::m_bodies[i].bHit = true;
+			   GlobalData::healthPercent = GlobalData::healthPercent -0.1;
 		 }
 
 		 if(bodyB ==GlobalData::m_bodies[i].body && bodyA == GlobalData::playerBody)
 		 {
+
 				GlobalData::m_bodies[i].bHit = true;
+				  GlobalData::healthPercent = GlobalData::healthPercent -0.1;
 		 }
 
 
@@ -96,11 +99,13 @@ void MyContactListener::beginFireballContact(b2Contact* contact)
 		 if (bodyA == GlobalData::fb_projectiles[i].body && bodyB == GlobalData::playerBody)
 		 {
 			 GlobalData::fb_projectiles[i].bHit = true;
+			 GlobalData::healthPercent = GlobalData::healthPercent -0.1;
 		 }
 
 		 if(bodyB ==GlobalData::fb_projectiles[i].body && bodyA == GlobalData::playerBody)
 		 {
 				GlobalData::fb_projectiles[i].bHit = true;
+			    GlobalData::healthPercent = GlobalData::healthPercent -0.1;
 		 }
 
 

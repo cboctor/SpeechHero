@@ -8,6 +8,7 @@ namespace GlobalData
 	  vector <MonsterBody> m_bodies;
 	  vector <FireballProjectile>	fb_projectiles;
 	  b2Body* playerBody;
+	  float healthPercent;
 
  
 }

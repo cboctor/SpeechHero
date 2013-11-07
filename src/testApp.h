@@ -34,6 +34,7 @@ class testApp : public ofBaseApp{
 		void startRecording();
 		void stopRecording();
 		void copyFile(string status);
+		void drawHealth();
 		
 		
 
@@ -66,6 +67,7 @@ class testApp : public ofBaseApp{
 		float wordStopStartTime;
 		float displayTime;
 		float displayStartTime;
+		
 
 		float spawnMonsterTime;
 		float spawnMonsterStartTime;

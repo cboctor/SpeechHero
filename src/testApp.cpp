@@ -74,7 +74,7 @@ void testApp::setup(){
 
 
 
-	
+	GlobalData::healthPercent = 1.0;
 
 
 }
@@ -149,6 +149,7 @@ void testApp::draw(){
 		item.draw();
 		GlobalData::box2dworld.getWorld()->DrawDebugData();
 		loadHUD();
+		drawHealth();
 
 
 	}
@@ -158,6 +159,19 @@ void testApp::draw(){
 	//if (mainWindow.getView() == "sessions")
 	//	mainWindow.setUISession();
 
+}
+
+
+void testApp::drawHealth()
+{
+	string s = "Health :";
+	float barPosX = ofGetWidth() -300;
+	float barPosY = ofGetHeight() -100;
+	pixfont.drawString(s , barPosX - 100, barPosY+50);
+	ofSetColor(250,250,250);
+	ofRect(barPosX,barPosY+30,0, 200, 30);
+	ofSetColor(250,0,0);
+	ofRect(barPosX,barPosY+30,0, GlobalData::healthPercent*200, 30);
 }
 
 

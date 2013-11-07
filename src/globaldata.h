@@ -14,6 +14,7 @@ namespace GlobalData
    extern vector <MonsterBody> m_bodies;
    extern vector <FireballProjectile>	fb_projectiles;
    extern b2Body* playerBody;
+   extern float healthPercent;
 }
 
 #endif GLOBALDATA_H
