@@ -989,6 +989,9 @@
     <ClInclude Include="src\FireballProjectile.h">
       <Filter>src\Enemies</Filter>
     </ClInclude>
+    <ClInclude Include="src\SkullsProjectile.h">
+      <Filter>src\Enemies</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="icon.rc" />

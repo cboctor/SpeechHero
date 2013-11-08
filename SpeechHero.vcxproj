@@ -219,6 +219,7 @@
     <ClInclude Include="..\..\..\addons\ofxSpine\libs\spine-c\include\spine\spine.h" />
     <ClInclude Include="..\..\..\addons\ofxSpine\src\ofxSkeleton.h" />
     <ClInclude Include="..\..\..\addons\ofxSpine\src\ofxSpine.h" />
+    <ClInclude Include="src\SkullsProjectile.h" />
     <ClInclude Include="src\ContactListener.h" />
     <ClInclude Include="src\CustomItem.h" />
     <ClInclude Include="src\Dragon.h" />

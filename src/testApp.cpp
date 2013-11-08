@@ -58,7 +58,7 @@ void testApp::setup(){
 	//dragon.setup("assets/dragon.atlas", "assets/dragon.json", 0.3);
 	dragon.createDragon();
 	player.setup();
-	//skull.setup();
+	skull.createSkulls();
 	//monster.setup();
 
 	
@@ -90,7 +90,7 @@ void testApp::update(){
 	if (mainWindow.getView() == "game")
 	{
 	player.update();
-	//skull.update();
+	skull.update();
 	item.update();
 	monster.update();
 	dragon.update();
@@ -140,14 +140,16 @@ void testApp::draw(){
 		backgroundImage.draw(0, floorpoint.y - backgroundImage.getHeight()+10);
 		floorImage.draw(floorpoint.x,floorpoint.y);
 		dragon.draw();
-		player.draw();
-		//skull.draw();
+		
+		skull.draw();
 		spawnMonster();
+
+		player.draw();
 		//for (int i=0; i < monsters.size(); i++)
 		//	monsters[i].draw();
 		monster.draw();
 		item.draw();
-		GlobalData::box2dworld.getWorld()->DrawDebugData();
+		//GlobalData::box2dworld.getWorld()->DrawDebugData();
 		loadHUD();
 		drawHealth();
 
@@ -323,11 +325,10 @@ void testApp::selectRandomWord()
 //--------------------------------------------------------------
 void testApp::keyPressed(int key){
 	player.keyPressed(key);
-	skull.keyPressed(key);
 
 	if (key == 's')
 	{
-
+		skull.keyPressed(key);
 
 	}
 
@@ -444,6 +445,6 @@ void testApp::exit()
 {
 	player.getSkeleton().~ofxSkeleton();
 	//dragon.~ofxSkeleton();
-	skull.exit();
+	//skull.exit();
 	mainWindow.exit();
 }

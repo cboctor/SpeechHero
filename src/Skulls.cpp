@@ -1,127 +1,101 @@
 #include "Skulls.h"
-
-ofxBox2dCircle circles [10];
-ofxSkeleton skulls [10];
-ofPoint bigskullpos;
-bool isNoAmmo;
-//ofxBox2d GlobalData::box2dworld;
-
-void Skulls::setup(){
-	
-	isNoAmmo = false;
-	/*worldBounds.set(0, 0 , ofGetWidth(), 650);
-	GlobalData::box2dworld.init();
-	GlobalData::box2dworld.setFPS(60);
-	GlobalData::box2dworld.setGravity(0, 10);
-	GlobalData::box2dworld.createBounds(worldBounds);
-	GlobalData::box2dworld.registerGrabbing();*/
-	skeleton.setup("assets/skull.atlas", "assets/skull.json", 0.6);
-	
-	bigskullpos.x = -250;
-	bigskullpos.y = ofGetHeight()/2;
-	skeleton.setPosition(bigskullpos);
-
-	AnimationState_setAnimationByName(skeleton.getState(), "bigskull", true);
-	createSkulls();
-	
-	
-}
-
-void Skulls::createSkulls()
-{
-	float radius = 30.0;
-		for (int i=0; i<10; i++){
-		circles[i].setPhysics(3.0, 0.53, 0.1);
-		circles[i].setup(GlobalData::box2dworld.getWorld(),ofGetWidth()/2, ofGetHeight()/2, radius);
-		skulls[i].setup("assets/skull.atlas", "assets/skull.json", 1.0);
-		AnimationState_setAnimationByName(skulls[i].getState(), "littleskull", false);
-	}
-
-	
-
-}
-
-void Skulls::updateSmallSkulls()
-{
-
-	for (int i=0; i<10; i++){
-		ofPoint position = circles[i].getPosition();
-		float rotation = circles[i].getRotation();
-		skulls[i].setPosition(position);
-		skulls[i].setRotation(rotation);
-		skulls[i].update(1.0f/60);
-	}
-}
-
-void Skulls::updateBigSkull()
-{
-	if (bigskullpos.x < ofGetWidth()/2)
-		bigskullpos.x +=1;
-	skeleton.setPosition(bigskullpos);
-	
-
-}
-
-float Skulls::getX()
-{
-	return x = skeleton.getPosition().x;
-}
-
-float Skulls::getY()
-{
-	return y = skeleton.getPosition().y;
-}
+//
+//
 
 
 
 void Skulls::update()
 {
-//	_GlobalData::box2dworld.update();
+	time = ofGetElapsedTimeMillis() - startTime;
+	projtime = ofGetElapsedTimeMillis() - projstartTime;
 	
-	skeleton.update(1.0f /60);
+	skull.update(1.0f/60);
+	createProjectile();
+	//Skulls.
 	
-	updateSmallSkulls();
-	updateBigSkull();
-	//skeleton.setPosition(circle.getPosition());
+	leftEye = SkeletonData_findBone (skull.getSkeletonData(), "left_eye");
+	rightEye = SkeletonData_findBone (skull.getSkeletonData(), "right_eye");
+	head = SkeletonData_findBone (skull.getSkeletonData(), "head");
+	leftEyePos.x = leftEye->x + skullPos.x;
+	leftEyePos.y = leftEye->y +skullPos.y - head->y;
+	rightEyePos.x = rightEye->x + skullPos.x;
+	rightEyePos.y = rightEye->y +skullPos.y;
+	
+	
+	if (skullPos.x < ofGetWidth()/2)
+		skullPos.x +=1;
+
+	skull.setPosition(skullPos);
+	if (skullPos.x >= ofGetWidth()+1000)
+		skullPos.x =-1000;
 	
 
-	
+	for(int i=0; i<GlobalData::skulls_projectiles.size(); i++) {
 		
+		float x = GlobalData::skulls_projectiles[i].getPosition().x;
+		b2Vec2 Velocity = GlobalData::skulls_projectiles[i].body->GetLinearVelocity();
+		
+
+		if (x >0 && x <ofGetWidth() && !GlobalData::skulls_projectiles[i].bHit)
+			GlobalData::skulls_projectiles[i].update();
+		else
+		{
+				GlobalData::skulls_projectiles[i].body->GetWorld()->DestroyBody(GlobalData::skulls_projectiles[i].body);
+				GlobalData::skulls_projectiles.erase(GlobalData::skulls_projectiles.begin()+i );
+		}
+	}
+}
+//
+void Skulls::createProjectile()
+{
+	
+	if (time >= randTime)
+	{
+		SkullsProjectile p;
+		p.setPhysics(1.0, 0.5, 0.3);
+		p.setup(GlobalData::box2dworld.getWorld(), leftEyePos.x, leftEyePos.y, 30);
+		p.setupProjectileData() ;
+		GlobalData::skulls_projectiles.push_back(p);
+		startTime = ofGetElapsedTimeMillis();
+		projstartTime = ofGetElapsedTimeMillis();
+		randTime = ofRandom(1,5) * 1000;
+		//head = SkeletonData_findBone (Skulls.getSkeletonData(), "bone3");
+		//float rotation = head->rotation;
+		//float magnitude = GlobalData::skulls_projectiles.back().body->GetMass()*10;
+		//b2Vec2 force = b2Vec2(cos(rotation) * magnitude , sin(rotation) * magnitude);
+		//GlobalData::skulls_projectiles.back().body->ApplyLinearImpulse(force, GlobalData::skulls_projectiles.back().body->GetPosition());
+	}
 }
 
+void Skulls::createSkulls()
+{
+	skull.setup("assets/skull.atlas", "assets/skull.json", 0.7);
+	AnimationState_setAnimationByName(skull.getState(), "bigskull", true);
+	skullPos.x = -250;
+	skullPos.y = ofGetHeight()/2;
+	skull.setPosition(skullPos);
+	startTime = ofGetElapsedTimeMillis();
+	projstartTime = ofGetElapsedTimeMillis();
+	randTime = 1000;
+
+}
 
 
 void Skulls::draw()
 {
-	/*skeleton.draw();
-	circle.draw();
-	smallskull.draw();
-
-*/
-	skeleton.draw();
-	circle.draw();
-	for (int i =0; i<10; i++){
-		//circles[i].draw();
-		skulls[i].draw();
+	
+		skull.draw();
+	for(int i=0; i<GlobalData::skulls_projectiles.size(); i++) {
+		GlobalData::skulls_projectiles[i].draw();
 	}
-	//smallskull.draw();
 
 	
 }
 
 void Skulls::keyPressed(int key){
-
-
-
-}
-
-void Skulls::exit()
-{
-	for (int i=0; i <10; i++)
-	{
-		skulls[i].~ofxSkeleton();
-	}
-	skeleton.~ofxSkeleton();
-
-
+	SkullsProjectile p;
+		p.setPhysics(1.0, 0.5, 0.3);
+		p.setup(GlobalData::box2dworld.getWorld(), leftEyePos.x, leftEyePos.y, 30);
+		p.setupProjectileData() ;
+		GlobalData::skulls_projectiles.push_back(p);
 }

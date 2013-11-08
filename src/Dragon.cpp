@@ -36,30 +36,7 @@ void Dragon::update()
 				GlobalData::fb_projectiles[i].body->GetWorld()->DestroyBody(GlobalData::fb_projectiles[i].body);
 				GlobalData::fb_projectiles.erase(GlobalData::fb_projectiles.begin()+i );
 		}
-
-			/*if (x < 0 || x > ofGetWidth() )
-			{
-				GlobalData::fb_projectiles[i].body->GetWorld()->DestroyBody(GlobalData::fb_projectiles[i].body);
-				GlobalData::fb_projectiles.erase(GlobalData::fb_projectiles.begin()+i );
-			}*/
-
-		/*	if (GlobalData::fb_projectiles[i].bHit)
-			{
-				GlobalData::fb_projectiles[i].body->GetWorld()->DestroyBody(GlobalData::fb_projectiles[i].body);
-				GlobalData::fb_projectiles.erase(GlobalData::fb_projectiles.begin()+i );
-			}*/
-
-		
-			
-			
-			
-			
-		
-
-		
 	}
-
-
 }
 //
 void Dragon::createProjectile()
@@ -83,11 +60,6 @@ void Dragon::createProjectile()
 	}
 }
 
-float Dragon::radDiff( float a, float b )
-   {
-      return atan2( sin(a-b), cos(a-b) );
-   }
-//
 void Dragon::createDragon()
 {
 	dragon.setup("assets/dragon.atlas", "assets/dragon.json", 0.3);

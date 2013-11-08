@@ -5,6 +5,7 @@
 #include "CustomItem.h"
 #include "MonsterBody.h"
 #include "FireballProjectile.h"
+#include "SkullsProjectile.h"
 
 namespace GlobalData
 {
@@ -13,6 +14,7 @@ namespace GlobalData
    extern vector <CustomItem>	items;
    extern vector <MonsterBody> m_bodies;
    extern vector <FireballProjectile>	fb_projectiles;
+   extern vector <SkullsProjectile> skulls_projectiles;
    extern b2Body* playerBody;
    extern float healthPercent;
 }

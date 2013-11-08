@@ -7,6 +7,7 @@ namespace GlobalData
 	  vector <CustomItem>	items;
 	  vector <MonsterBody> m_bodies;
 	  vector <FireballProjectile>	fb_projectiles;
+	  vector <SkullsProjectile> skulls_projectiles;
 	  b2Body* playerBody;
 	  float healthPercent;
 
