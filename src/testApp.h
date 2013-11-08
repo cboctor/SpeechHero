@@ -35,6 +35,7 @@ class testApp : public ofBaseApp{
 		void stopRecording();
 		void copyFile(string status);
 		void drawHealth();
+		void updateScore();
 		
 		
 
@@ -61,6 +62,8 @@ class testApp : public ofBaseApp{
 		string word;
 		float time;
 		float startTime;
+		float scoreTime;
+		float scoreStartTime;
 		float wordRecordTime;
 		float wordRecordStartTime;
 		float wordStopTime;
@@ -83,7 +86,7 @@ class testApp : public ofBaseApp{
 		int wordsIncorrect;
 		vector<string> incorrectwords;
 		vector<string> correctwords;
-		int scoreMultiplier;
+		
 
 		MyThread thread;
 		ofImage floorImage;
@@ -115,6 +118,7 @@ class testApp : public ofBaseApp{
 		//vector<Monster> monsters;
 		Monster monster;
 
+		int rawScore;
 	
 		
 

@@ -10,6 +10,11 @@ namespace GlobalData
 	  vector <SkullsProjectile> skulls_projectiles;
 	  b2Body* playerBody;
 	  float healthPercent;
+	  int itemIndex;
+	  string itemType;
+	  int scoreMultiplier;
+	  int score;
+	  
 
  
 }

@@ -17,6 +17,12 @@ namespace GlobalData
    extern vector <SkullsProjectile> skulls_projectiles;
    extern b2Body* playerBody;
    extern float healthPercent;
+   extern int itemIndex;
+   extern string itemType;
+   extern int scoreMultiplier;
+   extern int score;
+   
+   
 }
 
 #endif GLOBALDATA_H

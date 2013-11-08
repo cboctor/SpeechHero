@@ -8,6 +8,7 @@ void MyContactListener::BeginContact(b2Contact* contact) {
 		  beginItemContact(contact);
 		  beginMonsterContact(contact);
 		  beginFireballContact(contact);
+		  beginSkullsContact(contact);
       }
   
 void MyContactListener::EndContact(b2Contact* contact) {
@@ -49,12 +50,24 @@ void MyContactListener::beginItemContact(b2Contact* contact)
 		 b2Body* bodyB = contact->GetFixtureB()->GetBody();
 		 if (bodyA == GlobalData::items[i].body && bodyB == GlobalData::playerBody)
 		 {
+			 if (GlobalData::itemType == "health")
+				 GlobalData::healthPercent += 0.3;
+			 else if (GlobalData::itemType =="letter")
+				 GlobalData::itemIndex +=1;
+			 else if (GlobalData::itemType =="multiplier")
+				 GlobalData::scoreMultiplier += 1;
 			 GlobalData::items[i].body->GetWorld()->DestroyBody(GlobalData::items[i].body);
 			 GlobalData::items.erase(GlobalData::items.begin()+i );
 		 }
 
 		 if(bodyB ==GlobalData::items[i].body && bodyA == GlobalData::playerBody)
 		 {
+			  if (GlobalData::itemType == "health")
+				 GlobalData::healthPercent += 0.3;
+			 else if (GlobalData::itemType =="letter")
+				 GlobalData::itemIndex +=1;
+			 else if (GlobalData::itemType =="multiplier")
+				 GlobalData::scoreMultiplier += 1;
 		    GlobalData::items[i].body->GetWorld()->DestroyBody(GlobalData::items[i].body);
 			GlobalData::items.erase(GlobalData::items.begin()+i );
 		 }
@@ -110,6 +123,30 @@ void MyContactListener::beginFireballContact(b2Contact* contact)
 
 
 	 }
+}
+
+void MyContactListener::beginSkullsContact(b2Contact* contact)
+{
+	   for (int i =0; i <GlobalData::skulls_projectiles.size(); i++)
+	 {
+		 b2Body* bodyA = contact->GetFixtureA()->GetBody();
+		 b2Body* bodyB = contact->GetFixtureB()->GetBody();
+		 if (bodyA == GlobalData::skulls_projectiles[i].body && bodyB == GlobalData::playerBody)
+		 {
+			 GlobalData::skulls_projectiles[i].bHit = true;
+			 GlobalData::healthPercent = GlobalData::healthPercent -0.1;
+		 }
+
+		 if(bodyB ==GlobalData::skulls_projectiles[i].body && bodyA == GlobalData::playerBody)
+		 {
+				GlobalData::skulls_projectiles[i].bHit = true;
+			    GlobalData::healthPercent = GlobalData::healthPercent -0.1;
+		 }
+
+
+	 }
+
+
 }
 
 

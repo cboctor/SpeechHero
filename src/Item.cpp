@@ -24,10 +24,44 @@ for(int i=0; i<GlobalData::items.size(); i++) {
 
 void Item::createItem()
 {
+	int rndItemIndex = ofRandom(0,3);
+	//int rndItemIndex = 1;
+	if (rndItemIndex ==0)
+			GlobalData::itemType = "letter";
+	 if (rndItemIndex==1)
+		GlobalData::itemType = "health";
+	if (rndItemIndex ==2 || rndItemIndex ==3)
+		GlobalData::itemType ="multiplier";
+	
+
 	CustomItem p;
 	p.setPhysics(1.0, 0.5, 0.3);
 	p.setup(GlobalData::box2dworld.getWorld(), 10, 500, 1);
-	p. setupTheCustomData();
+	if (GlobalData::itemType == "letter")
+	{
+		if (GlobalData::itemIndex ==0)
+			p. setupTheCustomData("S");
+		else if (GlobalData::itemIndex ==1)
+			p. setupTheCustomData("P");
+		else if (GlobalData::itemIndex ==2)
+			p. setupTheCustomData("E");
+		else if (GlobalData::itemIndex ==3)
+			p. setupTheCustomData("E");
+		else if (GlobalData::itemIndex ==4)
+			p. setupTheCustomData("C");
+		else if (GlobalData::itemIndex ==5)
+			p. setupTheCustomData("H");
+		else
+			GlobalData::itemType = "health";
+	}
+
+	if (GlobalData::itemType == "health")
+	{
+		p.setupTheCustomData("health");
+	}
+	if (GlobalData::itemType =="multiplier")
+		p.setupTheCustomData("multiplier");
+
 
 	GlobalData::items.push_back(p);
 	//GlobalData::box2dworld.getWorld()->SetContactListener(&contactListener);

@@ -25,7 +25,7 @@ void testApp::setup(){
 	selectRandomWord();
 	wordsCorrect = 0;
 	wordsIncorrect = 0;
-	scoreMultiplier = 0;
+	GlobalData::scoreMultiplier = 0;
 	floorImage.loadImage("assets/ground.png");
 	floorpoint.x = 0;
 	floorpoint.y = ofGetHeight() - floorImage.getHeight();
@@ -75,6 +75,10 @@ void testApp::setup(){
 
 
 	GlobalData::healthPercent = 1.0;
+	GlobalData::itemIndex = 0;
+	GlobalData::score = 0;
+	GlobalData::scoreMultiplier = 1;
+	rawScore = 0;
 
 
 }
@@ -95,6 +99,7 @@ void testApp::update(){
 	monster.update();
 	dragon.update();
 	GlobalData::box2dworld.update();
+	updateScore();
 	}
 	backgroundSet.update(0.01f/60);
 
@@ -130,6 +135,7 @@ void testApp::draw(){
 		if (isStarted)
 		{
 			startTime=ofGetElapsedTimeMillis();
+			scoreStartTime = ofGetElapsedTimeMillis();
 			wordRecordStartTime = ofGetElapsedTimeMillis();
 			wordStopStartTime = ofGetElapsedTimeMillis();
 			displayStartTime = ofGetElapsedTimeMillis();
@@ -176,6 +182,18 @@ void testApp::drawHealth()
 	ofRect(barPosX,barPosY+30,0, GlobalData::healthPercent*200, 30);
 }
 
+void testApp::updateScore()
+{
+	scoreTime = ofGetElapsedTimeMillis() - scoreStartTime;
+	GlobalData::score = GlobalData::scoreMultiplier * rawScore;
+	if (scoreTime >= 5000)
+	{
+		scoreStartTime = ofGetElapsedTimeMillis();
+		rawScore += 150;
+	}
+	
+}
+
 
 void testApp::spawnMonster()
 {
@@ -210,7 +228,9 @@ void testApp::spawnMonster()
 void testApp::loadHUD()
 {
 	string resultWord = thread.getResult();
-	pixfont.drawString(word, 50 , 50);
+	string scoreLabel;
+	scoreLabel = "Score: " + ofToString(GlobalData::score,1 );
+	pixfont.drawString(scoreLabel, 50 , 50);
 	pixfont.drawString(resultWord, 50, 100);
 	time = (ofGetElapsedTimeMillis() - startTime) / 1000;
 	wordRecordTime = (ofGetElapsedTimeMillis() - wordRecordStartTime) / 1000;
@@ -227,6 +247,7 @@ void testApp::loadHUD()
 				copyFile("correct");
 				correctwords.push_back(word);
 				item.createItem();
+				rawScore += 1000;
 			}
 		else
 			{
@@ -262,7 +283,7 @@ void testApp::loadHUD()
 		wordStopStartTime = ofGetElapsedTimeMillis();
 	}
 
-	string s = "Multiplier: x" + ofToString(scoreMultiplier,1) + "    ";
+	string s = "Multiplier: x" + ofToString(GlobalData::scoreMultiplier,1) + "    ";
 	s+= "Correct: " + ofToString(wordsCorrect,1) + "    ";
 	s+="Incorrect: " + ofToString(wordsIncorrect,1) + "    ";
 	string s1 ="Time: " + ofToString(time,1);

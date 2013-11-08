@@ -4,6 +4,7 @@
 #include "ofxSpine.h"
 #include "ofxBox2d.h"
 
+
 class ItemData {
 public:
 	float x;
@@ -20,7 +21,7 @@ class CustomItem : public ofxBox2dCircle {
 	
 public:
 	
-	void setupTheCustomData() {
+	void setupTheCustomData(char* animation) {
 		
 		static int colors[] = {0xcae72b, 0xe63b8f, 0x2bb0e7};
 		static string abc   = "abcdefghijklmnopqrstuvwxyz";
@@ -35,7 +36,9 @@ public:
 		theData->name += abc[(int)ofRandom(0, abc.size())];
 		theData->color.setHex(colors[(int)ofRandom(0, 3)]);
 		theData->skeleton.setup("assets/powerup.atlas", "assets/powerup.json", 0.5);
-		AnimationState_setAnimationByName(theData->skeleton.getState(), "S", true);
+
+		
+		AnimationState_setAnimationByName(theData->skeleton.getState(), animation, true);
 		
 
 		printf("setting the custom data!\n");

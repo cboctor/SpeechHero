@@ -21,4 +21,5 @@ class MyContactListener : public b2ContactListener
 	  void endItemContact(b2Contact* contact);
 	  void beginMonsterContact(b2Contact* contact);
 	  void beginFireballContact(b2Contact* contact);
+	  void beginSkullsContact(b2Contact* contact);
   };
