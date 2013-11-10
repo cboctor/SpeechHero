@@ -7,9 +7,6 @@
     <ClCompile Include="src\main.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\Interfaces.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="src\main.cpp">
       <Filter>src</Filter>
     </ClCompile>
@@ -283,6 +280,12 @@
     <ClCompile Include="src\globaldata.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\Interfaces.cpp">
+      <Filter>src\Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="src\HUD.cpp">
+      <Filter>src\Interface</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -429,12 +432,12 @@
     <Filter Include="src\Enemies">
       <UniqueIdentifier>{45da3122-54e2-4f88-8d05-821ca1ded217}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Interface">
+      <UniqueIdentifier>{26681992-3dda-4f8b-92cb-729a49e270c0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\testApp.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Interfaces.h">
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="src\MySQLConn.h">
@@ -991,6 +994,12 @@
     </ClInclude>
     <ClInclude Include="src\SkullsProjectile.h">
       <Filter>src\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Interfaces.h">
+      <Filter>src\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="src\HUD.h">
+      <Filter>src\Interface</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

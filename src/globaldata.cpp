@@ -14,6 +14,7 @@ namespace GlobalData
 	  string itemType;
 	  int scoreMultiplier;
 	  int score;
+	  string enemyType;
 	  
 
  

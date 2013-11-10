@@ -7,22 +7,47 @@
 void Dragon::update()
 {
 	time = ofGetElapsedTimeMillis() - startTime;
-	projtime = ofGetElapsedTimeMillis() - projstartTime;
+	spawnTime = ofGetElapsedTimeMillis() - spawnstartTime;
 	
 	dragon.update(1.0f/60);
+	updateHeadPosition();
 	createProjectile();
-	//dragon.
-	dragonPos.x +=2;
+	dragonBehaviour();
+	removeProjectiles();
+	
+
+	
+}
+
+void Dragon::updateHeadPosition()
+{
 	dragonHead = SkeletonData_findBone (dragon.getSkeletonData(), "head");
 	headPos.x = dragonHead->x + dragonPos.x;
 	headPos.y = dragonPos.y;// dragonHead->y + dragonPos.y;
-	
-	//headPos.y = dragonHead->y;
-	dragon.setPosition(dragonPos);
-	if (dragonPos.x >= ofGetWidth()+1000)
-		dragonPos.x =-1000;
-	
+}
 
+void Dragon::dragonBehaviour()
+{
+	if (spawnTime >=25000 && GlobalData::enemyType =="dragon")
+	{
+		dragonPos.x +=2;
+	}
+	else if (dragonPos.x + 300 > 0 && dragonPos.x-1000 < ofGetWidth())
+		dragonPos.x +=2;
+
+		dragon.setPosition(dragonPos);
+		if (dragonPos.x >= ofGetWidth()+1000)
+		{
+			spawnstartTime = ofGetElapsedTimeMillis();
+			dragonPos.x =-1000;
+		}
+		
+	
+	
+}
+
+void Dragon::removeProjectiles()
+{
 	for(int i=0; i<GlobalData::fb_projectiles.size(); i++) {
 		
 		float x = GlobalData::fb_projectiles[i].getPosition().x;
@@ -38,6 +63,7 @@ void Dragon::update()
 		}
 	}
 }
+
 //
 void Dragon::createProjectile()
 {
@@ -50,7 +76,6 @@ void Dragon::createProjectile()
 		p.setupProjectileData() ;
 		GlobalData::fb_projectiles.push_back(p);
 		startTime = ofGetElapsedTimeMillis();
-		projstartTime = ofGetElapsedTimeMillis();
 		randTime = ofRandom(1,5) * 1000;
 		head = SkeletonData_findBone (dragon.getSkeletonData(), "bone3");
 		float rotation = head->rotation;
@@ -64,12 +89,13 @@ void Dragon::createDragon()
 {
 	dragon.setup("assets/dragon.atlas", "assets/dragon.json", 0.3);
 	AnimationState_setAnimationByName(dragon.getState(), "fly", true);
-	dragonPos.x = -50;
+	dragonPos.x = -500;
 	dragonPos.y = 250;
 	dragon.setPosition(dragonPos);
 	startTime = ofGetElapsedTimeMillis();
-	projstartTime = ofGetElapsedTimeMillis();
+	spawnstartTime = ofGetElapsedTimeMillis();
 	randTime = 2000;
+	GlobalData::enemyType = "dragon";
 
 }
 
@@ -83,4 +109,8 @@ void Dragon::draw()
 	}
 	dragon.draw();
 	
+}
+ Dragon::~Dragon()
+{
+	dragon.~ofxSkeleton();
 }

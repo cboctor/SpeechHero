@@ -19,6 +19,9 @@ public:
 	void createSkulls();
 	void createProjectile();
 	void keyPressed(int key);
+	void setEyePosition();
+	void skullBehaviour();
+	void removeProjectiles();
 	
 	ofxSkeleton skull;
 	ofPoint skullPos;
@@ -31,8 +34,8 @@ public:
 	float radDiff( float a, float b );
 	float time;
 	float startTime;
-	float projtime;
-	float projstartTime;
+	float spawntime;
+	float spawnstartTime;
 	float randTime;
 
 

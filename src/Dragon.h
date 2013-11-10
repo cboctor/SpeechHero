@@ -17,7 +17,11 @@ public:
 	void update();
 	void draw();
 	void createDragon();
+	void updateHeadPosition();
 	void createProjectile();
+	void dragonBehaviour();
+	void removeProjectiles();
+	~Dragon();
 	
 	ofxSkeleton dragon;
 	ofPoint dragonPos;
@@ -27,8 +31,8 @@ public:
 	float radDiff( float a, float b );
 	float time;
 	float startTime;
-	float projtime;
-	float projstartTime;
+	float spawnTime;
+	float spawnstartTime;
 	float randTime;
 
 

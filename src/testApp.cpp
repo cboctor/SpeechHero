@@ -1,5 +1,6 @@
 #include "testApp.h"
-#define PI 3.14159265
+
+
 
 ofPoint p1;
 ofPoint charpos;
@@ -145,6 +146,7 @@ void testApp::draw(){
 	
 		backgroundImage.draw(0, floorpoint.y - backgroundImage.getHeight()+10);
 		floorImage.draw(floorpoint.x,floorpoint.y);
+		
 		dragon.draw();
 		
 		skull.draw();
@@ -175,10 +177,17 @@ void testApp::drawHealth()
 	string s = "Health :";
 	float barPosX = ofGetWidth() -300;
 	float barPosY = ofGetHeight() -100;
+	const int HEALTH_MAX = 1.0;
+	const int HEALTH_MIN = 0;
 	pixfont.drawString(s , barPosX - 100, barPosY+50);
 	ofSetColor(250,250,250);
 	ofRect(barPosX,barPosY+30,0, 200, 30);
 	ofSetColor(250,0,0);
+	
+	if (GlobalData::healthPercent > HEALTH_MAX)
+		GlobalData::healthPercent =HEALTH_MAX;
+	else if (GlobalData::healthPercent <=HEALTH_MIN)
+		GlobalData::healthPercent = HEALTH_MIN;
 	ofRect(barPosX,barPosY+30,0, GlobalData::healthPercent*200, 30);
 }
 
@@ -186,10 +195,10 @@ void testApp::updateScore()
 {
 	scoreTime = ofGetElapsedTimeMillis() - scoreStartTime;
 	GlobalData::score = GlobalData::scoreMultiplier * rawScore;
-	if (scoreTime >= 5000)
+	if (scoreTime >= 500)
 	{
 		scoreStartTime = ofGetElapsedTimeMillis();
-		rawScore += 150;
+		rawScore += 15;
 	}
 	
 }
@@ -210,17 +219,7 @@ void testApp::spawnMonster()
 		
 	}
 
-	
-	
-	// if we're this far, well none were found under the mouse, so add a thingy
-	
 
-	//for (int i=0; i<monsters.size(); i++)
-//	{
-	//	if (monsters[i].getX() >= ofGetWidth())
-		//	monsters.erase(monsters.begin() + i -1);
-	//}
-			
 
 }
 
@@ -254,6 +253,7 @@ void testApp::loadHUD()
 				wordsIncorrect++;
 				copyFile("incorrect");
 				incorrectwords.push_back(word);
+
 			}
 
 		displayStartTime = ofGetElapsedTimeMillis();
@@ -456,7 +456,7 @@ void testApp::dragEvent(ofDragInfo dragInfo){
 
 }
 
-void testApp::audioReceived 	(float * input, int bufferSize, int nChannels){
+void testApp::audioIn 	(float * input, int bufferSize, int nChannels){
 
 	rec.audioReceived(input,bufferSize,nChannels);
 }

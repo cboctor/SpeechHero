@@ -27,6 +27,7 @@ public:
 		void exit();
 		void obstacles();
 		void box2dplayerBody();
+		void limitToWindow();
 		
 		b2Vec2 vel ;
 		ofxSkeleton player;

@@ -54,12 +54,13 @@ class testApp : public ofBaseApp{
 		RecordFlac rec;
 		ofxUICanvas *gui;
 		void guiEvent(ofxUIEventArgs &e);
-		void audioReceived 	(float * input, int bufferSize, int nChannels);
+		void audioIn 	(float * input, int bufferSize, int nChannels);
 		
 		ofstream mfile;
 		int spacecount;
 		MySQLConn mysql;
 		string word;
+		string resultWord;
 		float time;
 		float startTime;
 		float scoreTime;
@@ -119,6 +120,8 @@ class testApp : public ofBaseApp{
 		Monster monster;
 
 		int rawScore;
+
+		
 	
 		
 

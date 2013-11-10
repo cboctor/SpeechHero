@@ -21,6 +21,7 @@ namespace GlobalData
    extern string itemType;
    extern int scoreMultiplier;
    extern int score;
+   extern string enemyType;
    
    
 }

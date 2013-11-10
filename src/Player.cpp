@@ -12,15 +12,7 @@ void Player::setup(){
 	keycount = 0;
 	isMidAir = false;
 	isDirectionRight = true;
-	circle.setPhysics(1, 0.1, 1);
 	worldBounds.set(0, 0 , ofGetWidth(), 650);
-	/*GlobalData::box2dworld.init();
-	GlobalData::box2dworld.setFPS(60);
-	GlobalData::box2dworld.setGravity(0, -10);
-	GlobalData::box2dworld.createBounds(worldBounds);
-	GlobalData::box2dworld.registerGrabbing();*/
-	//GlobalData::box2dworld.fixture
-	circle.setup(GlobalData::box2dworld.getWorld(), 500,500, 30);
 	keypressed = "nothing";
 	player.setup("assets/MainChar2.atlas", "assets/MainChar2.json", 0.7);
 	AnimationState_setAnimationByName(player.getState(), "standing", true);
@@ -30,12 +22,8 @@ void Player::setup(){
 	
 	GlobalData::box2dworld.getWorld()->SetContactListener(&myContactListenerInstance);
 	setJump = 0;
-	
 
 	box2dplayerBody();
-	//obstacles();
-	
-	
 
 	
 	
@@ -121,6 +109,7 @@ void Player::update()
 {
 
 	GlobalData::box2dworld.update();
+	limitToWindow();
 	
 	b2Vec2 vel = GlobalData::playerBody->GetLinearVelocity();
 	b2Vec2 posVec;
@@ -183,23 +172,6 @@ void Player::update()
 
 	}
 
-	//if (!isMidAir)
-	//{
-	//	AnimationState_setAnimationByName(player.getState(), "standing", true);
-	//	isMidAir = false;
-	//}
-
-	///if (GlobalData::numFootContacts < 1)
-		//cout << "no contact";
-
-	/*if (!isMidAir)
-	{
-		if (setJump ==1)
-			AnimationState_setAnimationByName(player.getState(), "standing", true);
-		setJump ++;
-
-	}
-*/
 	
 		if ( GlobalData::numFootContacts <1 ) {
 			 isMidAir = true;			 
@@ -216,6 +188,27 @@ void Player::update()
 
 
 		
+}
+
+void Player::limitToWindow()
+{
+	float x = GlobalData::playerBody->GetPosition().x * OFX_BOX2D_SCALE;
+	float y = GlobalData::playerBody->GetPosition().y * OFX_BOX2D_SCALE;
+
+	if (x<=0)
+	{
+	GlobalData::playerBody->SetTransform(b2Vec2(b2dNum(1), b2dNum(y)), 0);
+	//body->SetLinearVelocity(b2Vec2(0, 0)); // maybe bring this back...
+	GlobalData::playerBody->SetAwake(true); // this sounds backwards but that is what the doc says todo...
+	}
+
+	if (x>ofGetWidth())
+	{
+		GlobalData::playerBody->SetTransform(b2Vec2(b2dNum(ofGetWidth()-1), b2dNum(y)), 0);
+	//body->SetLinearVelocity(b2Vec2(0, 0)); // maybe bring this back...
+		GlobalData::playerBody->SetAwake(true); // this sounds backwards but that is what the doc says todo...
+	}
+
 }
 
 
