@@ -143,6 +143,10 @@ void MyContactListener::beginSkullsContact(b2Contact* contact)
 			    GlobalData::healthPercent = GlobalData::healthPercent -0.1;
 		 }
 
+	//	 if (bodyA == GlobalData::skulls_projectiles[i].body || bodyB ==GlobalData::skulls_projectiles[i].body)
+	//		 GlobalData::skulls_projectiles[i].bHit = true;
+
+
 
 	 }
 

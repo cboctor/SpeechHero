@@ -5,8 +5,6 @@
 ofPoint p1;
 ofPoint charpos;
 int keycount;
-//ofxBox2d GlobalData::box2dworld;
-
 
 
 //--------------------------------------------------------------
@@ -80,10 +78,11 @@ void testApp::setup(){
 	GlobalData::score = 0;
 	GlobalData::scoreMultiplier = 1;
 	rawScore = 0;
+	hud.setup();
+	GlobalData::isRecording = false;
 
 
 }
-
 
 
 
@@ -100,7 +99,7 @@ void testApp::update(){
 	monster.update();
 	dragon.update();
 	GlobalData::box2dworld.update();
-	updateScore();
+	hud.update();
 	}
 	backgroundSet.update(0.01f/60);
 
@@ -136,7 +135,8 @@ void testApp::draw(){
 		if (isStarted)
 		{
 			startTime=ofGetElapsedTimeMillis();
-			scoreStartTime = ofGetElapsedTimeMillis();
+			//scoreStartTime = ofGetElapsedTimeMillis();
+			hud.setup();
 			wordRecordStartTime = ofGetElapsedTimeMillis();
 			wordStopStartTime = ofGetElapsedTimeMillis();
 			displayStartTime = ofGetElapsedTimeMillis();
@@ -159,7 +159,7 @@ void testApp::draw(){
 		item.draw();
 		//GlobalData::box2dworld.getWorld()->DrawDebugData();
 		loadHUD();
-		drawHealth();
+		hud.draw();
 
 
 	}
@@ -172,44 +172,13 @@ void testApp::draw(){
 }
 
 
-void testApp::drawHealth()
-{
-	string s = "Health :";
-	float barPosX = ofGetWidth() -300;
-	float barPosY = ofGetHeight() -100;
-	const int HEALTH_MAX = 1.0;
-	const int HEALTH_MIN = 0;
-	pixfont.drawString(s , barPosX - 100, barPosY+50);
-	ofSetColor(250,250,250);
-	ofRect(barPosX,barPosY+30,0, 200, 30);
-	ofSetColor(250,0,0);
-	
-	if (GlobalData::healthPercent > HEALTH_MAX)
-		GlobalData::healthPercent =HEALTH_MAX;
-	else if (GlobalData::healthPercent <=HEALTH_MIN)
-		GlobalData::healthPercent = HEALTH_MIN;
-	ofRect(barPosX,barPosY+30,0, GlobalData::healthPercent*200, 30);
-}
-
-void testApp::updateScore()
-{
-	scoreTime = ofGetElapsedTimeMillis() - scoreStartTime;
-	GlobalData::score = GlobalData::scoreMultiplier * rawScore;
-	if (scoreTime >= 500)
-	{
-		scoreStartTime = ofGetElapsedTimeMillis();
-		rawScore += 15;
-	}
-	
-}
-
 
 void testApp::spawnMonster()
 {
 
 	
 	spawnMonsterTime = ofGetElapsedTimeMillis() - spawnMonsterStartTime;
-	if (spawnMonsterTime >=5000)
+	if (spawnMonsterTime >=5500)
 	{
 		//monsters.clear();
 		spawnMonsterStartTime = ofGetElapsedTimeMillis();
@@ -226,42 +195,28 @@ void testApp::spawnMonster()
 
 void testApp::loadHUD()
 {
-	string resultWord = thread.getResult();
-	string scoreLabel;
-	scoreLabel = "Score: " + ofToString(GlobalData::score,1 );
-	pixfont.drawString(scoreLabel, 50 , 50);
+	resultWord = thread.getResult();
 	pixfont.drawString(resultWord, 50, 100);
 	time = (ofGetElapsedTimeMillis() - startTime) / 1000;
 	wordRecordTime = (ofGetElapsedTimeMillis() - wordRecordStartTime) / 1000;
 	wordStopTime = (ofGetElapsedTimeMillis() - wordStopStartTime) /1000;
 	displayTime = (ofGetElapsedTimeMillis() - displayStartTime) /1000;
+	
 
 	const double NEXTWORD_TIME = 25;
 
 	if (displayTime >= NEXTWORD_TIME)
 	{
-		if (resultWord == word)
-			{
-				wordsCorrect ++;
-				copyFile("correct");
-				correctwords.push_back(word);
-				item.createItem();
-				rawScore += 1000;
-			}
-		else
-			{
-				wordsIncorrect++;
-				copyFile("incorrect");
-				incorrectwords.push_back(word);
-
-			}
-
+		 
+		
+		checkCorrect();
 		displayStartTime = ofGetElapsedTimeMillis();
 		wordRecordStartTime = ofGetElapsedTimeMillis();
 		wordStopStartTime = ofGetElapsedTimeMillis();
-		word = " ";
-		resultWord = " ";
+	
 		selectRandomWord();
+		thread.clearResult();
+		recordingState.clear();
 	}
 
 	if (displayTime >=15 && displayTime <=NEXTWORD_TIME)
@@ -271,6 +226,7 @@ void testApp::loadHUD()
 
 	if (wordRecordTime >=15)
 	{
+		recordingState = "Recording";
 		cout<<"recording started";
 		startRecording();
 		wordRecordStartTime = ofGetElapsedTimeMillis();
@@ -278,6 +234,7 @@ void testApp::loadHUD()
 
 	if (wordStopTime >=18)
 	{
+		recordingState = "Checking word matches..";
 		stopRecording(); 
 		cout<<"recording stopped";
 		wordStopStartTime = ofGetElapsedTimeMillis();
@@ -298,17 +255,26 @@ void testApp::loadHUD()
 	pixfont.drawString(s1 ,ofGetWidth() - 150, 50);
 	pixfont.drawString(s ,50, ofGetHeight() -50);
 	pixfont.drawString(nextword, (ofGetWidth() - 200) /2, 50);
+	
 
 	if (isWordReady == true)
 	{
 
 		if (resultWord == word)
 		{
-
+			recordingState = "Correct";
 			ofEnableAlphaBlending();    // turn on alpha blending
 			ofSetColor(0,255,0,50);  
 			ofRect( 0, 0.4 * ofGetHeight(), 0 ,ofGetWidth() , 0.2* ofGetHeight());
 			
+		}
+		else if (!resultWord.empty())
+		{
+			recordingState = "Incorrect";
+			ofEnableAlphaBlending();    // turn on alpha blending
+			ofSetColor(255,0,0,50);  
+			ofRect( 0, 0.4 * ofGetHeight(), 0 ,ofGetWidth() , 0.2* ofGetHeight());
+
 		}
 		ofEnableAlphaBlending();    // turn on alpha blending
 		ofSetColor(0,0,0,50);  
@@ -316,9 +282,31 @@ void testApp::loadHUD()
 
 		ofSetColor(255,255,255);
 		bigPixfont.drawString(word, (ofGetWidth() - 30) /2, ofGetHeight()/2);
-
+		pixfont.drawString(recordingState, 15, ofGetHeight() * 0.4 + 50);
+		wordRecordStartTime = ofGetElapsedTimeMillis();
 	}
+	//else
+	//	thread.clearResult();
 }
+
+void testApp::checkCorrect()
+{
+	if (resultWord == word)
+			{
+				wordsCorrect ++;
+				copyFile("correct");
+				correctwords.push_back(word);
+				item.createItem();
+				rawScore += 1000;
+			}
+		else
+			{
+				wordsIncorrect++;
+				copyFile("incorrect");
+				incorrectwords.push_back(word);
+			}
+}
+
 
 void testApp::loadWords()
 {
@@ -339,7 +327,6 @@ void testApp::selectRandomWord()
 	cout<<word;
 
 }
-
 
 
 

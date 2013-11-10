@@ -22,6 +22,7 @@ namespace GlobalData
    extern int scoreMultiplier;
    extern int score;
    extern string enemyType;
+   extern bool isRecording;
    
    
 }

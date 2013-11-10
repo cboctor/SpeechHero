@@ -16,17 +16,10 @@ void Player::setup(){
 	keypressed = "nothing";
 	player.setup("assets/MainChar2.atlas", "assets/MainChar2.json", 0.7);
 	AnimationState_setAnimationByName(player.getState(), "standing", true);
-	player.setPosition(circle.getPosition());
-	GlobalData::numFootContacts = 0;
-	//GlobalData::box2dworld.getWorld()->SetContactListener(&myContactListenerInstance);
-	
+	GlobalData::numFootContacts = 0;	
 	GlobalData::box2dworld.getWorld()->SetContactListener(&myContactListenerInstance);
 	setJump = 0;
-
 	box2dplayerBody();
-
-	
-	
 }
 
 void Player::box2dplayerBody()
@@ -118,7 +111,6 @@ void Player::update()
 	posPoint.x = posVec.x * OFX_BOX2D_SCALE;
 	posPoint.y = posVec.y * OFX_BOX2D_SCALE + 85;
 	player.update(1.0f /60);
-	//player.setPosition(circle.getPosition());
 	player.setPosition(posPoint);
 	if (keypressed == "key-left" && !isMidAir)
 		{
@@ -257,7 +249,6 @@ void Player::keyReleased(int key){
 void Player::draw()
 {
 	player.draw();
-	circle.draw();
 	//GlobalData::box2dworld.getWorld()->DrawDebugData();
 }
 

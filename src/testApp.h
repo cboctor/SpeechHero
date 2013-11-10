@@ -15,6 +15,7 @@
 #include "Dragon.h"
 #include "Item.h"
 #include "globaldata.h"
+#include "HUD.h"
 
 
 extern vector<string> wordArray;
@@ -35,7 +36,7 @@ class testApp : public ofBaseApp{
 		void stopRecording();
 		void copyFile(string status);
 		void drawHealth();
-		void updateScore();
+		void checkCorrect();
 		
 		
 
@@ -71,7 +72,7 @@ class testApp : public ofBaseApp{
 		float wordStopStartTime;
 		float displayTime;
 		float displayStartTime;
-		
+		string recordingState;
 
 		float spawnMonsterTime;
 		float spawnMonsterStartTime;
@@ -120,6 +121,8 @@ class testApp : public ofBaseApp{
 		Monster monster;
 
 		int rawScore;
+
+		HUD hud;
 
 		
 	

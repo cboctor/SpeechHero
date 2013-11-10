@@ -11,29 +11,34 @@
 void RecordFlac::start(){
 
 	try{
-		left = new float[256];
-		right = new float[256];
+		if (!GlobalData::isRecording)
+			{
+			GlobalData::isRecording =true;
+			left = new float[256];
+			right = new float[256];
 
-		bufferCounter = 0;
-		drawCounter = 0;
+			bufferCounter = 0;
+			drawCounter = 0;
 
-		sampleRate = 16000;
-		ofSoundStreamSetup(0,2, sampleRate, 256, 4);
+			sampleRate = 16000;
+			ofSoundStreamSetup(0,2, sampleRate, 256, 4);
 
 
-		info.format=SF_FORMAT_FLAC | SF_FORMAT_PCM_16;
-		info.frames = sampleRate*60;
-		info.samplerate = sampleRate;
-		info.channels = 2;
+			info.format=SF_FORMAT_FLAC | SF_FORMAT_PCM_16;
+			info.frames = sampleRate*60;
+			info.samplerate = sampleRate;
+			info.channels = 2;
 
-		outfile = sf_open ("data/audio.flac", SFM_WRITE, &info) ;
+			outfile = sf_open ("data/audio.flac", SFM_WRITE, &info) ;
 
-		if (!outfile)
-		{
-			cerr<<"Error opening ["<<outfilename<<"] : "<<sf_strerror (outfile)<<endl;
+			if (!outfile)
+			{
+				cerr<<"Error opening ["<<outfilename<<"] : "<<sf_strerror (outfile)<<endl;
+			}
 		}
 	} catch(...)
 	{cout<<"could not output";}
+
 }
 
 
@@ -63,7 +68,7 @@ void RecordFlac::stop(){
 	}
 	else {
 
-		
+		GlobalData::isRecording = false;
 		ofSoundStreamClose();
 		sf_close(outfile);
 	}

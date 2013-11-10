@@ -167,6 +167,11 @@ string getResult()
 	return result["hypotheses"][0]["utterance"].asString();
 }
 
+void clearResult()
+{
+	result.clear();
+}
+
 void clearBuffer()
 {
 	readBuffer.clear();

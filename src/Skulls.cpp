@@ -46,7 +46,7 @@ void Skulls::setEyePosition()
 
 void Skulls::skullBehaviour()
 {
-	if (spawntime > 60000)
+	if (spawntime > 120000)
 	{
 		GlobalData::enemyType = "skull";
 		if (skullPos.x < ofGetWidth()/2 || skullPos.x > ofGetWidth()/2)
@@ -54,7 +54,7 @@ void Skulls::skullBehaviour()
 		else
 		{
 			createProjectile();
-			if (spawntime >= 95000)
+			if (spawntime >= 155000)
 				skullPos.x +=1;
 		}
 

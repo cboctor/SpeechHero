@@ -15,6 +15,7 @@ namespace GlobalData
 	  int scoreMultiplier;
 	  int score;
 	  string enemyType;
+	  bool isRecording;
 	  
 
  

@@ -5,6 +5,7 @@
 #include <curl/curl.h>
 #include "ofxJSONElement.h"
 #include "MyThread.h"
+#include "globaldata.h"
 
 
 
