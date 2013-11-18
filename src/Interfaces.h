@@ -39,6 +39,8 @@ class Interfaces {
 		void setUISessions();
 		void setUIOptions();
 		void setUISessionPanelUser();
+		void setUIGameOver();
+		void setUIHighscores();
 		//void setUISessionPanelChild();
 		//void setUISessionPanel2();
 		ofxUICanvas *uilogin;
@@ -46,6 +48,8 @@ class Interfaces {
 		ofxUICanvas *uimain;
 		ofxUICanvas *uipractice;
 		ofxUICanvas *uisessions;
+		ofxUICanvas *uigameover;
+		ofxUICanvas *uihighscores;
 		ofxUICanvas *sessionpanel1;
 		ofxUICanvas *sessionpanel2;
 		ofxUICanvas *uioptionsuser;
@@ -60,6 +64,8 @@ class Interfaces {
 		ofxUIButton *back;
 		ofxUIButton *createButton;
 		ofxUIButton *playButton;
+		ofxUIButton *hsMainButton;
+		ofxUIButton *highscoreButton;
 		ofxUITextInput *txtusername;
 		ofxUITextInput *txtpassword;
 		ofxUITextInput *txtparentusername;
@@ -74,6 +80,8 @@ class Interfaces {
 		//ofTrueTypeFont pfont;
 		EaseRectBox rr;
 		ofxMessageBox msgBox;
+		ofxMessageBox msgEmpty;
+		ofxUILabel* lbl;
 		
 		string getUser();
 		void guiEvent(ofxUIEventArgs &e);

@@ -16,6 +16,14 @@ namespace GlobalData
 	  int score;
 	  string enemyType;
 	  bool isRecording;
+	  int wordsIncorrect;
+	  int wordsCorrect;
+	  string highscoresTable;
+	  string hsusername;
+	  string hsscore;
+	  string hsmultiplier;
+	  string hscorrect;
+	  string hsincorrect;
 	  
 
  

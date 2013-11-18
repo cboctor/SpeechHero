@@ -22,8 +22,8 @@ void testApp::setup(){
 	isNow = false;
 	loadWords();
 	selectRandomWord();
-	wordsCorrect = 0;
-	wordsIncorrect = 0;
+	GlobalData::wordsCorrect = 0;
+	GlobalData::wordsIncorrect = 0;
 	GlobalData::scoreMultiplier = 0;
 	floorImage.loadImage("assets/ground.png");
 	floorpoint.x = 0;
@@ -100,6 +100,13 @@ void testApp::update(){
 	dragon.update();
 	GlobalData::box2dworld.update();
 	hud.update();
+
+	if (GlobalData::healthPercent <=0)
+	{
+		mainWindow.setUIGameOver();
+		mainWindow.setView("gameover");
+		
+	}
 	}
 	backgroundSet.update(0.01f/60);
 
@@ -130,6 +137,19 @@ void testApp::draw(){
 
 	}
 
+	if(mainWindow.getView() == "highscores")
+	{
+		ofSetColor(255,255,255);
+		ofTrueTypeFont font;
+		font.loadFont("GUI/font.ttf", 14);
+		font.drawString(GlobalData::hsusername, 270, 45);
+		font.drawString(GlobalData::hsscore, 420, 45);
+		font.drawString(GlobalData::hscorrect, 570, 45);
+		font.drawString(GlobalData::hsincorrect, 720, 45);
+		font.drawString(GlobalData::hsmultiplier, 870, 45);
+
+	}
+
 	if (mainWindow.getView() == "game")
 	{
 		if (isStarted)
@@ -137,6 +157,9 @@ void testApp::draw(){
 			startTime=ofGetElapsedTimeMillis();
 			//scoreStartTime = ofGetElapsedTimeMillis();
 			hud.setup();
+			
+			dragon.createDragon();
+			skull.createSkulls();
 			wordRecordStartTime = ofGetElapsedTimeMillis();
 			wordStopStartTime = ofGetElapsedTimeMillis();
 			displayStartTime = ofGetElapsedTimeMillis();
@@ -241,8 +264,8 @@ void testApp::loadHUD()
 	}
 
 	string s = "Multiplier: x" + ofToString(GlobalData::scoreMultiplier,1) + "    ";
-	s+= "Correct: " + ofToString(wordsCorrect,1) + "    ";
-	s+="Incorrect: " + ofToString(wordsIncorrect,1) + "    ";
+	s+= "Correct: " + ofToString(GlobalData::wordsCorrect,1) + "    ";
+	s+="Incorrect: " + ofToString(GlobalData::wordsIncorrect,1) + "    ";
 	string s1 ="Time: " + ofToString(time,1);
 
 
@@ -293,7 +316,7 @@ void testApp::checkCorrect()
 {
 	if (resultWord == word)
 			{
-				wordsCorrect ++;
+				GlobalData::wordsCorrect ++;
 				copyFile("correct");
 				correctwords.push_back(word);
 				item.createItem();
@@ -301,7 +324,7 @@ void testApp::checkCorrect()
 			}
 		else
 			{
-				wordsIncorrect++;
+				GlobalData::wordsIncorrect++;
 				copyFile("incorrect");
 				incorrectwords.push_back(word);
 			}

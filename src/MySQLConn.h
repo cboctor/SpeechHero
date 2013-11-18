@@ -7,6 +7,7 @@
 #include <cppconn/resultset.h>
 #include <cppconn/statement.h>
 #include <cppconn/prepared_statement.h>
+#include "globaldata.h"
 
 
 extern bool b_initial;
@@ -81,7 +82,10 @@ public:
 		void setupSettings(string username);
 		void createUserTable();
 		void createWordTable();
+		void createHighScoresTable();
 		bool authenticateUser(string user, string password);
+		void addScore(string username, int score, int correct, int incorrect, int multiplier);
+		string getHighScores();
 		string getUser(string user);
 		string getPassword(string user);
 		string getType(string user);

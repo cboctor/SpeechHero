@@ -6,6 +6,11 @@ void HUD::setup()
 	scoreStartTime = ofGetElapsedTimeMillis();
 	pixfont.loadFont("pix.ttf", 32);
 	rawScore = 0;
+	GlobalData::healthPercent = 1.0;
+	GlobalData::scoreMultiplier =1 ;
+	GlobalData::wordsCorrect = 0;
+	GlobalData::wordsIncorrect = 0;
+	GlobalData::score = 0;
 	letters[0].loadImage("assets/S.png");
 	letters[1].loadImage("assets/P.png");
 	letters[2].loadImage("assets/E.png");

@@ -83,9 +83,7 @@ class testApp : public ofBaseApp{
 		bool isNow;
 		
 
-		int multiplier;
-		int wordsCorrect;
-		int wordsIncorrect;
+		
 		vector<string> incorrectwords;
 		vector<string> correctwords;
 		

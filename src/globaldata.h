@@ -23,6 +23,14 @@ namespace GlobalData
    extern int score;
    extern string enemyType;
    extern bool isRecording;
+   extern int wordsIncorrect;
+   extern int wordsCorrect;
+   extern string highscoresTable;
+   extern string hsusername;
+   extern string hsscore;
+   extern string hsmultiplier;
+   extern string hscorrect;
+   extern string hsincorrect;
    
    
 }

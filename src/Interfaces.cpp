@@ -65,20 +65,16 @@ bool z_final;
 #pragma endregion
 //--------------------------------------------------------------
 void Interfaces::setup(){
-	
-	
-	
-	//pfont->loadFont("password.ttf", OFX_UI_FONT_MEDIUM);
-	//pfont->loadFont("password.ttf", );
-	//txtparentpassword->setFont(pfont);
 	isLoggedIn = false;
 	setUIPractice();
 	setUILogin();
 	setUIRegister();
+	setUIGameOver();
 	
 	uimain = new ofxUICanvas(0.2*ofGetWidth(),0, 0.6*ofGetWidth(), ofGetHeight());
 	 uioptionsuser = new ofxUICanvas(0.2*ofGetWidth(),0, 0.6*ofGetWidth(), 100);
 	 uioptions = new ofxUIScrollableCanvas(0.2*ofGetWidth(),200, 0.6*ofGetWidth(), ofGetHeight());  
+	 uihighscores = new ofxUICanvas(0.2*ofGetWidth(),0, 0.6*ofGetWidth(), ofGetHeight());
 	
 	// uioptions->drawFill();
 	
@@ -96,6 +92,7 @@ void Interfaces::setup(){
 	mysql.setup();
 	
 	msgBox.addNewMessage("Incorrect Login", "Please enter correct login", OFX_MESSAGEBOX_OK);
+	msgEmpty.addNewMessage("Empty Fields", "Please ensure all fields are complete", OFX_MESSAGEBOX_OK);
 	//msgBox.
 	
 	view="login";
@@ -111,10 +108,12 @@ string Interfaces::getView()
 	
 }
 
-void Interfaces::setView(string view)
+void Interfaces::setView(string _view)
 {
-	if (view == "login")
+	view = _view;
+	if (_view == "login")
 	{
+
 		uilogin->setVisible(true);
 		uimain->setVisible(false);
 		uipractice->setVisible(false);
@@ -122,8 +121,9 @@ void Interfaces::setView(string view)
 		uioptions ->setVisible(false);
 		uioptionsuser->setVisible(false);
 		//uisessions->setVisible(false);
+		uigameover->setVisible(false);
 	}
-	else if (view =="register")
+	else if (_view =="register")
 	{
 		uilogin->setVisible(true);
 		uimain->setVisible(false);
@@ -131,8 +131,9 @@ void Interfaces::setView(string view)
 		uiregister->setVisible(true);
 		uioptions ->setVisible(false);
 		//uisessions->setVisible(false);
+		uigameover->setVisible(false);
 	}
-	else if (view == "main")
+	else if (_view == "main")
 	{
 		uilogin->setVisible(false);
 		uimain->setVisible(true);
@@ -141,8 +142,10 @@ void Interfaces::setView(string view)
 		uioptions ->setVisible(false);
 		uioptionsuser->setVisible(false);
 		//uisessions->setVisible(false);
+		uigameover->setVisible(false);
+		uihighscores->setVisible(false);
 	}
-	else if (view =="practice")
+	else if (_view =="practice")
 	{
 		uilogin->setVisible(false);
 		uimain->setVisible(false);
@@ -150,8 +153,9 @@ void Interfaces::setView(string view)
 		uiregister->setVisible(false);
 		uioptions ->setVisible(false);
 		//uisessions->setVisible(false);
+		uigameover->setVisible(false);
 	}
-	else if ( view =="game")
+	else if (_view =="game")
 	{
 		uilogin->setVisible(false);
 		uimain->setVisible(false);
@@ -159,9 +163,10 @@ void Interfaces::setView(string view)
 		uiregister->setVisible(false);
 		uioptions ->setVisible(false);
 		//uisessions->setVisible(false);
+		uigameover->setVisible(false);
 
 	}
-	else if ( view =="sessions")
+	else if (_view =="sessions")
 	{
 		uilogin->setVisible(false);
 		uimain->setVisible(false);
@@ -170,9 +175,10 @@ void Interfaces::setView(string view)
 		uisessions->setVisible(true);
 		uioptions ->setVisible(false);
 		//sessionpanel1->setVisible(true);
+		uigameover->setVisible(false);
 
 	}
-	else if ( view == "options")
+	else if (_view == "options")
 	{
 		uilogin->setVisible(false);
 		uimain->setVisible(false);
@@ -181,6 +187,33 @@ void Interfaces::setView(string view)
 		//uisessions->setVisible(false);
 		uioptions ->setVisible(true);
 		uioptionsuser->setVisible(true);
+		uigameover->setVisible(false);
+
+	}
+	else if (_view == "gameover")
+	{
+		uilogin->setVisible(false);
+		uimain->setVisible(false);
+		uipractice->setVisible(false);
+		uiregister->setVisible(false);
+		//uisessions->setVisible(false);
+		uioptions ->setVisible(false);
+		uioptionsuser->setVisible(false);
+		uigameover->setVisible(true);
+
+	}
+
+		else if (_view == "highscores")
+	{
+		uilogin->setVisible(false);
+		uimain->setVisible(false);
+		uipractice->setVisible(false);
+		uiregister->setVisible(false);
+		//uisessions->setVisible(false);
+		uioptions ->setVisible(false);
+		uioptionsuser->setVisible(false);
+		uigameover->setVisible(false);
+		uihighscores->setVisible(true);
 
 	}
 }
@@ -325,21 +358,19 @@ void Interfaces::setWords()
 void Interfaces::setUILogin(){
 	float xInit = OFX_UI_GLOBAL_WIDGET_SPACING;
 	float length = 255-xInit;
-	
 	uilogin = new ofxUICanvas(0,0, length+xInit, ofGetHeight());
 	uilogin->addWidgetDown(new ofxUILabel("SPEECH HERO", OFX_UI_FONT_LARGE));
 	uilogin->addWidgetDown(new ofxUILabel("Username:", OFX_UI_FONT_MEDIUM));
 	txtusername= uilogin->addTextInput("Username", "", length-xInit);
 	uilogin->addWidgetDown(new ofxUILabel("Password:", OFX_UI_FONT_MEDIUM));
+	//uilogin->updateFont(OFX_UI_FONT_MEDIUM,"GUI/password.ttf", 16);
 	txtpassword = uilogin->addTextInput("Password", "", length-xInit);
 	txtpassword->setAutoClear(false);
 	uilogin->addSpacer(length-xInit, 2);
 	uilogin->addSpacer(length-xInit, 30);
 	uilogin->addLabelButton("LOGIN", false, length-xInit);
 	uilogin->addLabelButton("REGISTER", false, length-xInit);
-    uilogin->addLabelButton("QUIT", false, length-xInit);
-	
-	
+    uilogin->addLabelButton("QUIT", false, length-xInit);	
 	ofAddListener(uilogin->newGUIEvent,this,&Interfaces::guiEvent);
 }
 
@@ -385,6 +416,24 @@ void Interfaces::setUIRegister(){
 	ofAddListener(uiregister->newGUIEvent,this,&Interfaces::guiEvent);
 }
 
+
+void Interfaces::setUIGameOver()
+{
+
+	float xInit = OFX_UI_GLOBAL_WIDGET_SPACING;
+	float length = 255-xInit;
+	uigameover = new ofxUICanvas(0.3*ofGetWidth(), 0.3*ofGetHeight(), 0.4*ofGetWidth(), 0.4*ofGetHeight());
+	uigameover->addWidgetDown(new ofxUILabel("Game Over", OFX_UI_FONT_LARGE));
+	 lbl =uigameover->addLabel("Score", "Score: " + ofToString(GlobalData::score), 1);
+	uigameover->addLabel ("Correct", "Words Correct: " + ofToString(GlobalData::wordsCorrect,1));
+	uigameover->addLabel ("Incorrect", "Words Incorrect: " + ofToString(GlobalData::wordsIncorrect,1));
+	uigameover->addLabel ("Multiplier", "Multiplier : x" + ofToString(GlobalData::scoreMultiplier,1));
+	uigameover->addLabel ("Collected", "Letters Collected : "+ ofToString(GlobalData::itemIndex,1));
+	uigameover->addLabelButton("SUBMIT",false, length-xInit);
+	ofAddListener(uigameover->newGUIEvent,this,&Interfaces::guiEventOptions);
+	
+}
+
 void Interfaces::setUIMain(){
 	float xInit = OFX_UI_GLOBAL_WIDGET_SPACING;
 	float length = 255-xInit;
@@ -397,7 +446,7 @@ void Interfaces::setUIMain(){
 	uimain->addSpacer(butSize, 30);
 	playButton = uimain->addLabelButton("Play", false,butSize);
 	uimain->addSpacer(0,15);
-	uimain->addLabelButton("Highscores", false, butSize);
+	highscoreButton = uimain->addLabelButton("Highscores", false, butSize);
 	uimain->addSpacer(0,15);
     uimain->addLabelButton("Sessions", false, butSize);
 	uimain->addSpacer(0,15);
@@ -615,6 +664,17 @@ void Interfaces::setUISessionPanelUser(){
 	sessionpanel2 = new ofxUICanvas(x+ w,y,w,h);
 }
 
+void Interfaces::setUIHighscores()
+{
+	float butSize = 0.59*ofGetWidth();
+		string highscore = mysql.getHighScores();
+		uihighscores->addWidgetDown(new ofxUILabel("Highscores", OFX_UI_FONT_LARGE));
+		uihighscores->addSpacer(0, 650);
+		hsMainButton =uihighscores->addLabelButton("MAIN", false, butSize);
+	    ofAddListener(uihighscores->newGUIEvent, this, &Interfaces::guiEventPractice);
+
+}
+
 
 void Interfaces::getSessions(string user)
 {
@@ -689,10 +749,15 @@ void Interfaces::guiEventPractice(ofxUIEventArgs &e)
 	
 	if (view =="practice"){
 	if (name =="Back" &&back->getValue()==1)
-		view = "main";
+		view = "main";		
 	setView(view);
 }
 
+	if (view =="highscores"){
+		if (name == "MAIN")
+			view = "main";
+		setView(view);
+	}
 
 }
 
@@ -706,10 +771,14 @@ void Interfaces::guiEventMain(ofxUIEventArgs &e)
 	    setSessionID();
 		view = "game";
 		isStarted = true;
+		GlobalData::healthPercent = 1.0;
+		GlobalData::itemIndex =0;
 		
 	}
-	else if (name == "Highscores")
+	else if (name == "Highscores" && highscoreButton->getValue() ==1)
 	{
+		view = "highscores";
+		setUIHighscores();
 	}
 	else if (name == "Sessions")
 	{setUISessions();
@@ -758,7 +827,18 @@ void Interfaces::guiEvent(ofxUIEventArgs &e)
 	else if (name == "QUIT")
 		 ofExit();
 	else if (name == "CREATE" & createButton->getValue()==1)
-		createUser();
+		{
+			if (txtparentusername->getTextString().empty())
+				msgEmpty.viewMessage(0);
+			else if (txtparentpassword->getTextString().empty())
+				msgEmpty.viewMessage(0);
+			else if (txtchildusername->getTextString().empty())
+				msgEmpty.viewMessage(0);
+			else if (txtchildpassword->getTextString().empty())
+				msgEmpty.viewMessage(0);
+			else
+			createUser();
+	}
 	setView(view);
 }
 
@@ -804,6 +884,7 @@ void Interfaces::guiEventSessions(ofxUIEventArgs &e)
 		}
 
 		
+		
 
 	//	if (name ==
 			
@@ -836,6 +917,16 @@ void Interfaces::guiEventOptions(ofxUIEventArgs &e)
 			cout <<optionsSelectedUser;
         }
     }
+
+	if (name == "SUBMIT")
+	{
+		mysql.addScore(getUser(), GlobalData::score, GlobalData::wordsCorrect, GlobalData::wordsIncorrect, GlobalData::scoreMultiplier);
+		view = "main";
+		setView(view);
+	}
+
+	
+
 	
 }
 #pragma endregion
@@ -1183,6 +1274,10 @@ bool Interfaces::authenticateUser()
 //--------------------------------------------------------------
 void Interfaces::update(){
 	uimain->update();
+	uilogin->update();
+	uigameover->update();
+	lbl->update();
+	
 	
 }
 

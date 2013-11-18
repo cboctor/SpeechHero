@@ -9,6 +9,7 @@ void MySQLConn::setup(){
 	connectDb();
 	createUserTable();
 	createWordTable();
+	createHighScoresTable();
 	
 
 }
@@ -24,6 +25,18 @@ void MySQLConn::createUserTable()
 	queryString += "type varchar(10),";
 	queryString +="boundeduser varchar(200) NOT NULL,";
 	queryString += "PRIMARY KEY (user_ID)) ";
+	query(queryString);
+
+}
+
+void MySQLConn::createHighScoresTable()
+{
+	string queryString = "CREATE TABLE IF NOT EXISTS highscores (";
+	queryString +="username varchar(200) NOT NULL,";
+	queryString +="score int,";
+	queryString += "correct int,";
+	queryString += "incorrect int,";
+	queryString += "multiplier int)";
 	query(queryString);
 
 }
@@ -378,6 +391,55 @@ void MySQLConn::createUser(string username, string password, string firstname, s
 	query(queryString);
 	//execute(queryString);
 }
+
+void MySQLConn::addScore(string username, int score, int correct, int incorrect, int multiplier)
+{
+	string queryString = "INSERT INTO highscores (username, score, correct, incorrect, multiplier)";
+	queryString += " VALUES ('"+username+ "','" + ofToString(score,1)+"','"+ ofToString(correct,1)+"','"+ofToString(incorrect,1)+"','"+ ofToString(multiplier,1)+"');";
+	query(queryString);
+}
+
+string MySQLConn::getHighScores()
+{
+	string queryString = "SELECT * FROM highscores ORDER BY score DESC";
+	//queryString += " WHERE username = '" +user+ "'";
+	query(queryString);
+	string highscores;
+	highscores = " USERNAME  \t  SCORE  \t  CORRECT  \t  INCORRECT  \t MULTIPLIER  \n";
+	string usernames = "USERNAME \n";
+	string score = "SCORE \n";
+	string correct = "CORRECT \n";
+	string incorrect = "INCORRECT \n";
+	string multiplier = "MULTIPLIER \n";
+
+	for (int i =0 ; i<10; i++)
+	{
+		if (res->next())
+		{
+			usernames += res->getString("username")+"\n";
+			score += res->getString("score") + "\n";
+			correct += res->getString("correct") + "\n";
+			incorrect += res->getString("incorrect") + "\n";
+			multiplier += res->getString("multiplier") + "\n";
+		}
+	}
+
+	GlobalData::highscoresTable = highscores;
+	GlobalData::hscorrect = correct;
+	GlobalData::hsmultiplier = multiplier;
+	GlobalData::hsscore = score;
+	GlobalData::hsincorrect = incorrect;
+	GlobalData::hsmultiplier = multiplier;
+	GlobalData::hsusername = usernames;
+	return highscores;
+	//highscoresTable = highscores;
+	//if (res->next())
+		//return res->getString ("type");
+	//else
+		//return "Type not found";
+
+}
+
 
 void MySQLConn::setupSettings(string username)
 {

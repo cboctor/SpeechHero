@@ -20,6 +20,7 @@ void Player::setup(){
 	GlobalData::box2dworld.getWorld()->SetContactListener(&myContactListenerInstance);
 	setJump = 0;
 	box2dplayerBody();
+	keypressed = "released";
 }
 
 void Player::box2dplayerBody()
@@ -112,7 +113,17 @@ void Player::update()
 	posPoint.y = posVec.y * OFX_BOX2D_SCALE + 85;
 	player.update(1.0f /60);
 	player.setPosition(posPoint);
-	if (keypressed == "key-left" && !isMidAir)
+
+	if (isMidAir)
+	{
+		
+		AnimationState_setAnimationByName(player.getState(), "jump", false);
+		vel.x *=0.98;
+	}
+	else
+	{
+		
+	if (keypressed == "key-left" )
 		{
 			if (keycount ==1)
 				AnimationState_setAnimationByName(player.getState(), "walk", true);
@@ -120,7 +131,7 @@ void Player::update()
 			keycount ++;
 		}
 
-	else if (keypressed == "key-right" && !isMidAir)
+	else if (keypressed == "key-right" )
 	{
 		if (keycount ==1)
 			AnimationState_setAnimationByName(player.getState(), "walk", true);
@@ -135,14 +146,8 @@ void Player::update()
 		  GlobalData::playerBody->ApplyForce( b2Vec2(0,-force), GlobalData::playerBody->GetWorldCenter() );
 		}
 	}
-	else if (keypressed == "key-up" && isMidAir)
-	{
-				if (keycount >=1)
-					AnimationState_setAnimationByName(player.getState(), "jump", false);
-				keycount ++;
-			
-	}
-	else if (keypressed =="released" && !isMidAir)
+
+	else if (keypressed =="released" )
 	{
 		vel.x= 0;
 	   	AnimationState_setAnimationByName(player.getState(), "standing", true);
@@ -152,19 +157,19 @@ void Player::update()
 		
 
 	}
-	else if (keypressed == "released" && isMidAir)
-		{vel.x *=0.99;
-	AnimationState_setAnimationByName(player.getState(), "jump", false);
-	}
-	else if (keypressed == "key-down" && !isMidAir)
+	
+	else if (keypressed == "key-down")
 	{
 		if (keycount ==1)
 		AnimationState_setAnimationByName(player.getState(), "duck", false);
 		keycount ++;
 
 	}
-
+	}
 	
+
+
+
 		if ( GlobalData::numFootContacts <1 ) {
 			 isMidAir = true;			 
 			} else { 
